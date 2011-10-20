@@ -21,7 +21,7 @@ public abstract class AbstractPage {
 		// TODO: this(このインスタンス)が持っているメソッドの中で，goから始まるメソッド名を返すコードを作る
 		// リフレクション(Reflection)を使う
 		String name = that.getClass().getName();
-		Class cls = Class.forName(name);
+		Class<?> cls = Class.forName(name);
 		Method method[] = cls.getDeclaredMethods(); 
 		List<String> list = new ArrayList<String>();
 		for(int i = 0; i < method.length ; i++){
