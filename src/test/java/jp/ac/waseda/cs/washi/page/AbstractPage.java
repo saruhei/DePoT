@@ -31,4 +31,8 @@ public abstract class AbstractPage {
 		}
 		return list;
 	}
+	
+	public AbstractPage goRandomPage() {
+		return null;	
+	}
 }
