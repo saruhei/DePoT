@@ -36,14 +36,10 @@ public abstract class AbstractPage {
 		return list;
 	}
 	
-	public AbstractPage goRandomPage(AbstractPage that) throws  SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+	public AbstractPage goRandomPage(AbstractPage that) throws  SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
 		String name = that.getClass().getName();
-		Class<?> cls = null;
-		try {
-			cls = Class.forName(name);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		Class<?> cls;
+		cls = Class.forName(name);
 		Method method[] = cls.getDeclaredMethods();
 		List<String> list = new ArrayList<String>();
 		List<String> paramList = new ArrayList<String>();
