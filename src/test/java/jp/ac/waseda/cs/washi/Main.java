@@ -12,7 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Main {
 
-	public static void main(String[] args) throws ClassNotFoundException, SecurityException, IllegalArgumentException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+	public static void main(String[] args) throws ClassNotFoundException, SecurityException, IllegalArgumentException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
 
 		WebDriver driver = new FirefoxDriver();
 
@@ -28,7 +28,7 @@ public class Main {
 		System.out.println(list.get(i));
 		}
 		
-		Page2.goRandomPage(Page2);
+		Page1.goRandomPage(Page2);
 
 		driver.quit();
 	}

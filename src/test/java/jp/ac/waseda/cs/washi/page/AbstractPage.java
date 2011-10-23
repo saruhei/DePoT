@@ -2,7 +2,6 @@ package jp.ac.waseda.cs.washi.page;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -36,28 +35,30 @@ public abstract class AbstractPage {
 		return list;
 	}
 	
-	public AbstractPage goRandomPage(AbstractPage that) throws  SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
+	public AbstractPage goRandomPage(AbstractPage that) throws  SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, ClassNotFoundException, InstantiationException {
+		//メソッドのランダム呼び出し（引数なし）
 		String name = that.getClass().getName();
 		Class<?> cls;
 		cls = Class.forName(name);
 		Method method[] = cls.getDeclaredMethods();
-		List<String> list = new ArrayList<String>();
 		List<String> paramList = new ArrayList<String>();
 		for(int i = 0; i<method.length; i++){
 			if(method[i].getName().matches("go.*")){
-				/*
-				 * ここで引数の情報をとろうとしてました
-				 */
-				/*Class<?>[] params = method[i].getParameterTypes();
-				for(Class<?> c : params){
-					//paramList.add(c.getName());
-					System.out.println(c.toString());
-				}*/
+				Class<?>[] params = method[i].getParameterTypes();
+				if(params.length == 0){
+					paramList.add(method[i].getName().toString());
+				}
 			}
 		}
-		Random rnd = new Random();
-		int ran = rnd.nextInt(list.size());
-		Method done = cls.getMethod(list.get(ran), void.class);
-		return (AbstractPage) done.invoke(void.class);
+		if(paramList.size()==0){
+			return null;
+		}
+		else{
+			Random rnd = new Random();
+			int ran = rnd.nextInt(paramList.size());
+			Method done = cls.getMethod(paramList.get(ran));
+			return (AbstractPage) done.invoke(that);	
+		}
+		
 	}
 }
