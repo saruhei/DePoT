@@ -27,15 +27,18 @@ public class GoTest {
 	}
 
 	@Test
-	public void YahooGoTest() throws SecurityException, IllegalArgumentException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, ClassNotFoundException, InstantiationException {
+	public void YahooGoTest() throws SecurityException,
+			IllegalArgumentException, NoSuchMethodException,
+			IllegalAccessException, InvocationTargetException,
+			ClassNotFoundException, InstantiationException {
 		AtFirst starter = new AtFirst(driver);
 		YahooTopPage result = starter.goTopPage();
 		YahooSearchResultPage searchresult = result.goSearchPage("selenium");
-		YahooImageSearchResultPage isearchresult = searchresult.goImageSearchPage();
-		searchresult.goTopPage()
-			.goSearchPage("aaa")
-			.goImageSearchPage()
-			.goRandomPage(isearchresult);
+		YahooImageSearchResultPage isearchresult = searchresult
+				.goImageSearchPage();
+		searchresult.goTopPage().goSearchPage("aaa").goImageSearchPage()
+				.goRandomPage(isearchresult);
+
 	}
 
 }

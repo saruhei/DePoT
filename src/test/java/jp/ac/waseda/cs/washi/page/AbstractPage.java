@@ -59,6 +59,6 @@ public abstract class AbstractPage {
 			Method done = cls.getMethod(paramList.get(ran));
 			return (AbstractPage) done.invoke(that);	
 		}
-		
+
 	}
 }

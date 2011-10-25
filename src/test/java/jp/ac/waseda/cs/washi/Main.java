@@ -12,24 +12,26 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Main {
 
-	public static void main(String[] args) throws ClassNotFoundException, SecurityException, IllegalArgumentException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+	public static void main(String[] args) throws ClassNotFoundException,
+			SecurityException, IllegalArgumentException, NoSuchMethodException,
+			IllegalAccessException, InvocationTargetException,
+			InstantiationException {
 
 		WebDriver driver = new FirefoxDriver();
 
-		AtFirst Page0 = new AtFirst(driver);
+		AtFirst page0 = new AtFirst(driver);
 
-		YahooTopPage Page1 = Page0.goTopPage();
-		
-		YahooSearchResultPage Page2 = Page1.goSearchPage("selenium");
-		
-		List<String> list = Page2.getGoMethodNames(Page2);
-		
-		for(int i = 0; i < list.size();i++){
-		System.out.println(list.get(i));
+		YahooTopPage page1 = page0.goTopPage();
+
+		YahooSearchResultPage page2 = page1.goSearchPage("selenium");
+
+		List<String> list = page2.getGoMethodNames(page2);
+
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
 		}
-		
-		Page2.goRandomPage(Page2)
-			.goRandomPage(Page2);
+
+		page2.goRandomPage(page2);
 
 		driver.quit();
 	}
