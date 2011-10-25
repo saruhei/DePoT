@@ -28,7 +28,8 @@ public class Main {
 		System.out.println(list.get(i));
 		}
 		
-		Page2.goRandomPage(Page2);
+		Page2.goRandomPage(Page2)
+			.goRandomPage(Page2);
 
 		driver.quit();
 	}

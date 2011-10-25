@@ -3,6 +3,8 @@ package jp.ac.waseda.cs.washi;
 import java.lang.reflect.InvocationTargetException;
 
 import jp.ac.waseda.cs.washi.page.AtFirst;
+import jp.ac.waseda.cs.washi.page.YahooImageSearchResultPage;
+import jp.ac.waseda.cs.washi.page.YahooSearchResultPage;
 import jp.ac.waseda.cs.washi.page.YahooTopPage;
 
 import org.junit.AfterClass;
@@ -28,11 +30,12 @@ public class GoTest {
 	public void YahooGoTest() throws SecurityException, IllegalArgumentException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, ClassNotFoundException, InstantiationException {
 		AtFirst starter = new AtFirst(driver);
 		YahooTopPage result = starter.goTopPage();
-		result.goSearchPage("selenium")
-			.goImageSearchPage()
-			.goTopPage()
+		YahooSearchResultPage searchresult = result.goSearchPage("selenium");
+		YahooImageSearchResultPage isearchresult = searchresult.goImageSearchPage();
+		searchresult.goTopPage()
 			.goSearchPage("aaa")
-			.goRandomPage(result);
+			.goImageSearchPage()
+			.goRandomPage(isearchresult);
 	}
 
 }
