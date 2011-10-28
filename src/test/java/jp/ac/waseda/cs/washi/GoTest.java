@@ -3,10 +3,6 @@ package jp.ac.waseda.cs.washi;
 import java.lang.reflect.InvocationTargetException;
 
 import jp.ac.waseda.cs.washi.page.AtFirst;
-import jp.ac.waseda.cs.washi.page.YahooImageSearchResultPage;
-import jp.ac.waseda.cs.washi.page.YahooSearchResultPage;
-import jp.ac.waseda.cs.washi.page.YahooTopPage;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -32,12 +28,14 @@ public class GoTest {
 			IllegalAccessException, InvocationTargetException,
 			ClassNotFoundException, InstantiationException {
 		AtFirst starter = new AtFirst(driver);
-		YahooTopPage result = starter.goTopPage();
-		YahooSearchResultPage searchresult = result.goSearchPage("selenium");
-		YahooImageSearchResultPage isearchresult = searchresult
-				.goImageSearchPage();
-		searchresult.goTopPage().goSearchPage("aaa").goImageSearchPage()
-				.goRandomPage(isearchresult);
+		starter.goTopPage()
+				.goSearchPage("selenium")
+				.goImageSearchPage()
+				.goTopPage()
+				.goSearchPage("aaa")
+				.goImageSearchPage()
+				.goRandomPage()
+				.goRandomPage();
 
 	}
 

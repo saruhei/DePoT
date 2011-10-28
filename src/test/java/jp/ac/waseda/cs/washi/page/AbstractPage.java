@@ -17,47 +17,50 @@ public abstract class AbstractPage {
 		// ページファクトリによるフィールドの初期化
 		PageFactory.initElements(driver, this);
 	}
-	
+
 	protected abstract void assertInvariant();
-	
-	public List<String> getGoMethodNames(AbstractPage that) throws ClassNotFoundException {
+
+	public List<String> getGoMethodNames(AbstractPage that)
+			throws ClassNotFoundException {
 		// TODO: this(このインスタンス)が持っているメソッドの中で，goから始まるメソッド名を返すコードを作る
 		// リフレクション(Reflection)を使う
 		String name = that.getClass().getName();
 		Class<?> cls = Class.forName(name);
-		Method method[] = cls.getDeclaredMethods(); 
+		Method method[] = cls.getDeclaredMethods();
 		List<String> list = new ArrayList<String>();
-		for(int i = 0; i < method.length ; i++){
-			if(method[i].getName().matches("go.*")){
-			list.add(method[i].getName().toString());
+		for (int i = 0; i < method.length; i++) {
+			if (method[i].getName().matches("go.*")) {
+				list.add(method[i].getName().toString());
 			}
 		}
 		return list;
 	}
-	
-	public AbstractPage goRandomPage(AbstractPage that) throws  SecurityException, NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, ClassNotFoundException, InstantiationException {
-		//メソッドのランダム呼び出し（引数なし）
-		String name = that.getClass().getName();
+
+	public AbstractPage goRandomPage() throws SecurityException,
+			NoSuchMethodException, IllegalArgumentException,
+			IllegalAccessException, InvocationTargetException,
+			ClassNotFoundException, InstantiationException {
+		// メソッドのランダム呼び出し（引数なし）
+		String name = this.getClass().getName();
 		Class<?> cls;
 		cls = Class.forName(name);
 		Method method[] = cls.getDeclaredMethods();
 		List<String> paramList = new ArrayList<String>();
-		for(int i = 0; i<method.length; i++){
-			if(method[i].getName().matches("go.*")){
+		for (int i = 0; i < method.length; i++) {
+			if (method[i].getName().matches("go.*")) {
 				Class<?>[] params = method[i].getParameterTypes();
-				if(params.length == 0){
+				if (params.length == 0) {
 					paramList.add(method[i].getName().toString());
 				}
 			}
 		}
-		if(paramList.size()==0){
+		if (paramList.size() == 0) {
 			return null;
-		}
-		else{
+		} else {
 			Random rnd = new Random();
 			int ran = rnd.nextInt(paramList.size());
 			Method done = cls.getMethod(paramList.get(ran));
-			return (AbstractPage) done.invoke(that);	
+			return (AbstractPage) done.invoke(this);
 		}
 
 	}
