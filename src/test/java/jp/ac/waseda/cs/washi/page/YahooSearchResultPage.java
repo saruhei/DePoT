@@ -16,7 +16,7 @@ public class YahooSearchResultPage extends AbstractPage {
 
 	private final String keyword;
 
-	public YahooSearchResultPage(WebDriver driver, String keyword) {
+	public YahooSearchResultPage(WebDriver driver, String keyword) throws ClassNotFoundException {
 		super(driver);
 		this.keyword = keyword;
 		// 不変条件のテスト
@@ -28,12 +28,12 @@ public class YahooSearchResultPage extends AbstractPage {
 		assertThat(driver.getTitle(), is("「" + keyword + "」の検索結果 - Yahoo!検索"));
 	}
 
-	public YahooTopPage goTopPage() {
+	public YahooTopPage goTopPage() throws ClassNotFoundException {
 		returntop.click();
 		return new YahooTopPage(driver);
 	}
 
-	public YahooImageSearchResultPage goImageSearchPage() {
+	public YahooImageSearchResultPage goImageSearchPage() throws ClassNotFoundException {
 		isearchbtn.click();
 		return new YahooImageSearchResultPage(driver, keyword);
 	}

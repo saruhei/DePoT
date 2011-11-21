@@ -16,7 +16,7 @@ public class YahooTopPage extends AbstractPage {
 	@FindBy(id = "isearch")
 	private WebElement isearchbtn;
 
-	public YahooTopPage(WebDriver driver) {
+	public YahooTopPage(WebDriver driver) throws ClassNotFoundException {
 		super(driver);
 		// 不変条件のテスト
 		assertInvariant();
@@ -27,13 +27,13 @@ public class YahooTopPage extends AbstractPage {
 		assertThat(driver.getTitle(), is("Yahoo! JAPAN"));
 	}
 
-	public YahooSearchResultPage goSearchPage(String keyword) {
+	public YahooSearchResultPage goSearchPage(String keyword) throws ClassNotFoundException {
 		searchbox.sendKeys(keyword);
 		searchbtn.click();
 		return new YahooSearchResultPage(driver, keyword);
 	}
 
-	public YahooImageSearchResultPage goImageSearchPage(String keyword) {
+	public YahooImageSearchResultPage goImageSearchPage(String keyword) throws ClassNotFoundException {
 		searchbox.sendKeys(keyword);
 		isearchbtn.click();
 		return new YahooImageSearchResultPage(driver, keyword);

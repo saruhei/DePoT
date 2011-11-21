@@ -11,7 +11,7 @@ public class AtFirst {
 		this.driver = driver;
 	}
 
-	public YahooTopPage goTopPage() {
+	public YahooTopPage goTopPage() throws ClassNotFoundException {
 		driver.get("http://www.yahoo.jp");
 		return new YahooTopPage(driver);
 	}

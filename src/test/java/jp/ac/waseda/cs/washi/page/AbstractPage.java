@@ -12,10 +12,11 @@ import org.openqa.selenium.support.PageFactory;
 public abstract class AbstractPage {
 	protected final WebDriver driver;
 
-	public AbstractPage(WebDriver driver) {
+	public AbstractPage(WebDriver driver) throws ClassNotFoundException {
 		this.driver = driver;
 		// ページファクトリによるフィールドの初期化
 		PageFactory.initElements(driver, this);
+		PrintStackTrace();
 	}
 
 	protected abstract void assertInvariant();
@@ -64,4 +65,13 @@ public abstract class AbstractPage {
 		}
 
 	}
+	
+	public void PrintStackTrace() throws ClassNotFoundException{
+		String name = this.getClass().getName();
+		Class<?> cls;
+		cls = Class.forName(name);
+		System.out.println(name.toString());
+	}
+	
+	
 }

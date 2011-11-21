@@ -22,7 +22,7 @@ public class PageFactoryTest {
 	}
 
 	@Test
-	public void YahooTest() {
+	public void YahooTest() throws ClassNotFoundException {
 		AtFirst starter = new AtFirst(driver);
 		starter.goTopPage()
 			.goSearchPage("selenium")
