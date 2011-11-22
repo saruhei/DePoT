@@ -68,8 +68,6 @@ public abstract class AbstractPage {
 	
 	public void PrintStackTrace() throws ClassNotFoundException{
 		String name = this.getClass().getName();
-		Class<?> cls;
-		cls = Class.forName(name);
 		System.out.println(name.toString());
 	}
 	
