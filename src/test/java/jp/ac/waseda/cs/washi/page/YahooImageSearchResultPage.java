@@ -16,7 +16,8 @@ public class YahooImageSearchResultPage extends AbstractPage {
 
 	private final String keyword;
 
-	public YahooImageSearchResultPage(WebDriver driver, String keyword) throws ClassNotFoundException {
+	public YahooImageSearchResultPage(WebDriver driver, String keyword)
+			throws ClassNotFoundException {
 		super(driver);
 		this.keyword = keyword;
 		// 不変条件のテスト

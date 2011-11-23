@@ -27,13 +27,15 @@ public class YahooTopPage extends AbstractPage {
 		assertThat(driver.getTitle(), is("Yahoo! JAPAN"));
 	}
 
-	public YahooSearchResultPage goSearchPage(String keyword) throws ClassNotFoundException {
+	public YahooSearchResultPage goSearchPage(String keyword)
+			throws ClassNotFoundException {
 		searchbox.sendKeys(keyword);
 		searchbtn.click();
 		return new YahooSearchResultPage(driver, keyword);
 	}
 
-	public YahooImageSearchResultPage goImageSearchPage(String keyword) throws ClassNotFoundException {
+	public YahooImageSearchResultPage goImageSearchPage(String keyword)
+			throws ClassNotFoundException {
 		searchbox.sendKeys(keyword);
 		isearchbtn.click();
 		return new YahooImageSearchResultPage(driver, keyword);

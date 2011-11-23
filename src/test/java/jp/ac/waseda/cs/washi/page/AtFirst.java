@@ -1,6 +1,5 @@
 package jp.ac.waseda.cs.washi.page;
 
-
 import org.openqa.selenium.WebDriver;
 
 public class AtFirst {

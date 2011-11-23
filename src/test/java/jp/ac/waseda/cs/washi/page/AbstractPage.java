@@ -40,13 +40,14 @@ public abstract class AbstractPage {
 			IllegalAccessException, InvocationTargetException,
 			ClassNotFoundException, InstantiationException {
 		// メソッドのランダム呼び出し（引数なし）
-		Method method[] = this.getClass().getDeclaredMethods();
+		Method methods[] = this.getClass().getDeclaredMethods();
 		List<String> paramList = new ArrayList<String>();
-		for (int i = 0; i < method.length; i++) {
-			if (method[i].getName().startsWith("go")) {
-				Class<?>[] params = method[i].getParameterTypes();
+		for (int i = 0; i < methods.length; i++) {
+			Method method = methods[i];
+			if (method.getName().startsWith("go")) {
+				Class<?>[] params = method.getParameterTypes();
 				if (params.length == 0) {
-					paramList.add(method[i].getName().toString());
+					paramList.add(method.getName().toString());
 				}
 			}
 		}
@@ -60,11 +61,10 @@ public abstract class AbstractPage {
 		}
 
 	}
-	
-	public void printStackTrace() throws ClassNotFoundException{
+
+	public void printStackTrace() throws ClassNotFoundException {
 		String name = this.getClass().getName();
 		System.out.println(name.toString());
 	}
-	
-	
+
 }

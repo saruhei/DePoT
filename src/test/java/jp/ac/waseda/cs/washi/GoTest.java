@@ -28,14 +28,9 @@ public class GoTest {
 			IllegalAccessException, InvocationTargetException,
 			ClassNotFoundException, InstantiationException {
 		AtFirst starter = new AtFirst(driver);
-		starter.goTopPage()
-				.goSearchPage("selenium")
-				.goImageSearchPage()
-				.goTopPage()
-				.goSearchPage("aaa")
-				.goImageSearchPage()
-				.goRandomPage()
-				.goRandomPage();
+		starter.goTopPage().goSearchPage("selenium").goImageSearchPage()
+				.goTopPage().goSearchPage("aaa").goImageSearchPage()
+				.goRandomPage().goRandomPage();
 
 	}
 
