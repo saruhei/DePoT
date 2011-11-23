@@ -16,7 +16,7 @@ public abstract class AbstractPage {
 		this.driver = driver;
 		// ページファクトリによるフィールドの初期化
 		PageFactory.initElements(driver, this);
-		PrintStackTrace();
+		printStackTrace();
 	}
 
 	protected abstract void assertInvariant();
@@ -25,9 +25,7 @@ public abstract class AbstractPage {
 			throws ClassNotFoundException {
 		// TODO: this(このインスタンス)が持っているメソッドの中で，goから始まるメソッド名を返すコードを作る
 		// リフレクション(Reflection)を使う
-		String name = that.getClass().getName();
-		Class<?> cls = Class.forName(name);
-		Method method[] = cls.getDeclaredMethods();
+		Method method[] = this.getClass().getDeclaredMethods();
 		List<String> list = new ArrayList<String>();
 		for (int i = 0; i < method.length; i++) {
 			if (method[i].getName().matches("go.*")) {
@@ -42,13 +40,10 @@ public abstract class AbstractPage {
 			IllegalAccessException, InvocationTargetException,
 			ClassNotFoundException, InstantiationException {
 		// メソッドのランダム呼び出し（引数なし）
-		String name = this.getClass().getName();
-		Class<?> cls;
-		cls = Class.forName(name);
-		Method method[] = cls.getDeclaredMethods();
+		Method method[] = this.getClass().getDeclaredMethods();
 		List<String> paramList = new ArrayList<String>();
 		for (int i = 0; i < method.length; i++) {
-			if (method[i].getName().matches("go.*")) {
+			if (method[i].getName().startsWith("go")) {
 				Class<?>[] params = method[i].getParameterTypes();
 				if (params.length == 0) {
 					paramList.add(method[i].getName().toString());
@@ -60,13 +55,13 @@ public abstract class AbstractPage {
 		} else {
 			Random rnd = new Random();
 			int ran = rnd.nextInt(paramList.size());
-			Method done = cls.getMethod(paramList.get(ran));
+			Method done = this.getClass().getMethod(paramList.get(ran));
 			return (AbstractPage) done.invoke(this);
 		}
 
 	}
 	
-	public void PrintStackTrace() throws ClassNotFoundException{
+	public void printStackTrace() throws ClassNotFoundException{
 		String name = this.getClass().getName();
 		System.out.println(name.toString());
 	}
