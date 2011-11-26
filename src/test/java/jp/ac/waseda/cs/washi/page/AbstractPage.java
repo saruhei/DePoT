@@ -5,12 +5,14 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Stack;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 public abstract class AbstractPage {
 	protected final WebDriver driver;
+	private static Stack<String> stackTrace = new Stack<String>();
 
 	public AbstractPage(WebDriver driver) throws ClassNotFoundException {
 		this.driver = driver;
@@ -63,8 +65,11 @@ public abstract class AbstractPage {
 	}
 
 	public void printStackTrace() throws ClassNotFoundException {
-		String name = this.getClass().getName();
-		System.out.println(name.toString());
+		stackTrace.add(this.getClass().getName());
+		for (String pageName : stackTrace) {
+			System.out.println(pageName);
+		}
+		System.out.println();
 	}
 
 }
