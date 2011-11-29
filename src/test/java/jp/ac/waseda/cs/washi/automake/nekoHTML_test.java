@@ -1,8 +1,10 @@
-package jp.ac.waseda.cs.washi.nekohtml_test;
+package jp.ac.waseda.cs.washi.automake;
 
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.cyberneko.html.parsers.DOMParser;
 import org.w3c.dom.Document;
@@ -14,8 +16,10 @@ import org.xml.sax.InputSource;
 
 public class nekoHTML_test {
 	
-	public static void main(final String[] args) throws Exception{
-		final URL url = new URL("http://www.yahoo.co.jp/");
+	static List<String> methodName = new ArrayList<String>();
+	
+	public static List<String> getId() throws Exception{
+		final URL url = new URL("http://localhost:8888/study.localhost/DePoT/sorce/Diary.php");
 		final URLConnection urlConnection = url.openConnection();
 		final DOMParser parser = new DOMParser();
 		final InputStream is = urlConnection.getInputStream();
@@ -24,9 +28,11 @@ public class nekoHTML_test {
 			final Document doc = parser.getDocument();
 			final Element root = doc.getDocumentElement();
 			walkTree("",root);
+			System.out.println(methodName);
 		}finally{
 			is.close();
 		}
+		return methodName;
 
 		
 
@@ -43,7 +49,8 @@ public class nekoHTML_test {
 					walkTree(level + "", (Element)child);
 					Element element = (Element) child;
 					if(null != element.getAttributes().getNamedItem("id") && null != element.getAttributes().getNamedItem("href")){
-						System.out.println(element.getAttributes().getNamedItem("id"));
+						System.out.println(element.getAttribute("id"));
+						methodName.add(element.getAttribute("id"));
 					}
 					
 				}

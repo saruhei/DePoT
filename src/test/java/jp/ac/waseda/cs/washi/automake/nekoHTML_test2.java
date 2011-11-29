@@ -1,4 +1,4 @@
-package jp.ac.waseda.cs.washi.nekohtml_test;
+package jp.ac.waseda.cs.washi.automake;
 
 import org.cyberneko.html.parsers.DOMParser;
 import org.w3c.dom.Document;
