@@ -1,6 +1,8 @@
 package jp.ac.waseda.cs.washi.automake;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -19,7 +21,10 @@ public class nekoHTML_test {
 	static List<String> methodName = new ArrayList<String>();
 	
 	public static List<String> getId() throws Exception{
-		final URL url = new URL("http://localhost:8888/study.localhost/DePoT/sorce/Diary.php");
+		System.out.println("Input URL:");
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String urladdresss = br.readLine();
+		final URL url = new URL(urladdresss);
 		final URLConnection urlConnection = url.openConnection();
 		final DOMParser parser = new DOMParser();
 		final InputStream is = urlConnection.getInputStream();
@@ -28,7 +33,7 @@ public class nekoHTML_test {
 			final Document doc = parser.getDocument();
 			final Element root = doc.getDocumentElement();
 			walkTree("",root);
-			System.out.println(methodName);
+			//System.out.println(methodName);
 		}finally{
 			is.close();
 		}
@@ -49,7 +54,7 @@ public class nekoHTML_test {
 					walkTree(level + "", (Element)child);
 					Element element = (Element) child;
 					if(null != element.getAttributes().getNamedItem("id") && null != element.getAttributes().getNamedItem("href")){
-						System.out.println(element.getAttribute("id"));
+						//System.out.println(element.getAttribute("id"));
 						methodName.add(element.getAttribute("id"));
 					}
 					

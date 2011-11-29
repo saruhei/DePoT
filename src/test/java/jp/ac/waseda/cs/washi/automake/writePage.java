@@ -1,9 +1,11 @@
 package jp.ac.waseda.cs.washi.automake;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +41,7 @@ public class writePage {
 		try {
 			pw = new PrintWriter(new BufferedWriter(new FileWriter(file)));
 			
-			writePackage(pw,"jp.ac.waseda.cs.washi.makepage");
+			writePackage(pw);
 			
 			writeimport(pw);
 			
@@ -74,14 +76,17 @@ public class writePage {
 				"import org.openqa.selenium.support.FindBy;\n");
 	}
 
-	private static void writePackage(PrintWriter pw, String string) {
-		pw.println("package " + string +";\n");	
+	private static void writePackage(PrintWriter pw) throws IOException {
+		System.out.println("Input Package Name:");
+		BufferedReader br = new	BufferedReader(new InputStreamReader(System.in));
+		String packageName = br.readLine();
+		pw.println("package " + packageName +";\n");	
 	}
 
 	public void writeMethod(PrintWriter pw, List<String> idList) {
 		
 		for(int i = 0; i < idList.size(); i++){
-			pw.println("	public " + idList.get(i) + " HogeHoge() throws ClassNotFoundException {\n" +
+			pw.println("	public HogeHoge " + idList.get(i) + "() throws ClassNotFoundException {\n" +
 					"		" + idList.get(i) + ".click();\n" +
 					"		return new HogeHoge(driver);\n" +
 					"	}\n");
