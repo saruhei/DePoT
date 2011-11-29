@@ -10,7 +10,8 @@ public class makePage {
 		makeNewFile fl = new makeNewFile();
 		String flAddress = fl.makeFile();
 		List<String> idList = new ArrayList<String>();
-		idList = nekoHTML_test.getId();
+		nekoHTML_test neko = new nekoHTML_test();
+		idList = neko.getId();
 		writePage wp = new writePage(idList);
 		wp.write(flAddress);
 	}

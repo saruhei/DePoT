@@ -18,9 +18,9 @@ import org.xml.sax.InputSource;
 
 public class nekoHTML_test {
 	
-	static List<String> methodName = new ArrayList<String>();
+	List<String> methodName = new ArrayList<String>();
 	
-	public static List<String> getId() throws Exception{
+	public List<String> getId() throws Exception{
 		System.out.println("Input URL:");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String urladdresss = br.readLine();
@@ -43,7 +43,7 @@ public class nekoHTML_test {
 
 	}
 
-	private static void walkTree(final String level, final Element elm) {
+	private void walkTree(final String level, final Element elm) {
 		//System.out.println(level + "<" + elm.getTagName() + ">");
 		final NodeList children = elm.getChildNodes();
 		if(children != null){

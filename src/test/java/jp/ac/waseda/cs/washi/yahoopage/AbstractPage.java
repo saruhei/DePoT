@@ -1,4 +1,4 @@
-package jp.ac.waseda.cs.washi.page;
+package jp.ac.waseda.cs.washi.yahoopage;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
