@@ -1,11 +1,9 @@
 package jp.ac.waseda.cs.washi.automake;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +16,13 @@ public class writePage {
 		this.idList = idList;
 	}
 	
-	public void write(String string){
+	public void write(String[] pNaD){
 		try {
-			File file = new File(string);
+			File file = new File(pNaD[1]);
 			
 			if(checkBeforeWriteFile(file)){
 				
-				input(file);
+				input(file,pNaD[0],pNaD[2]);
 
 			}else{
 				System.out.println("ファイル書き込みミス");
@@ -35,17 +33,17 @@ public class writePage {
 		}
 	}
 
-	public void input(File file) {
+	public void input(File file, String packagename, String filename) {
 		
 		PrintWriter pw;
 		try {
 			pw = new PrintWriter(new BufferedWriter(new FileWriter(file)));
 			
-			writePackage(pw);
+			writePackage(pw,packagename);
 			
 			writeimport(pw);
 			
-			writeClass(pw,"testpage");
+			writeClass(pw,filename);
 			
 			pw.close();
 		} catch (IOException e) {
@@ -76,10 +74,7 @@ public class writePage {
 				"import org.openqa.selenium.support.FindBy;\n");
 	}
 
-	private static void writePackage(PrintWriter pw) throws IOException {
-		System.out.println("Input Package Name:");
-		BufferedReader br = new	BufferedReader(new InputStreamReader(System.in));
-		String packageName = br.readLine();
+	private static void writePackage(PrintWriter pw, String packageName) throws IOException {
 		pw.println("package " + packageName +";\n");	
 	}
 

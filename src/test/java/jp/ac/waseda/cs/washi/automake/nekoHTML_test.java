@@ -18,7 +18,7 @@ import org.xml.sax.InputSource;
 
 public class nekoHTML_test {
 	
-	List<String> methodName = new ArrayList<String>();
+	private List<String> methodName = new ArrayList<String>();
 	
 	public List<String> getId() throws Exception{
 		System.out.println("Input URL:");
