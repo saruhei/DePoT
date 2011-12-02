@@ -5,14 +5,14 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class makeNewFile {
-	public String[] makeFile() throws Exception{
+public class MakeNewFile {
+	public String[] makeFile() throws Exception {
 		System.out.println("Input File Name:");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String filename = br.readLine();
 		System.out.println("Input Directory Address:");
 		String Address = br.readLine();
-		String rtst[] = new String[3]; 
+		String rtst[] = new String[3];
 		try {
 			File fl = new File(Address + filename + ".java");
 			fl.createNewFile();
@@ -27,12 +27,14 @@ public class makeNewFile {
 
 	public String checkAbstractPage(String address) throws Exception {
 		File abst = new File(address + "AbstractPage.java");
-		if(abst.exists() == false){
+		System.out.println("Input Package Name:");
+		BufferedReader b = new BufferedReader(new InputStreamReader(System.in));
+		String packageName = b.readLine();
+		if (abst.exists() == false) {
 			WriteAbstractPage ab = new WriteAbstractPage(abst);
-			return ab.writeAbstract();
-		}else{
-			return null;	
+			ab.writeAbstract(packageName);
 		}
+		return packageName;
 	}
 
 }

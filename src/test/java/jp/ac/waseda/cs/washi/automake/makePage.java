@@ -3,16 +3,16 @@ package jp.ac.waseda.cs.washi.automake;
 import java.util.ArrayList;
 import java.util.List;
 
-public class makePage {
-	
-	public static void main(String[] args) throws Exception{
-		
-		makeNewFile fl = new makeNewFile();
+public class MakePage {
+
+	public static void main(String[] args) throws Exception {
+
+		MakeNewFile fl = new MakeNewFile();
 		String pNaD[] = fl.makeFile();
 		List<String> idList = new ArrayList<String>();
-		nekoHTML_test neko = new nekoHTML_test();
+		GetIdwithNekoHTML neko = new GetIdwithNekoHTML();
 		idList = neko.getId();
-		writePage wp = new writePage(idList);
+		WritePage wp = new WritePage(idList);
 		wp.write(pNaD);
 	}
 

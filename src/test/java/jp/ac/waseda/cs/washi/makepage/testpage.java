@@ -20,12 +20,9 @@ public class testpage extends AbstractPage {
 	@FindBy(id =  "gogbbs")
 	private WebElement gogbbs;
 
-	private final String keyword;
-
-	public testpage(WebDriver driver, String keyword)
+	public testpage(WebDriver driver)
 			throws ClassNotFoundException {
 		super(driver);
-		this.keyword = keyword;
 		assertInvariant();
 	}
 
@@ -33,24 +30,24 @@ public class testpage extends AbstractPage {
 	protected void assertInvariant() {
 	}
 
-	public HogeHoge GoLogin() throws ClassNotFoundException {
+	public InputPageClass GoLogin() throws ClassNotFoundException {
 		GoLogin.click();
-		return new HogeHoge(driver);
+		return new InputPageClass(driver);
 	}
 
-	public HogeHoge goChat() throws ClassNotFoundException {
+	public InputPageClass goChat() throws ClassNotFoundException {
 		goChat.click();
-		return new HogeHoge(driver);
+		return new InputPageClass(driver);
 	}
 
-	public HogeHoge goDiary() throws ClassNotFoundException {
+	public InputPageClass goDiary() throws ClassNotFoundException {
 		goDiary.click();
-		return new HogeHoge(driver);
+		return new InputPageClass(driver);
 	}
 
-	public HogeHoge gogbbs() throws ClassNotFoundException {
+	public InputPageClass gogbbs() throws ClassNotFoundException {
 		gogbbs.click();
-		return new HogeHoge(driver);
+		return new InputPageClass(driver);
 	}
 
 }

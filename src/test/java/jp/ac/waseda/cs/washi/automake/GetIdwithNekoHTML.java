@@ -15,12 +15,11 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+public class GetIdwithNekoHTML {
 
-public class nekoHTML_test {
-	
 	private List<String> methodName = new ArrayList<String>();
-	
-	public List<String> getId() throws Exception{
+
+	public List<String> getId() throws Exception {
 		System.out.println("Input URL:");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String urladdresss = br.readLine();
@@ -28,41 +27,40 @@ public class nekoHTML_test {
 		final URLConnection urlConnection = url.openConnection();
 		final DOMParser parser = new DOMParser();
 		final InputStream is = urlConnection.getInputStream();
-		try{
+		try {
 			parser.parse(new InputSource(is));
 			final Document doc = parser.getDocument();
 			final Element root = doc.getDocumentElement();
-			walkTree("",root);
-			//System.out.println(methodName);
-		}finally{
+			walkTree("", root);
+			// System.out.println(methodName);
+		} finally {
 			is.close();
 		}
 		return methodName;
 
-		
-
 	}
 
 	private void walkTree(final String level, final Element elm) {
-		//System.out.println(level + "<" + elm.getTagName() + ">");
+		// System.out.println(level + "<" + elm.getTagName() + ">");
 		final NodeList children = elm.getChildNodes();
-		if(children != null){
+		if (children != null) {
 			final int len = children.getLength();
-			for(int idx = 0; idx < len; idx++){
+			for (int idx = 0; idx < len; idx++) {
 				final Node child = (Node) children.item(idx);
-				if(child.getNodeType() == Node.ELEMENT_NODE){
-					walkTree(level + "", (Element)child);
+				if (child.getNodeType() == Node.ELEMENT_NODE) {
+					walkTree(level + "", (Element) child);
 					Element element = (Element) child;
-					if(null != element.getAttributes().getNamedItem("id") && null != element.getAttributes().getNamedItem("href")){
-						//System.out.println(element.getAttribute("id"));
+					if (null != element.getAttributes().getNamedItem("id")
+							&& null != element.getAttributes().getNamedItem(
+									"href")) {
+						// System.out.println(element.getAttribute("id"));
 						methodName.add(element.getAttribute("id"));
 					}
-					
-				}
-				else if(child.getNodeType() == Node.TEXT_NODE){
+
+				} else if (child.getNodeType() == Node.TEXT_NODE) {
 					final String txt = child.getNodeValue();
-					if(txt.trim().length() > 0){
-					//	System.out.println(level + txt);
+					if (txt.trim().length() > 0) {
+						// System.out.println(level + txt);
 					}
 				}
 			}
