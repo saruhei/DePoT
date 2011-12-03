@@ -24,12 +24,8 @@ public class PageFactoryTest {
 	@Test
 	public void YahooTest() throws ClassNotFoundException {
 		AtFirst starter = new AtFirst(driver);
-		starter.goTopPage()
-			.goSearchPage("selenium")
-			.goImageSearchPage()
-			.goTopPage()
-			.goImageSearchPage("selenium")
-			.goTopPage()
-			.goImageSearchPage("aaaa");
+		starter.goTopPage().goSearchPage("selenium").goImageSearchPage()
+				.goTopPage().goImageSearchPage("selenium").goTopPage()
+				.goImageSearchPage("aaaa");
 	}
 }
