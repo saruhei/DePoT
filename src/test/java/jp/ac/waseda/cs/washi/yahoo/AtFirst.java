@@ -1,4 +1,4 @@
-package jp.ac.waseda.cs.washi.yahoopage;
+package jp.ac.waseda.cs.washi.yahoo;
 
 import org.openqa.selenium.WebDriver;
 

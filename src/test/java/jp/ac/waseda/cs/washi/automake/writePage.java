@@ -16,13 +16,13 @@ public class WritePage {
 		this.idList = idList;
 	}
 
-	public void write(String[] pNaD) {
+	public void write(String[] nameAndAddress) {
 		try {
-			File file = new File(pNaD[1]);
+			File file = new File(nameAndAddress[1]);
 
 			if (checkBeforeWriteFile(file)) {
 
-				input(file, pNaD[0], pNaD[2]);
+				input(file, nameAndAddress[0], nameAndAddress[2]);
 
 			} else {
 				System.out.println("ファイル書き込みミス");
@@ -33,17 +33,17 @@ public class WritePage {
 		}
 	}
 
-	public void input(File file, String packagename, String filename) {
+	public void input(File file, String packageName, String fileName) {
 
 		PrintWriter pw;
 		try {
 			pw = new PrintWriter(new BufferedWriter(new FileWriter(file)));
 
-			writePackage(pw, packagename);
+			writePackage(pw, packageName);
 
 			writeimport(pw);
 
-			writeClass(pw, filename);
+			writeClass(pw, fileName);
 
 			pw.close();
 		} catch (IOException e) {

@@ -1,4 +1,4 @@
-package jp.ac.waseda.cs.washi.yahoopage;
+package jp.ac.waseda.cs.washi.yahoo;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -25,8 +25,6 @@ public abstract class AbstractPage {
 
 	public List<String> getGoMethodNames(AbstractPage that)
 			throws ClassNotFoundException {
-		// TODO: this(このインスタンス)が持っているメソッドの中で，goから始まるメソッド名を返すコードを作る
-		// リフレクション(Reflection)を使う
 		Method method[] = this.getClass().getDeclaredMethods();
 		List<String> list = new ArrayList<String>();
 		for (int i = 0; i < method.length; i++) {
@@ -43,23 +41,23 @@ public abstract class AbstractPage {
 			ClassNotFoundException, InstantiationException {
 		// メソッドのランダム呼び出し（引数なし）
 		Method methods[] = this.getClass().getDeclaredMethods();
-		List<String> paramList = new ArrayList<String>();
+		List<String> methodNames = new ArrayList<String>();
 		for (int i = 0; i < methods.length; i++) {
 			Method method = methods[i];
 			if (method.getName().startsWith("go")) {
 				Class<?>[] params = method.getParameterTypes();
 				if (params.length == 0) {
-					paramList.add(method.getName().toString());
+					methodNames.add(method.getName().toString());
 				}
 			}
 		}
-		if (paramList.size() == 0) {
+		if (methodNames.size() == 0) {
 			return null;
 		} else {
 			Random rnd = new Random();
-			int ran = rnd.nextInt(paramList.size());
-			Method done = this.getClass().getMethod(paramList.get(ran));
-			return (AbstractPage) done.invoke(this);
+			int ran = rnd.nextInt(methodNames.size());
+			Method goMethod = this.getClass().getMethod(methodNames.get(ran));
+			return (AbstractPage) goMethod.invoke(this);
 		}
 
 	}

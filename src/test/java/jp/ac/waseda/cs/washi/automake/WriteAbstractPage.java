@@ -9,28 +9,28 @@ import java.io.PrintWriter;
 
 public class WriteAbstractPage {
 
-	private File abst;
+	private File file;
 
-	public WriteAbstractPage(File abst) {
-		this.abst = abst;
+	public WriteAbstractPage(File file) {
+		this.file = file;
 	}
 
 	public String writeAbstract(String packageName) throws Exception {
-		abst.createNewFile();
+		file.createNewFile();
 		FileReader readabst = new FileReader(
 				"./src/test/java/jp/ac/waseda/cs/washi/automake/AbstractPage.java");
 		BufferedReader br = new BufferedReader(readabst);
-		PrintWriter ab = new PrintWriter(new BufferedWriter(
-				new FileWriter(abst)));
+		PrintWriter pw = new PrintWriter(new BufferedWriter(
+				new FileWriter(file)));
 		String s;
 		while ((s = br.readLine()) != null) {
 			if (s.startsWith("package")) {
-				ab.println("package " + packageName + ";\n");
+				pw.println("package " + packageName + ";\n");
 			} else {
-				ab.println(s);
+				pw.println(s);
 			}
 		}
-		ab.close();
+		pw.close();
 		return packageName;
 	}
 

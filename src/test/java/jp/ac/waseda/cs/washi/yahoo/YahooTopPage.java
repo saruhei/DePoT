@@ -1,4 +1,4 @@
-package jp.ac.waseda.cs.washi.yahoopage;
+package jp.ac.waseda.cs.washi.yahoo;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;

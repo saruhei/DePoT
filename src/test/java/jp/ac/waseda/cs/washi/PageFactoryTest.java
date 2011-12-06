@@ -1,6 +1,6 @@
 package jp.ac.waseda.cs.washi;
 
-import jp.ac.waseda.cs.washi.yahoopage.AtFirst;
+import jp.ac.waseda.cs.washi.yahoo.AtFirst;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

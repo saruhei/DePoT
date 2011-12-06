@@ -11,27 +11,27 @@ public class MakeNewFile {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String filename = br.readLine();
 		System.out.println("Input Directory Address:");
-		String Address = br.readLine();
-		String rtst[] = new String[3];
+		String address = br.readLine();
+		String names[] = new String[3];
 		try {
-			File fl = new File(Address + filename + ".java");
+			File fl = new File(address + filename + ".java");
 			fl.createNewFile();
-			rtst[0] = checkAbstractPage(Address);
+			names[0] = checkAbstractPage(address);
 		} catch (IOException e) {
 			System.out.println("ファイル作成失敗");
 		}
-		rtst[1] = Address + filename + ".java";
-		rtst[2] = filename;
-		return rtst;
+		names[1] = address + filename + ".java";
+		names[2] = filename;
+		return names;
 	}
 
 	public String checkAbstractPage(String address) throws Exception {
-		File abst = new File(address + "AbstractPage.java");
+		File file = new File(address + "AbstractPage.java");
 		System.out.println("Input Package Name:");
-		BufferedReader b = new BufferedReader(new InputStreamReader(System.in));
-		String packageName = b.readLine();
-		if (abst.exists() == false) {
-			WriteAbstractPage ab = new WriteAbstractPage(abst);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String packageName = br.readLine();
+		if (file.exists() == false) {
+			WriteAbstractPage ab = new WriteAbstractPage(file);
 			ab.writeAbstract(packageName);
 		}
 		return packageName;
