@@ -82,7 +82,7 @@ public class WritePage {
 	public void writeMethod(PrintWriter pw, List<String> idList) {
 
 		for (int i = 0; i < idList.size(); i++) {
-			pw.println("	public InputPageClass " + idList.get(i)
+			pw.println("	public InputPageClass go" + idList.get(i)
 					+ "() throws ClassNotFoundException {\n" + "		"
 					+ idList.get(i) + ".click();\n"
 					+ "		return new InputPageClass(driver);\n" + "	}\n");

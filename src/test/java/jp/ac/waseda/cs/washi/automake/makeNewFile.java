@@ -26,13 +26,18 @@ public class MakeNewFile {
 	}
 
 	public String checkAbstractPage(String address) throws Exception {
-		File file = new File(address + "AbstractPage.java");
+		File abstractpage = new File(address + "AbstractPage.java");
+		File starter = new File(address + "Starter.java");
 		System.out.println("Input Package Name:");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String packageName = br.readLine();
-		if (file.exists() == false) {
-			WriteAbstractPage ab = new WriteAbstractPage(file);
+		if (abstractpage.exists() == false) {
+			WriteAbstractPage ab = new WriteAbstractPage(abstractpage);
 			ab.writeAbstract(packageName);
+		}
+		if (starter.exists() == false) {
+			WriteStarter st = new WriteStarter(starter);
+			st.writeStarter(packageName);
 		}
 		return packageName;
 	}

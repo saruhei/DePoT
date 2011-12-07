@@ -15,7 +15,7 @@ public class WriteAbstractPage {
 		this.file = file;
 	}
 
-	public String writeAbstract(String packageName) throws Exception {
+	public void writeAbstract(String packageName) throws Exception {
 		file.createNewFile();
 		FileReader readabst = new FileReader(
 				"./src/test/java/jp/ac/waseda/cs/washi/automake/AbstractPage.java");
@@ -31,7 +31,6 @@ public class WriteAbstractPage {
 			}
 		}
 		pw.close();
-		return packageName;
 	}
 
 }
