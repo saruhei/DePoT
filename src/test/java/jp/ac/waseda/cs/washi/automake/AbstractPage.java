@@ -1,11 +1,16 @@
 package jp.ac.waseda.cs.washi.automake;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Stack;
+
+import jp.ac.waseda.cs.washi.forseminar.DePoThomePage;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -69,5 +74,10 @@ public abstract class AbstractPage {
 		}
 		System.out.println();
 	}
+	
+	/*public InputClassname assertNotInvariant() throws ClassNotFoundException{
+		assertThat(HogeHoge,is(String));
+		return new InputClassname(driver);		
+	}*/
 
 }
