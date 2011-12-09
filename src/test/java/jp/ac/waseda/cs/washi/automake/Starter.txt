@@ -11,7 +11,7 @@ public class Starter {
 	}
 
 	public InputClassName goDePoThomePage() throws ClassNotFoundException {
-		driver.get("http:// url");
+		driver.get("http:// url"); //input url which is start of test
 		return new InputClassName(driver);
 	}
 }

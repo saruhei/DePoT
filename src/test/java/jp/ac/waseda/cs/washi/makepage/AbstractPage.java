@@ -75,9 +75,11 @@ public abstract class AbstractPage {
 		}
 		System.out.println("");
 	}
-	
+	/*
+	 * make some not Invariant test if you need
+	 */
 	/*public InputClassname assertNotInvariant() throws ClassNotFoundException{
-		assertThat(HogeHoge,is(String));
+		assertThat(HogeHoge,is(String)); 
 		return new InputClassname(driver);		
 	}*/
 

@@ -28,7 +28,7 @@ public class testpage extends AbstractPage {
 
 	@Override
 	protected void assertInvariant() {
-		//assertThat(testword,is(testword));	}
+		assertThat(driver.getTitle(),is(driver.getTitle)); //make some invariant test if you need	}
 
 	public InputPageClass goGoLogin() throws ClassNotFoundException {
 		GoLogin.click();

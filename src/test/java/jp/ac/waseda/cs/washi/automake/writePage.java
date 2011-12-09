@@ -91,7 +91,7 @@ public class WritePage {
 
 	public void writeAssertInvariant(PrintWriter pw) {
 		pw.println("	@Override\n" + "	protected void assertInvariant() {\n"
-				+ "		//assertThat(testword,is(testword));"
+				+ "		assertThat(driver.getTitle(),is(driver.getTitle)); //make some invariant test if you need"
 				+ "	}\n");
 	}
 

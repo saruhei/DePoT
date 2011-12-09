@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class MakeNewFile {
+public class MakePageObjectFile {
 	public String[] makeFile() throws Exception {
 		System.out.println("Input File Name:");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
