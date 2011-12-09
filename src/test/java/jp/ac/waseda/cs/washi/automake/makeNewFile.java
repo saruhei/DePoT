@@ -2,6 +2,7 @@ package jp.ac.waseda.cs.washi.automake;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -32,12 +33,15 @@ public class MakeNewFile {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String packageName = br.readLine();
 		if (abstractpage.exists() == false) {
-			WriteAbstractPage ab = new WriteAbstractPage(abstractpage);
-			ab.writeAbstract(packageName);
+			FileReader readabst = new FileReader(
+					"./src/test/java/jp/ac/waseda/cs/washi/automake/AbstractPage.java");
+			WriteNecessaryObject ab = new WriteNecessaryObject(abstractpage);
+			ab.writeNecessary(packageName,readabst);
 		}
 		if (starter.exists() == false) {
-			WriteStarter st = new WriteStarter(starter);
-			st.writeStarter(packageName);
+			FileReader readstart = new FileReader("./src/test/java/jp/ac/waseda/cs/washi/automake/Starter.txt");
+			WriteNecessaryObject st = new WriteNecessaryObject(starter);
+			st.writeNecessary(packageName,readstart);
 		}
 		return packageName;
 	}

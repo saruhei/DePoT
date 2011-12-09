@@ -91,6 +91,7 @@ public class WritePage {
 
 	public void writeAssertInvariant(PrintWriter pw) {
 		pw.println("	@Override\n" + "	protected void assertInvariant() {\n"
+				+ "		//assertThat(testword,is(testword));"
 				+ "	}\n");
 	}
 
@@ -101,9 +102,9 @@ public class WritePage {
 	}
 
 	public void writeFindBy(PrintWriter pw, List<String> idList) {
-		for (int i = 0; i < idList.size(); i++) {
-			pw.println("	@FindBy(id =  " + '"' + idList.get(i) + '"' + ")\n"
-					+ "	private WebElement " + idList.get(i) + ";\n");
+		for (String id : idList) {
+			pw.println("	@FindBy(id =  " + '"' + id + '"' + ")\n"
+					+ "	private WebElement " + id + ";\n");
 		}
 	}
 

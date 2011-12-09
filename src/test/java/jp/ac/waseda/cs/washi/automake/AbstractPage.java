@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 
-import jp.ac.waseda.cs.washi.forseminar.DePoThomePage;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -69,10 +67,12 @@ public abstract class AbstractPage {
 
 	public void printStackTrace() throws ClassNotFoundException {
 		stackTrace.add(this.getClass().getName());
-		for (String pageName : stackTrace) {
-			System.out.println(pageName);
+		String delimiter = "";
+		for(String pageName : stackTrace){
+			System.out.println(pageName + delimiter);
+			delimiter = ",";
 		}
-		System.out.println();
+		System.out.println("");
 	}
 	
 	/*public InputClassname assertNotInvariant() throws ClassNotFoundException{

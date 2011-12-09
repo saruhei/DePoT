@@ -28,7 +28,7 @@ public class testpage extends AbstractPage {
 
 	@Override
 	protected void assertInvariant() {
-	}
+		//assertThat(testword,is(testword));	}
 
 	public InputPageClass goGoLogin() throws ClassNotFoundException {
 		GoLogin.click();

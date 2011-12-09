@@ -7,19 +7,17 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
-public class WriteAbstractPage {
+public class WriteNecessaryObject {
 
 	private File file;
 
-	public WriteAbstractPage(File file) {
+	public WriteNecessaryObject(File file) {
 		this.file = file;
 	}
 
-	public void writeAbstract(String packageName) throws Exception {
+	public void writeNecessary(String packageName, FileReader read) throws Exception {
 		file.createNewFile();
-		FileReader readabst = new FileReader(
-				"./src/test/java/jp/ac/waseda/cs/washi/automake/AbstractPage.java");
-		BufferedReader br = new BufferedReader(readabst);
+		BufferedReader br = new BufferedReader(read);
 		PrintWriter pw = new PrintWriter(new BufferedWriter(
 				new FileWriter(file)));
 		String s;
