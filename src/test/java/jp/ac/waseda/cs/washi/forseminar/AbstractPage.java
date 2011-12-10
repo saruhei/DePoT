@@ -72,9 +72,5 @@ public abstract class AbstractPage {
 		System.out.println();
 	}
 	
-	public DePoThomePage assertNotInvariant() throws ClassNotFoundException{
-		assertThat(driver.getTitle(),is("DePoT_TestPage_Home"));
-		return new DePoThomePage(driver);		
-	}
 
 }

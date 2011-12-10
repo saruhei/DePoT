@@ -40,9 +40,9 @@ public class WriteTestCase {
 	}
 
 	private void writeClass(PrintWriter pw, String className) {
-		pw.println("public class " + className + " {");
+		pw.println("public class " + className + " {\n");
 		
-		pw.println("	private static FirefoxDriver driver;");
+		pw.println("	private static FirefoxDriver driver;\n");
 		
 		writeBefore(pw);
 		
@@ -68,11 +68,11 @@ public class WriteTestCase {
 		pw.println("	@AfterClass\n" +
 				"	public static void tearDownAfterClass() throws Exception {\n" +
 				"		driver.quit();\n" +
-				"	}");
+				"	}\n");
 	}
 
 	private void writeBefore(PrintWriter pw) {
-		pw.println("	@BeforeClass" +
+		pw.println("	@BeforeClass\n" +
 				"	public static void setUpBeforeClass() throws Exception {\n" +
 				"		driver = new FirefoxDriver();\n" +
 				"		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);\n" +

@@ -59,7 +59,7 @@ public class WritePage {
 
 		writeConstructor(pw, string);
 
-		writeAssertInvariant(pw);
+		writeAssert(pw, string);
 
 		writeMethod(pw, idList);
 
@@ -89,10 +89,14 @@ public class WritePage {
 		}
 	}
 
-	public void writeAssertInvariant(PrintWriter pw) {
+	public void writeAssert(PrintWriter pw, String string) {
 		pw.println("	@Override\n" + "	protected void assertInvariant() {\n"
-				+ "		assertThat(driver.getTitle(),is(driver.getTitle)); //make some invariant test if you need"
+				+ "		assertThat(driver.getTitle(),is(driver.getTitle()); //make some invariant test if you need\n"
 				+ "	}\n");
+		pw.println("	public " + string + " assertNotInvariant() throws ClassNotFoundException{\n" +
+				"		assertThat(driver.getTitle(), is(driver.getTitle())); //make some not invariant test if you need\n" +
+				"		return new " + string + "(driver);\n" +
+				"	}\n");
 	}
 
 	public void writeConstructor(PrintWriter pw, String string) {

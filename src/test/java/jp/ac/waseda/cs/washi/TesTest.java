@@ -8,9 +8,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TesTest {
+public class testest {
+
 	private static FirefoxDriver driver;
-	@BeforeClass	public static void setUpBeforeClass() throws Exception {
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
@@ -19,8 +22,9 @@ public class TesTest {
 	public static void tearDownAfterClass() throws Exception {
 		driver.quit();
 	}
+
 	@Test
-	public void doTesTest() throws ClassNotFoundException {
+	public void dotestest() throws ClassNotFoundException {
 		Starter st = new Starter(driver);
 		st/*.goHogeHoge()
 			.goChomeChome()
