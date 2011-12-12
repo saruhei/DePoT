@@ -2,7 +2,8 @@ package jp.ac.waseda.cs.washi;
 
 import java.lang.reflect.InvocationTargetException;
 
-import jp.ac.waseda.cs.washi.page.AtFirst;
+import jp.ac.waseda.cs.washi.yahoo.AtFirst;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;

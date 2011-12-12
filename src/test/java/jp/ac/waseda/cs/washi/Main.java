@@ -3,9 +3,9 @@ package jp.ac.waseda.cs.washi;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-import jp.ac.waseda.cs.washi.page.AtFirst;
-import jp.ac.waseda.cs.washi.page.YahooSearchResultPage;
-import jp.ac.waseda.cs.washi.page.YahooTopPage;
+import jp.ac.waseda.cs.washi.yahoo.AtFirst;
+import jp.ac.waseda.cs.washi.yahoo.YahooSearchResultPage;
+import jp.ac.waseda.cs.washi.yahoo.YahooTopPage;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;

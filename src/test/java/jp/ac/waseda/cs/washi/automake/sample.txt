@@ -1,0 +1,5 @@
+http://localhost:8888/study.localhost/DePoT/sorce/DePoThome.php
+
+./src/test/java/jp/ac/waseda/cs/washi/makepage/
+
+jp.ac.waseda.cs.washi.makepage

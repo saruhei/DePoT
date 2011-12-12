@@ -1,16 +1,18 @@
-package jp.ac.waseda.cs.washi.page;
+package jp.ac.waseda.cs.washi.makepage;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Stack;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 public abstract class AbstractPage {
 	protected final WebDriver driver;
+	private static Stack<String> stackTrace = new Stack<String>();
 
 	public AbstractPage(WebDriver driver) throws ClassNotFoundException {
 		this.driver = driver;
@@ -23,8 +25,6 @@ public abstract class AbstractPage {
 
 	public List<String> getGoMethodNames(AbstractPage that)
 			throws ClassNotFoundException {
-		// TODO: this(このインスタンス)が持っているメソッドの中で，goから始まるメソッド名を返すコードを作る
-		// リフレクション(Reflection)を使う
 		Method method[] = this.getClass().getDeclaredMethods();
 		List<String> list = new ArrayList<String>();
 		for (int i = 0; i < method.length; i++) {
@@ -41,30 +41,33 @@ public abstract class AbstractPage {
 			ClassNotFoundException, InstantiationException {
 		// メソッドのランダム呼び出し（引数なし）
 		Method methods[] = this.getClass().getDeclaredMethods();
-		List<String> paramList = new ArrayList<String>();
+		List<String> methodNames = new ArrayList<String>();
 		for (int i = 0; i < methods.length; i++) {
 			Method method = methods[i];
 			if (method.getName().startsWith("go")) {
 				Class<?>[] params = method.getParameterTypes();
 				if (params.length == 0) {
-					paramList.add(method.getName().toString());
+					methodNames.add(method.getName().toString());
 				}
 			}
 		}
-		if (paramList.size() == 0) {
+		if (methodNames.size() == 0) {
 			return null;
 		} else {
 			Random rnd = new Random();
-			int ran = rnd.nextInt(paramList.size());
-			Method done = this.getClass().getMethod(paramList.get(ran));
-			return (AbstractPage) done.invoke(this);
+			int ran = rnd.nextInt(methodNames.size());
+			Method goMethod = this.getClass().getMethod(methodNames.get(ran));
+			return (AbstractPage) goMethod.invoke(this);
 		}
 
 	}
 
 	public void printStackTrace() throws ClassNotFoundException {
-		String name = this.getClass().getName();
-		System.out.println(name.toString());
+		stackTrace.add(this.getClass().getName());
+		for (String pageName : stackTrace) {
+			System.out.println(pageName);
+		}
+		System.out.println();
 	}
 
 }
