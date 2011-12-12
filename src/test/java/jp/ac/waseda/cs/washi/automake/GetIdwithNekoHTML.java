@@ -17,9 +17,13 @@ import org.xml.sax.InputSource;
 
 public class GetIdwithNekoHTML {
 
-	private List<String> methodName = new ArrayList<String>();
+	private List<String> idmethodName = new ArrayList<String>();
+	private List<String> namemethodName = new ArrayList<String>();
+	private List<String> textIdmethodName = new ArrayList<String>();
+	private List<String> textNamemethodName = new ArrayList<String>();
+	private List<List<String>> methodNames = new ArrayList<List<String>>();
 
-	public List<String> getId() throws Exception {
+	public List<List<String>> getId() throws Exception {
 		System.out.println("Input URL:");
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String urladdresss = br.readLine();
@@ -32,16 +36,17 @@ public class GetIdwithNekoHTML {
 			final Document doc = parser.getDocument();
 			final Element root = doc.getDocumentElement();
 			walkTree("", root);
-			// System.out.println(methodName);
 		} finally {
 			is.close();
 		}
-		return methodName;
-
+		methodNames.add(idmethodName);
+		methodNames.add(namemethodName);
+		methodNames.add(textIdmethodName);
+		methodNames.add(textNamemethodName);
+		return methodNames;
 	}
 
 	private void walkTree(final String level, final Element elm) {
-		// System.out.println(level + "<" + elm.getTagName() + ">");
 		final NodeList children = elm.getChildNodes();
 		if (children != null) {
 			final int len = children.getLength();
@@ -50,17 +55,26 @@ public class GetIdwithNekoHTML {
 				if (child.getNodeType() == Node.ELEMENT_NODE) {
 					walkTree(level + "", (Element) child);
 					Element element = (Element) child;
-					if (null != element.getAttributes().getNamedItem("id")
-							&& null != element.getAttributes().getNamedItem(
-									"href")) {
-						// System.out.println(element.getAttribute("id"));
-						methodName.add(element.getAttribute("id"));
+					if (((null != element.getAttributes().getNamedItem("id") || null != element
+							.getAttributes().getNamedItem("name")))){
+						if(null != element.getAttributes().getNamedItem("href")){
+							if(null != element.getAttributes().getNamedItem("id")){
+								idmethodName.add(element.getAttribute("id"));
+							}else if((null == element.getAttributes().getNamedItem("id")) && (null != element.getAttributes().getNamedItem("name"))){
+								namemethodName.add(element.getAttribute("name"));
+							}
+						}else if(element.getAttribute("type").equals("text") || element.getAttribute("type").equals("TEXT")){
+							if(null != element.getAttributes().getNamedItem("id")){
+								textIdmethodName.add(element.getAttribute("id"));
+							}else if((null == element.getAttributes().getNamedItem("id")) && (null != element.getAttributes().getNamedItem("name"))){
+								textNamemethodName.add(element.getAttribute("name"));
+							}
+						}
 					}
 
 				} else if (child.getNodeType() == Node.TEXT_NODE) {
 					final String txt = child.getNodeValue();
 					if (txt.trim().length() > 0) {
-						// System.out.println(level + txt);
 					}
 				}
 			}
