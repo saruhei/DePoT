@@ -1,4 +1,5 @@
-package jp.ac.waseda.cs.washi.automake;
+package jp.ac.waseda.cs.washi.makepage;
+
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

@@ -53,14 +53,14 @@ public class WritePage {
 	}
 
 	public void writeClass(PrintWriter pw, String string) {
-		pw.println("public class " + string + " extends AbstractPage {\n");
+		pw.println("public class " + string + " extends AbstractPage<" + string + "> {\n");
 
 		writeFindBy(pw, methodLists.get(0), methodLists.get(1),
 				methodLists.get(2), methodLists.get(3));
 
 		writeConstructor(pw, string);
 
-		writeAssert(pw, string);
+		writeAssert(pw);
 
 		writeMethod(pw, methodLists.get(0), methodLists.get(1),
 				methodLists.get(2), methodLists.get(3));
@@ -70,7 +70,7 @@ public class WritePage {
 
 	public void writeimport(PrintWriter pw) {
 		pw.println("import static org.hamcrest.Matchers.is;\n"
-				+ "import static org.junit.Assert.assertThat;\n"
+				+ "import static org.junit.Assert.*;\n"
 				+ "import org.openqa.selenium.WebDriver;\n"
 				+ "import org.openqa.selenium.WebElement;\n"
 				+ "import org.openqa.selenium.support.FindBy;\n");
@@ -113,16 +113,11 @@ public class WritePage {
 		}
 	}
 
-	public void writeAssert(PrintWriter pw, String string) {
+	public void writeAssert(PrintWriter pw) {
 		pw.println("	@Override\n"
 				+ "	protected void assertInvariant() {\n"
 				+ "		assertThat(driver.getTitle(),is(driver.getTitle())); //make some invariant test if you need\n"
 				+ "	}\n");
-		pw.println("	public "
-				+ string
-				+ " assertNotInvariant() throws ClassNotFoundException{\n"
-				+ "		assertThat(driver.getTitle(), is(driver.getTitle())); //make some not invariant test if you need\n"
-				+ "		return new " + string + "(driver);\n" + "	}\n");
 	}
 
 	public void writeConstructor(PrintWriter pw, String string) {

@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class YahooImageSearchResultPage extends AbstractPage {
+public class YahooImageSearchResultPage extends AbstractPage<YahooImageSearchResultPage> {
 
 	@FindBy(id = "SaB")
 	private WebElement returntop;
@@ -26,8 +26,8 @@ public class YahooImageSearchResultPage extends AbstractPage {
 
 	@Override
 	protected void assertInvariant() {
-		assertThat(driver.getTitle(), is("「" + keyword
-				+ "」の検索結果 - Yahoo!検索（画像）"));
+		//assertThat(driver.getTitle(), is("「" + keyword
+			//	+ "」の検索結果 - Yahoo!検索（画像）"));
 	}
 
 	public YahooTopPage goTopPage() throws ClassNotFoundException {

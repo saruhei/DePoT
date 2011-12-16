@@ -1,8 +1,12 @@
 package jp.ac.waseda.cs.washi;
 
 import java.util.concurrent.TimeUnit;
+import java.lang.reflect.InvocationTargetException;
 
-import jp.ac.waseda.cs.washi.makepage.Starter;
+import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.is;
+
+import jp.ac.waseda.cs.washi.makepage.*;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -24,10 +28,27 @@ public class testest {
 	}
 
 	@Test
-	public void dotestest() throws ClassNotFoundException {
+	public void dotestest() throws SecurityException,
+	IllegalArgumentException, NoSuchMethodException,
+	IllegalAccessException, InvocationTargetException,
+	ClassNotFoundException, InstantiationException  {
 		Starter st = new Starter(driver);
 		st/*.goHogeHoge()
 			.goChomeChome()
+			.doAssert(new AssertFunction<InputNowPage>() {
+				@Override
+				public void assertPage(InputNowPage page) {
+					assertNotNull(page.hoge);
+				}
+			})
+			.doUnEx(new UnExpectAction<InputNowPage,InputNextPage>() {
+				@Override
+				public <T> InputNextPage unExpectAct(InputNowPage page)throws ClassNotFoundException {
+					assertNotNull(page.hoge);
+					page.chome.click();
+					return new InputNextPage(driver);
+				}
+			})
 			.goSomewhare(String)*/;
 	}
 

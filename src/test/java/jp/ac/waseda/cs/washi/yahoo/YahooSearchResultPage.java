@@ -7,12 +7,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class YahooSearchResultPage extends AbstractPage {
+public class YahooSearchResultPage extends AbstractPage<YahooSearchResultPage>{
 
 	@FindBy(id = "SaB")
-	private WebElement returntop;
+	public WebElement returntop;
 	@FindBy(id = "isrch")
-	private WebElement isearchbtn;
+	public WebElement isearchbtn;
 
 	private final String keyword;
 
@@ -39,4 +39,6 @@ public class YahooSearchResultPage extends AbstractPage {
 		isearchbtn.click();
 		return new YahooImageSearchResultPage(driver, keyword);
 	}
+	
+
 }

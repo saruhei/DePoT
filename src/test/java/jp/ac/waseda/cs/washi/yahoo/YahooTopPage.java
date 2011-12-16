@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class YahooTopPage extends AbstractPage {
+public class YahooTopPage extends AbstractPage<YahooTopPage> {
 
 	@FindBy(name = "p")
 	private WebElement searchbox;

@@ -1,8 +1,5 @@
 package jp.ac.waseda.cs.washi.yahoo;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -13,7 +10,7 @@ import java.util.Stack;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-public abstract class AbstractPage {
+public abstract class AbstractPage<Tpage extends AbstractPage<Tpage>> {
 	protected final WebDriver driver;
 	private static Stack<String> stackTrace = new Stack<String>();
 
@@ -25,8 +22,17 @@ public abstract class AbstractPage {
 	}
 
 	protected abstract void assertInvariant();
-
-	public List<String> getGoMethodNames(AbstractPage that)
+	
+	public <T> Tpage doAssert(AssertFunction<Tpage> assertFunction){
+		assertFunction.assertPage((Tpage)this);
+		return (Tpage) this;	
+	}
+	
+	public <T, T2> T doUnEx(UnExpectAction<T,T2> UnEx) throws ClassNotFoundException{
+		return (T)UnEx.unExpectAct((T2)this);	
+	}
+	
+	public List<String> getGoMethodNames()
 			throws ClassNotFoundException {
 		Method method[] = this.getClass().getDeclaredMethods();
 		List<String> list = new ArrayList<String>();
@@ -35,10 +41,11 @@ public abstract class AbstractPage {
 				list.add(method[i].getName().toString());
 			}
 		}
+		System.out.println(list.toString());
 		return list;
 	}
 
-	public AbstractPage goRandomPage() throws SecurityException,
+	public AbstractPage<?> goRandomPage() throws SecurityException,
 			NoSuchMethodException, IllegalArgumentException,
 			IllegalAccessException, InvocationTargetException,
 			ClassNotFoundException, InstantiationException {
@@ -75,9 +82,5 @@ public abstract class AbstractPage {
 		System.out.println("");
 	}
 	
-	/*public InputClassname assertNotInvariant() throws ClassNotFoundException{
-		assertThat(HogeHoge,is(String));
-		return new InputClassname(driver);		
-	}*/
 
 }

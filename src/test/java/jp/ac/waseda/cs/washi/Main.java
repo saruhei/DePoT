@@ -25,7 +25,7 @@ public class Main {
 
 		YahooSearchResultPage page2 = page1.goSearchPage("selenium");
 
-		List<String> list = page2.getGoMethodNames(page2);
+		List<String> list = page2.getGoMethodNames();
 
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i));

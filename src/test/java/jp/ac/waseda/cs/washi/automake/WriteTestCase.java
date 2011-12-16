@@ -56,10 +56,27 @@ public class WriteTestCase {
 
 	private void writeTest(PrintWriter pw, String className) {
 		pw.println("	@Test\n" +
-				"	public void do" + className + "() throws ClassNotFoundException {\n" +
+				"	public void do" + className + "() throws SecurityException,\n" +
+				"	IllegalArgumentException, NoSuchMethodException,\n" +
+				"	IllegalAccessException, InvocationTargetException,\n" +
+				"	ClassNotFoundException, InstantiationException  {\n" +
 				"		Starter st = new Starter(driver);\n" +
 				"		st/*.goHogeHoge()\n" +
 				"			.goChomeChome()\n" +
+				"			.doAssert(new AssertFunction<InputNowPage>() {\n" +
+				"				@Override\n" +
+				"				public void assertPage(InputNowPage page) {\n" +
+				"					assertNotNull(page.hoge);\n" +
+				"				}\n" +
+				"			})\n" +
+				"			.doUnEx(new UnExpectAction<InputNowPage,InputNextPage>() {\n" +
+				"				@Override\n" +
+				"				public <T> InputNextPage unExpectAct(InputNowPage page)throws ClassNotFoundException {\n" +
+				"					assertNotNull(page.hoge);\n" +
+				"					page.chome.click();\n" +
+				"					return new InputNextPage(driver);\n" +
+				"				}\n" +
+				"			})\n" +
 				"			.goSomewhare(String)*/;\n" +
 				"	}\n");
 	}
@@ -80,8 +97,11 @@ public class WriteTestCase {
 	}
 
 	private void writeimport(PrintWriter pw, String pagePackageName) {
-		pw.println("import java.util.concurrent.TimeUnit;\n");
-		pw.println("import " + pagePackageName + ".Starter;\n" +
+		pw.println("import java.util.concurrent.TimeUnit;\n" +
+				"import java.lang.reflect.InvocationTargetException;\n");
+		pw.println("import static org.junit.Assert.*;\n" +
+				"import static org.hamcrest.Matchers.is;\n");
+		pw.println("import " + pagePackageName + ".*;\n" +
 				"import org.junit.AfterClass;\n" +
 				"import org.junit.BeforeClass;\n" +
 				"import org.junit.Test;\n" +
