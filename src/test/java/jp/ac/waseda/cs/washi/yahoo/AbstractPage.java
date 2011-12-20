@@ -28,8 +28,8 @@ public abstract class AbstractPage<Tpage extends AbstractPage<Tpage>> {
 		return (Tpage) this;	
 	}
 	
-	public <T, T2> T doUnEx(UnExpectAction<T,T2> UnEx) throws ClassNotFoundException{
-		return (T)UnEx.unExpectAct((T2)this);	
+	public <T, Tpage> T doUnEx(UnExpectAction<T,Tpage> UnEx) throws ClassNotFoundException{
+		return (T)UnEx.unExpectAct((Tpage)this);	
 	}
 	
 	public List<String> getGoMethodNames()

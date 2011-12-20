@@ -1,39 +1,30 @@
 package jp.ac.waseda.cs.washi.automake;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class MakePageObjectFile {
-	public String[] makeFile() throws Exception {
-		System.out.println("Input File Name:");
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String filename = br.readLine();
-		System.out.println("Input Directory Address:");
-		String address = br.readLine();
+	public String[] makeFile(String filename, String address, String packageName) throws Exception {
 		String names[] = new String[3];
 		try {
 			File fl = new File(address + filename + ".java");
 			fl.createNewFile();
-			names[0] = checkAbstractPage(address);
+			checkAbstractPage(address,packageName);
 		} catch (IOException e) {
-			System.out.println("ファイル作成失敗");
+			System.out.println("既存のため、ファイル作成失敗、続行するとファイルは上書きされます");
 		}
+		names[0] = packageName;
 		names[1] = address + filename + ".java";
 		names[2] = filename;
 		return names;
 	}
 
-	public String checkAbstractPage(String address) throws Exception {
+	public void checkAbstractPage(String address, String packageName) throws Exception {
 		File abstractpage = new File(address + "AbstractPage.java");
 		File starter = new File(address + "Starter.java");
 		File assertFuc = new File(address + "AssertFunction.java");
 		File unEx = new File(address + "UnExpectAction.java");
-		System.out.println("Input Package Name:");
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String packageName = br.readLine();
 		if (abstractpage.exists() == false) {
 			FileReader readabst = new FileReader(
 					"./src/test/java/jp/ac/waseda/cs/washi/automake/AbstractPage.java");
@@ -55,7 +46,6 @@ public class MakePageObjectFile {
 			WriteNecessaryObject ue = new WriteNecessaryObject(unEx);
 			ue.writeNecessary(packageName, readunEx);
 		}
-		return packageName;
 	}
 
 }

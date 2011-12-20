@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class testpage extends AbstractPage {
+public class testest2 extends AbstractPage<testest2> {
 
 	@FindBy(id =  "GoLogin")
 	private WebElement GoLogin;
@@ -23,7 +23,7 @@ public class testpage extends AbstractPage {
 	@FindBy(name =  "passwd")
 	private WebElement passwd;
 
-	public testpage(WebDriver driver)
+	public testest2(WebDriver driver)
 			throws ClassNotFoundException {
 		super(driver);
 		assertInvariant();
@@ -32,11 +32,6 @@ public class testpage extends AbstractPage {
 	@Override
 	protected void assertInvariant() {
 		assertThat(driver.getTitle(),is(driver.getTitle())); //make some invariant test if you need
-	}
-
-	public testpage assertNotInvariant() throws ClassNotFoundException{
-		assertThat(driver.getTitle(), is(driver.getTitle())); //make some not invariant test if you need
-		return new testpage(driver);
 	}
 
 	public InputPageClass goGoLogin() throws ClassNotFoundException {

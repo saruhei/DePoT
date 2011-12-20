@@ -12,7 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class testest {
+public class gogo {
 
 	private static FirefoxDriver driver;
 
@@ -28,7 +28,7 @@ public class testest {
 	}
 
 	@Test
-	public void dotestest() throws SecurityException,
+	public void dogogo() throws SecurityException,
 	IllegalArgumentException, NoSuchMethodException,
 	IllegalAccessException, InvocationTargetException,
 	ClassNotFoundException, InstantiationException  {

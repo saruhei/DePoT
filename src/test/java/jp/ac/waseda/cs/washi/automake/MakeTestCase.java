@@ -1,5 +1,5 @@
 package jp.ac.waseda.cs.washi.automake;
-
+/*
 import java.io.IOException;
 
 public class MakeTestCase {
@@ -11,4 +11,4 @@ public class MakeTestCase {
 		wtc.writeTest(names);
 	}
 
-}
+}*/
