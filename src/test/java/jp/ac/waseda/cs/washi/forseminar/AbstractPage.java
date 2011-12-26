@@ -1,5 +1,10 @@
 package jp.ac.waseda.cs.washi.forseminar;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -7,16 +12,24 @@ import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverBackedSelenium;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+
+import com.thoughtworks.selenium.Selenium;
 
 public abstract class AbstractPage<Tpage extends AbstractPage<Tpage>> {
 	protected final WebDriver driver;
+	protected Selenium selenium;
 	private static Stack<String> stackTrace = new Stack<String>();
 
 	public AbstractPage(WebDriver driver) throws ClassNotFoundException {
 		this.driver = driver;
 		// ページファクトリによるフィールドの初期化
+		selenium = new WebDriverBackedSelenium(driver, driver.getCurrentUrl());
 		PageFactory.initElements(driver, this);
 		printStackTrace();
 	}
@@ -67,7 +80,7 @@ public abstract class AbstractPage<Tpage extends AbstractPage<Tpage>> {
 			Random rnd = new Random();
 			int ran = rnd.nextInt(methodNames.size());
 			Method goMethod = this.getClass().getMethod(methodNames.get(ran));
-			return (AbstractPage) goMethod.invoke(this);
+			return (AbstractPage<?>) goMethod.invoke(this);
 		}
 
 	}
@@ -82,5 +95,59 @@ public abstract class AbstractPage<Tpage extends AbstractPage<Tpage>> {
 		System.out.println("");
 	}
 	
+	
+	public void assertTitle(String title){
+		assertThat(driver.getTitle(), is(title));
+	}
+	
+	public void assertUrl(String url){
+		assertThat(driver.getCurrentUrl(), is(url));
+	}
+	
+	public void assertWindowHandle(String handle){
+		assertThat(driver.getWindowHandle(), is(handle));
+	}
+	
+	public void assertTag(String tag,WebElement element){
+		assertThat(element.getTagName(),is(tag));
+	}
+	
+	public void assertText(String text, WebElement element){
+		assertThat(element.getText(), is(text));
+	}
+	
+	public void assertTextPresent(String text){
+		assertTrue(selenium.isTextPresent(text));
+	}
+	
+	public void assertSize(Dimension size, WebElement element){
+		assertEquals(size, element.getSize());
+	}
+	
+	public void assertPoint(Point location,WebElement element){
+		assertEquals(location, element.getLocation());
+	}
+	
+	public void assertDisplayed(WebElement element){
+		assertTrue(element.isDisplayed());
+	}
+	
+	public void assertEnabled(WebElement element){
+		assertTrue(element.isEnabled());
+	}
+	
+	public void assertSelected(WebElement element){
+		assertTrue(element.isSelected());
+	}
+	
+	public void assertAttribute(String Attribute, String expected, WebElement element){
+		assertThat(element.getAttribute(Attribute), is(expected));
+	}
+	
+	public void assertCssValue(String Value, String expected, WebElement element){
+		assertThat(element.getCssValue(Value), is(expected));
+	}
+
+
 
 }

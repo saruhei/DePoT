@@ -1,5 +1,6 @@
 package jp.ac.waseda.cs.washi.forseminar;
 
+
 import org.openqa.selenium.WebDriver;
 
 public class Starter {
@@ -11,7 +12,7 @@ public class Starter {
 	}
 
 	public DePoThomePage goDePoThomePage() throws ClassNotFoundException {
-		driver.get("http://localhost:8888/study.localhost/DePoT/sorce/DePoThome.php");
+		driver.get("http://localhost:8888/study.localhost/DePoT/sorce/DePoThome.php"); //input url which is start of test
 		return new DePoThomePage(driver);
 	}
 }

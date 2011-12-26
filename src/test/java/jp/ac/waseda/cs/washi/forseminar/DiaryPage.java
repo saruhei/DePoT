@@ -1,15 +1,16 @@
 package jp.ac.waseda.cs.washi.forseminar;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
+import static jp.ac.waseda.cs.washi.assertion.Assertion.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class DiaryPage extends AbstractPage {
+public class DiaryPage extends AbstractPage<DiaryPage> {
 
 	@FindBy(id =  "goHome")
-	private WebElement goHome;
+	public WebElement goHome;
 
 	public DiaryPage(WebDriver driver)
 			throws ClassNotFoundException {
@@ -19,9 +20,10 @@ public class DiaryPage extends AbstractPage {
 
 	@Override
 	protected void assertInvariant() {
+		assertThat(driver.getTitle(),is("DePoTダイアリー")); //make some invariant test if you need
 	}
 
-	public DePoThomePage goHome() throws ClassNotFoundException {
+	public DePoThomePage gogoHome() throws ClassNotFoundException {
 		goHome.click();
 		return new DePoThomePage(driver);
 	}

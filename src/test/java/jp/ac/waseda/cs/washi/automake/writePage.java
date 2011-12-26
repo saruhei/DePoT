@@ -131,19 +131,19 @@ public class WritePage {
 			List<String> textnameList) {
 		for (String id : idList) {
 			pw.println("	@FindBy(id =  " + '"' + id + '"' + ")\n"
-					+ "	private WebElement " + id + ";\n");
+					+ "	public WebElement " + id + ";\n");
 		}
 		for (String textid : textidList) {
 			pw.println("	@FindBy(id =  " + '"' + textid + '"' + ")\n"
-					+ "	private WebElement " + textid + ";\n");
+					+ "	public WebElement " + textid + ";\n");
 		}
 		for (String name : nameList) {
 			pw.println("	@FindBy(name =  " + '"' + name + '"' + ")\n"
-					+ "	private WebElement " + name + ";\n");
+					+ "	public WebElement " + name + ";\n");
 		}
 		for (String textname : textnameList) {
 			pw.println("	@FindBy(name =  " + '"' + textname + '"' + ")\n"
-					+ "	private WebElement " + textname + ";\n");
+					+ "	public WebElement " + textname + ";\n");
 		}
 	}
 

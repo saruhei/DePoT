@@ -1,5 +1,10 @@
 package jp.ac.waseda.cs.washi.automake;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -7,16 +12,24 @@ import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverBackedSelenium;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+
+import com.thoughtworks.selenium.Selenium;
 
 public abstract class AbstractPage<Tpage extends AbstractPage<Tpage>> {
 	protected final WebDriver driver;
+	protected Selenium selenium;
 	private static Stack<String> stackTrace = new Stack<String>();
 
 	public AbstractPage(WebDriver driver) throws ClassNotFoundException {
 		this.driver = driver;
 		// ページファクトリによるフィールドの初期化
+		selenium = new WebDriverBackedSelenium(driver, driver.getCurrentUrl());
 		PageFactory.initElements(driver, this);
 		printStackTrace();
 	}
@@ -82,5 +95,4 @@ public abstract class AbstractPage<Tpage extends AbstractPage<Tpage>> {
 		System.out.println("");
 	}
 	
-
 }

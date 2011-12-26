@@ -6,13 +6,14 @@ import java.lang.reflect.InvocationTargetException;
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.is;
 
-import jp.ac.waseda.cs.washi.makepage.*;
+import jp.ac.waseda.cs.washi.forseminar.*;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class gogo {
+public class SEMITEST {
 
 	private static FirefoxDriver driver;
 
@@ -28,12 +29,31 @@ public class gogo {
 	}
 
 	@Test
-	public void dogogo() throws SecurityException,
+	public void doSEMITEST() throws SecurityException,
 	IllegalArgumentException, NoSuchMethodException,
 	IllegalAccessException, InvocationTargetException,
 	ClassNotFoundException, InstantiationException  {
 		Starter st = new Starter(driver);
-		st/*.goHogeHoge()
+		st.goDePoThomePage()
+			.goChat()
+			.gogoHome()
+			.goDiary()
+			.gogoHome()
+			.doUnEx(new UnExpectAction<GbbsPage, DePoThomePage>() {
+
+				@Override
+				public <T> GbbsPage unExpectAct(DePoThomePage page)
+						throws ClassNotFoundException {
+					page.passwd.sendKeys("aiueo");
+					assertNotNull(page.passwd);
+					System.out.println(page.passwd.getAttribute("type"));
+					page.gbbs.click();
+					return new GbbsPage(driver);
+				}
+			})
+			.gogoHome()
+			.goChat()
+		/*.goHogeHoge()
 			.goChomeChome()
 			.doAssert(new AssertFunction<InputNowPage>() {
 				@Override
