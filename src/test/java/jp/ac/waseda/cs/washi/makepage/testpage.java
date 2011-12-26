@@ -28,24 +28,24 @@ public class testpage extends AbstractPage {
 
 	@Override
 	protected void assertInvariant() {
-	}
+		//assertThat(testword,is(testword));	}
 
-	public InputPageClass GoLogin() throws ClassNotFoundException {
+	public InputPageClass goGoLogin() throws ClassNotFoundException {
 		GoLogin.click();
 		return new InputPageClass(driver);
 	}
 
-	public InputPageClass goChat() throws ClassNotFoundException {
+	public InputPageClass gogoChat() throws ClassNotFoundException {
 		goChat.click();
 		return new InputPageClass(driver);
 	}
 
-	public InputPageClass goDiary() throws ClassNotFoundException {
+	public InputPageClass gogoDiary() throws ClassNotFoundException {
 		goDiary.click();
 		return new InputPageClass(driver);
 	}
 
-	public InputPageClass gogbbs() throws ClassNotFoundException {
+	public InputPageClass gogogbbs() throws ClassNotFoundException {
 		gogbbs.click();
 		return new InputPageClass(driver);
 	}

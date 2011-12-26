@@ -1,5 +1,8 @@
 package jp.ac.waseda.cs.washi.yahoo;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -64,10 +67,17 @@ public abstract class AbstractPage {
 
 	public void printStackTrace() throws ClassNotFoundException {
 		stackTrace.add(this.getClass().getName());
-		for (String pageName : stackTrace) {
-			System.out.println(pageName);
+		String delimiter = "";
+		for(String pageName : stackTrace){
+			System.out.println(pageName + delimiter);
+			delimiter = ",";
 		}
-		System.out.println();
+		System.out.println("");
 	}
+	
+	/*public InputClassname assertNotInvariant() throws ClassNotFoundException{
+		assertThat(HogeHoge,is(String));
+		return new InputClassname(driver);		
+	}*/
 
 }

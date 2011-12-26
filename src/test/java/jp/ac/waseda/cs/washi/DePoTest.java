@@ -26,6 +26,6 @@ public class DePoTest {
 	@Test
 	public void DTest() throws ClassNotFoundException {
 		Starter st = new Starter(driver);
-		st.goDePoThomePage().goDiary().goHome().gogbbs().goHome();
+		st.goDePoThomePage().goDiary().goHome().assertNotInvariant().gogbbs().goHome().goChat();
 	}
 }

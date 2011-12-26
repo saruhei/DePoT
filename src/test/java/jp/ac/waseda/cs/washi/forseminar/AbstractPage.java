@@ -1,5 +1,7 @@
 package jp.ac.waseda.cs.washi.forseminar;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -68,6 +70,11 @@ public abstract class AbstractPage {
 			System.out.println(pageName);
 		}
 		System.out.println();
+	}
+	
+	public DePoThomePage assertNotInvariant() throws ClassNotFoundException{
+		assertThat(driver.getTitle(),is("DePoT_TestPage_Home"));
+		return new DePoThomePage(driver);		
 	}
 
 }
