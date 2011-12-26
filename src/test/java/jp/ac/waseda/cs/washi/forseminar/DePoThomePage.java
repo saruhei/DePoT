@@ -3,7 +3,6 @@ package jp.ac.waseda.cs.washi.forseminar;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,7 +31,12 @@ public class DePoThomePage extends AbstractPage {
 	protected void assertInvariant() {
 		assertThat(driver.getTitle(), is("DePoT_TestPage_Home"));
 	}
-
+	
+	public DePoThomePage assertNotInvariant() throws ClassNotFoundException{
+		assertThat(driver.getTitle(),is("DePoT_TestPage_Home"));
+		return new DePoThomePage(driver);		
+	}
+	
 	/*public InputPageClass GoLogin() throws ClassNotFoundException {
 		GoLogin.click();
 		return new InputPageClass(driver);

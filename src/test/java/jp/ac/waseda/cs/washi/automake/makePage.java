@@ -7,9 +7,9 @@ public class MakePage {
 
 	public static void main(String[] args) throws Exception {
 
-		MakeNewFile fl = new MakeNewFile();
+		MakePageObjectFile fl = new MakePageObjectFile();
 		String nameAndAddress[] = fl.makeFile();
-		List<String> idList = new ArrayList<String>();
+		List<List<String>> idList = new ArrayList<List<String>>();
 		GetIdwithNekoHTML neko = new GetIdwithNekoHTML();
 		idList = neko.getId();
 		WritePage wp = new WritePage(idList);
