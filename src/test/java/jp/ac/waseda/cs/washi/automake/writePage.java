@@ -53,7 +53,8 @@ public class WritePage {
 	}
 
 	public void writeClass(PrintWriter pw, String string) {
-		pw.println("public class " + string + " extends AbstractPage<" + string + "> {\n");
+		pw.println("public class " + string + " extends AbstractPage<" + string
+				+ "> {\n");
 
 		writeFindBy(pw, methodLists.get(0), methodLists.get(1),
 				methodLists.get(2), methodLists.get(3));
@@ -71,6 +72,7 @@ public class WritePage {
 	public void writeimport(PrintWriter pw) {
 		pw.println("import static org.hamcrest.Matchers.is;\n"
 				+ "import static org.junit.Assert.*;\n"
+				+ "import static jp.ac.waseda.cs.washi.assertion.Assertion.*;\n"
 				+ "import org.openqa.selenium.WebDriver;\n"
 				+ "import org.openqa.selenium.WebElement;\n"
 				+ "import org.openqa.selenium.support.FindBy;\n");

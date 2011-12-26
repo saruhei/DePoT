@@ -97,7 +97,8 @@ public class WriteTestCase {
 	}
 
 	private void writeimport(PrintWriter pw, String pagePackageName) {
-		pw.println("import java.util.concurrent.TimeUnit;\n" +
+		pw.println("import static jp.ac.waseda.cs.washi.assertion.Assertion.*;\n" +
+				"import java.util.concurrent.TimeUnit;\n" +
 				"import java.lang.reflect.InvocationTargetException;\n");
 		pw.println("import static org.junit.Assert.*;\n" +
 				"import static org.hamcrest.Matchers.is;\n");
