@@ -1,8 +1,6 @@
 package jp.ac.waseda.cs.washi.automake;
 
-import java.io.BufferedReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -18,15 +16,16 @@ import org.xml.sax.InputSource;
 public class GetIdwithNekoHTML {
 
 	private List<String> idmethodName = new ArrayList<String>();
+	private List<String> idmethodhref = new ArrayList<String>();
 	private List<String> namemethodName = new ArrayList<String>();
+	private List<String> namemethodhref = new ArrayList<String>();
 	private List<String> textIdmethodName = new ArrayList<String>();
 	private List<String> textNamemethodName = new ArrayList<String>();
 	private List<List<String>> methodNames = new ArrayList<List<String>>();
 
-	public List<List<String>> getId() throws Exception {
+	public List<List<String>> getId(String getscan) throws Exception {
 		System.out.println("Input URL:");
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String urladdresss = br.readLine();
+		String urladdresss = getscan;
 		final URL url = new URL(urladdresss);
 		final URLConnection urlConnection = url.openConnection();
 		final DOMParser parser = new DOMParser();
@@ -43,6 +42,8 @@ public class GetIdwithNekoHTML {
 		methodNames.add(namemethodName);
 		methodNames.add(textIdmethodName);
 		methodNames.add(textNamemethodName);
+		methodNames.add(idmethodhref);
+		methodNames.add(namemethodhref);
 		return methodNames;
 	}
 
@@ -60,8 +61,10 @@ public class GetIdwithNekoHTML {
 						if(null != element.getAttributes().getNamedItem("href")){
 							if(null != element.getAttributes().getNamedItem("id")){
 								idmethodName.add(element.getAttribute("id"));
+								idmethodhref.add(element.getAttribute("href"));
 							}else if((null == element.getAttributes().getNamedItem("id")) && (null != element.getAttributes().getNamedItem("name"))){
 								namemethodName.add(element.getAttribute("name"));
+								namemethodhref.add(element.getAttribute("href"));
 							}
 						}else if(element.getAttribute("type").equals("text") || element.getAttribute("type").equals("TEXT")){
 							if(null != element.getAttributes().getNamedItem("id")){

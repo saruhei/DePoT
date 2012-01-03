@@ -11,9 +11,11 @@ import java.util.List;
 public class WritePage {
 
 	private List<List<String>> methodLists = new ArrayList<List<String>>();
+	private String diraddress;
 
-	public WritePage(List<List<String>> methodLists) {
+	public WritePage(List<List<String>> methodLists, String names) {
 		this.methodLists = methodLists;
+		diraddress = names;
 	}
 
 	public void write(String[] nameAndAddress) {
@@ -33,7 +35,7 @@ public class WritePage {
 		}
 	}
 
-	public void input(File file, String packageName, String fileName) {
+	public void input(File file, String packageName, String fileName) throws Exception {
 
 		PrintWriter pw;
 		try {
@@ -52,7 +54,7 @@ public class WritePage {
 		}
 	}
 
-	public void writeClass(PrintWriter pw, String string) {
+	public void writeClass(PrintWriter pw, String string) throws Exception {
 		pw.println("public class " + string + " extends AbstractPage<" + string
 				+ "> {\n");
 
@@ -64,7 +66,7 @@ public class WritePage {
 		writeAssert(pw);
 
 		writeMethod(pw, methodLists.get(0), methodLists.get(1),
-				methodLists.get(2), methodLists.get(3));
+				methodLists.get(2), methodLists.get(3),methodLists.get(4),methodLists.get(5));
 
 		pw.println("}");
 	}
@@ -85,19 +87,37 @@ public class WritePage {
 
 	public void writeMethod(PrintWriter pw, List<String> idList,
 			List<String> nameList, List<String> textIdList,
-			List<String> textNameList) {
+			List<String> textNameList, List<String> idhrefList, List<String> namehrefList) throws Exception {
 
 		for (int i = 0; i < idList.size(); i++) {
-			pw.println("	public InputPageClass go" + idList.get(i)
-					+ "() throws ClassNotFoundException {\n" + "		"
-					+ idList.get(i) + ".click();\n"
-					+ "		return new InputPageClass(driver);\n" + "	}\n");
+			ParseDependency pdi = new ParseDependency();
+			String returnIdClass = pdi.parsedepend(idhrefList.get(i),diraddress);
+			if(returnIdClass == null){
+				pw.println("	public InputPageClass go" + idList.get(i)
+						+ "() throws ClassNotFoundException {\n" + "		"
+						+ idList.get(i) + ".click();\n"
+						+ "		return new InputPageClass(driver);\n" + "	}\n");
+			}else{
+				pw.println("	public " + returnIdClass + " go" + idList.get(i)
+						+ "() throws ClassNotFoundException {\n" + "		"
+						+ idList.get(i) + ".click();\n"
+						+ "		return new " + returnIdClass + "(driver);\n" + "	}\n");
+			}
 		}
 		for (int i = 0; i < nameList.size(); i++) {
-			pw.println("	public InputPageClass go" + idList.get(i)
-					+ "() throws ClassNotFoundException {\n" + "		"
-					+ nameList.get(i) + ".click();\n"
-					+ "		return new InputPageClass(driver);\n" + "	}\n");
+			ParseDependency pdn  = new ParseDependency();
+			String returnNameClass = pdn.parsedepend(namehrefList.get(i), diraddress);
+			if(returnNameClass == null){
+				pw.println("	public InputPageClass go" + nameList.get(i)
+						+ "() throws ClassNotFoundException {\n" + "		"
+						+ nameList.get(i) + ".click();\n"
+						+ "		return new InputPageClass(driver);\n" + "	}\n");
+			}else{
+				pw.println("	public " + returnNameClass + " go" + nameList.get(i)
+						+ "() throws ClassNotFoundException {\n" + "		"
+						+ nameList.get(i) + ".click();\n"
+						+ "		return new " + returnNameClass + "(driver);\n" + "	}\n");
+			}
 		}
 		for (int i = 0; i < textIdList.size(); i++) {
 			pw.println("	public InputPageClass goWithPut" + textIdList.get(i)

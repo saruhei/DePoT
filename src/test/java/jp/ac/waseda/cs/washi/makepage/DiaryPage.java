@@ -1,4 +1,4 @@
-package jp.ac.waseda.cs.washi.forseminar;
+package jp.ac.waseda.cs.washi.makepage;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
@@ -20,7 +20,7 @@ public class DiaryPage extends AbstractPage<DiaryPage> {
 
 	@Override
 	protected void assertInvariant() {
-		assertThat(driver.getTitle(),is("DePoTダイアリー")); //make some invariant test if you need
+		assertThat(driver.getTitle(),is(driver.getTitle())); //make some invariant test if you need
 	}
 
 	public DePoThomePage gogoHome() throws ClassNotFoundException {
