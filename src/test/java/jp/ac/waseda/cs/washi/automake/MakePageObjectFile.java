@@ -21,30 +21,11 @@ public class MakePageObjectFile {
 	}
 
 	public void checkAbstractPage(String address, String packageName) throws Exception {
-		File abstractpage = new File(address + "AbstractPage.java");
 		File starter = new File(address + "Starter.java");
-		File assertFuc = new File(address + "AssertFunction.java");
-		File unEx = new File(address + "UnExpectAction.java");
-		if (abstractpage.exists() == false) {
-			FileReader readabst = new FileReader(
-					"./src/test/java/jp/ac/waseda/cs/washi/automake/AbstractPage.java");
-			WriteNecessaryObject ab = new WriteNecessaryObject(abstractpage);
-			ab.writeNecessary(packageName,readabst);
-		}
 		if (starter.exists() == false) {
 			FileReader readstart = new FileReader("./src/test/java/jp/ac/waseda/cs/washi/automake/Starter.txt");
 			WriteNecessaryObject st = new WriteNecessaryObject(starter);
 			st.writeNecessary(packageName,readstart);
-		}
-		if(assertFuc.exists() == false){
-			FileReader readassert = new FileReader("./src/test/java/jp/ac/waseda/cs/washi/automake/AssertFunction.java");
-			WriteNecessaryObject as = new WriteNecessaryObject(assertFuc);
-			as.writeNecessary(packageName, readassert);
-		}
-		if(unEx.exists() == false){
-			FileReader readunEx = new FileReader("./src/test/java/jp/ac/waseda/cs/washi/automake/UnExpectAction.java");
-			WriteNecessaryObject ue = new WriteNecessaryObject(unEx);
-			ue.writeNecessary(packageName, readunEx);
 		}
 	}
 

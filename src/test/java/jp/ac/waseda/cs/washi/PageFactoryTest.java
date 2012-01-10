@@ -3,9 +3,9 @@ package jp.ac.waseda.cs.washi;
 import java.lang.reflect.InvocationTargetException;
 import static org.junit.Assert.*;
 
-import jp.ac.waseda.cs.washi.yahoo.AssertFunction;
+import jp.ac.waseda.cs.washi.automake.AssertFunction;
 import jp.ac.waseda.cs.washi.yahoo.AtFirst;
-import jp.ac.waseda.cs.washi.yahoo.UnExpectAction;
+import jp.ac.waseda.cs.washi.automake.UnExpectAction;
 import jp.ac.waseda.cs.washi.yahoo.YahooImageSearchResultPage;
 import jp.ac.waseda.cs.washi.yahoo.YahooSearchResultPage;
 import jp.ac.waseda.cs.washi.yahoo.YahooTopPage;
@@ -33,7 +33,7 @@ public class PageFactoryTest {
 	public void YahooTest() throws SecurityException,
 	IllegalArgumentException, NoSuchMethodException,
 	IllegalAccessException, InvocationTargetException,
-	ClassNotFoundException, InstantiationException  {
+	ClassNotFoundException, InstantiationException, Exception  {
 		AtFirst starter = new AtFirst(driver);
 		starter.goTopPage()
 				.goSearchPage("selenium")
@@ -47,6 +47,6 @@ public class PageFactoryTest {
 				})
 				.goTopPage()
 				.goImageSearchPage("aaa")
-				.goRandomPage();
+				.goTopPage();
 	}
 }

@@ -1,10 +1,6 @@
 package jp.ac.waseda.cs.washi.automake;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -12,10 +8,12 @@ import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Point;
+import jp.ac.waseda.cs.washi.proxy.ProxySelenium;
+import jp.ac.waseda.cs.washi.proxy.ProxyWebDriver;
+import jp.ac.waseda.cs.washi.proxy.ProxyWebElement;
+import junit.framework.AssertionFailedError;
+
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -23,26 +21,40 @@ import com.thoughtworks.selenium.Selenium;
 
 public abstract class AbstractPage<Tpage extends AbstractPage<Tpage>> {
 	protected final WebDriver driver;
-	protected Selenium selenium;
 	private static Stack<String> stackTrace = new Stack<String>();
 
-	public AbstractPage(WebDriver driver) throws ClassNotFoundException {
+	public AbstractPage(WebDriver driver) {
 		this.driver = driver;
-		// ページファクトリによるフィールドの初期化
-		selenium = new WebDriverBackedSelenium(driver, driver.getCurrentUrl());
 		PageFactory.initElements(driver, this);
-		printStackTrace();
+		try {
+			setProxy();
+		} catch (SecurityException e) {
+			throw new AssertionFailedError();
+		} catch (IllegalArgumentException e) {
+			throw new AssertionFailedError();
+		} catch (NoSuchFieldException e) {
+			throw new AssertionFailedError();
+		} catch (IllegalAccessException e) {
+			throw new AssertionFailedError();
+		}
+		try {
+			printStackTrace();
+		} catch (ClassNotFoundException e) {
+			throw new AssertionFailedError();
+		}
 	}
 
 	protected abstract void assertInvariant();
 	
+	@SuppressWarnings("unchecked")
 	public <T> Tpage doAssert(AssertFunction<Tpage> assertFunction){
 		assertFunction.assertPage((Tpage)this);
 		return (Tpage) this;	
 	}
 	
-	public <T, T2> T doUnEx(UnExpectAction<T,T2> UnEx) throws ClassNotFoundException{
-		return (T)UnEx.unExpectAct((T2)this);	
+	@SuppressWarnings({ "unchecked", "hiding" })
+	public <T, Tpage> T doUnEx(UnExpectAction<T,Tpage> UnEx) throws ClassNotFoundException{
+		return (T)UnEx.unExpectAct((Tpage)this);	
 	}
 	
 	public List<String> getGoMethodNames()
@@ -95,4 +107,25 @@ public abstract class AbstractPage<Tpage extends AbstractPage<Tpage>> {
 		System.out.println("");
 	}
 	
+	public void setProxy() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException{
+		Class<?> c = this.getClass();
+		Field f[]= c.getDeclaredFields();
+		for (Field field : f) {
+			if(field.getGenericType().toString().endsWith("WebElement")){
+				field.setAccessible(true);
+				WebElement wb = (WebElement) field.get(this);
+				field.set(this, new ProxyWebElement(this, wb));
+			}else if(field.getGenericType().toString().endsWith("Selenium")){
+				field.setAccessible(true);
+				Selenium sele = (Selenium) field.get(this);
+				field.set(this, new ProxySelenium(this, sele));
+			}else if(field.getGenericType().toString().endsWith("WebDriver")){
+				field.setAccessible(true);
+				WebDriver wd = (WebDriver) field.get(this);
+				field.set(this, new ProxyWebDriver(this, wd));
+			}
+		}
+	}
+	
+
 }
