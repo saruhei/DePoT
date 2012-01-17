@@ -24,7 +24,6 @@ public class GetIdwithNekoHTML {
 	private List<List<String>> methodNames = new ArrayList<List<String>>();
 
 	public List<List<String>> getId(String getscan) throws Exception {
-		System.out.println("Input URL:");
 		String urladdresss = getscan;
 		final URL url = new URL(urladdresss);
 		final URLConnection urlConnection = url.openConnection();

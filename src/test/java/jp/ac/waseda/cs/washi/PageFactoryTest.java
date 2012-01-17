@@ -37,12 +37,14 @@ public class PageFactoryTest {
 		AtFirst starter = new AtFirst(driver);
 		starter.goTopPage()
 				.goSearchPage("selenium")
-				.doAssert(new AssertFunction<YahooSearchResultPage>() {
+				.doUnEx(new UnExpectAction<YahooImageSearchResultPage, YahooSearchResultPage>() {
 
 					@Override
-					public void assertPage(YahooSearchResultPage page) {
+					public <T> YahooImageSearchResultPage unExpectAct(
+							YahooSearchResultPage page)
+							throws ClassNotFoundException {
 						// TODO Auto-generated method stub
-						
+						return null;
 					}
 				})
 				.goTopPage()

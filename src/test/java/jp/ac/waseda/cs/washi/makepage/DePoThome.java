@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import jp.ac.waseda.cs.washi.automake.AbstractPage;
 
-public class DePoThomePage extends AbstractPage<DePoThomePage> {
+public class DePoThome extends AbstractPage<DePoThome> {
 
 	@FindBy(id =  "GoLogin")
 	public WebElement GoLogin;
@@ -22,7 +22,7 @@ public class DePoThomePage extends AbstractPage<DePoThomePage> {
 	@FindBy(id =  "gbbs")
 	public WebElement gbbs;
 
-	public DePoThomePage(WebDriver driver)
+	public DePoThome(WebDriver driver)
 			throws ClassNotFoundException {
 		super(driver);
 		assertInvariant();
@@ -33,9 +33,9 @@ public class DePoThomePage extends AbstractPage<DePoThomePage> {
 		assertThat(driver.getTitle(),is(driver.getTitle())); //make some invariant test if you need
 	}
 
-	public InputPageClass goGoLogin() throws ClassNotFoundException {
+	public LoginPage goGoLogin() throws ClassNotFoundException {
 		GoLogin.click();
-		return new InputPageClass(driver);
+		return new LoginPage(driver);
 	}
 
 	public ChatPage goChat() throws ClassNotFoundException {
@@ -48,9 +48,9 @@ public class DePoThomePage extends AbstractPage<DePoThomePage> {
 		return new DiaryPage(driver);
 	}
 
-	public InputPageClass gogbbs() throws ClassNotFoundException {
+	public GbbsPage gogbbs() throws ClassNotFoundException {
 		gbbs.click();
-		return new InputPageClass(driver);
+		return new GbbsPage(driver);
 	}
 
 }

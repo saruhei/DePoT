@@ -11,11 +11,14 @@ import java.util.List;
 public class WritePage {
 
 	private List<List<String>> methodLists = new ArrayList<List<String>>();
-	private String diraddress;
+	private List<String> poPageNameLists;
+	private List<String> poPageUrlLists;
 
-	public WritePage(List<List<String>> methodLists, String names) {
+	public WritePage(List<List<String>> methodLists, String names, List<String> poPageNameLists, List<String> poPageUrlLists) {
 		this.methodLists = methodLists;
-		diraddress = names;
+		this.poPageNameLists = poPageNameLists;
+		this.poPageUrlLists = poPageUrlLists;
+		
 	}
 
 	public void write(String[] nameAndAddress) {
@@ -91,8 +94,12 @@ public class WritePage {
 			List<String> textNameList, List<String> idhrefList, List<String> namehrefList) throws Exception {
 
 		for (int i = 0; i < idList.size(); i++) {
-			ParseDependency pdi = new ParseDependency();
-			String returnIdClass = pdi.parsedepend(idhrefList.get(i),diraddress);
+			String returnIdClass = null;
+			for(int j = 0 ; j < poPageUrlLists.size(); j++){
+				if(poPageUrlLists.get(j).endsWith(idhrefList.get(i))){
+					returnIdClass = poPageNameLists.get(j);
+				}
+			}
 			if(returnIdClass == null){
 				pw.println("	public InputPageClass go" + idList.get(i)
 						+ "() throws ClassNotFoundException {\n" + "		"
@@ -106,8 +113,12 @@ public class WritePage {
 			}
 		}
 		for (int i = 0; i < nameList.size(); i++) {
-			ParseDependency pdn  = new ParseDependency();
-			String returnNameClass = pdn.parsedepend(namehrefList.get(i), diraddress);
+			String returnNameClass = null;
+			for(int j = 0 ; j < poPageUrlLists.size(); j++){
+				if(poPageUrlLists.get(j).endsWith(namehrefList.get(i))){
+					returnNameClass = poPageNameLists.get(j);
+				}
+			}
 			if(returnNameClass == null){
 				pw.println("	public InputPageClass go" + nameList.get(i)
 						+ "() throws ClassNotFoundException {\n" + "		"

@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import jp.ac.waseda.cs.washi.automake.AbstractPage;
 
-public class ChatPage extends AbstractPage<ChatPage> {
+public class GbbsPage extends AbstractPage<GbbsPage> {
 
 	@FindBy(id =  "goHome")
 	public WebElement goHome;
@@ -16,10 +16,16 @@ public class ChatPage extends AbstractPage<ChatPage> {
 	@FindBy(name =  "name")
 	public WebElement name;
 
-	@FindBy(name =  "message")
-	public WebElement message;
+	@FindBy(name =  "email")
+	public WebElement email;
 
-	public ChatPage(WebDriver driver)
+	@FindBy(name =  "hp")
+	public WebElement hp;
+
+	@FindBy(name =  "subject")
+	public WebElement subject;
+
+	public GbbsPage(WebDriver driver)
 			throws ClassNotFoundException {
 		super(driver);
 		assertInvariant();
@@ -41,9 +47,21 @@ public class ChatPage extends AbstractPage<ChatPage> {
 		return new InputPageClass(driver);
 	}
 
-	public InputPageClass goWithPutmessage() throws ClassNotFoundException {
-		message.sendKeys("HogeHoge");
-		message.submit();
+	public InputPageClass goWithPutemail() throws ClassNotFoundException {
+		email.sendKeys("HogeHoge");
+		email.submit();
+		return new InputPageClass(driver);
+	}
+
+	public InputPageClass goWithPuthp() throws ClassNotFoundException {
+		hp.sendKeys("HogeHoge");
+		hp.submit();
+		return new InputPageClass(driver);
+	}
+
+	public InputPageClass goWithPutsubject() throws ClassNotFoundException {
+		subject.sendKeys("HogeHoge");
+		subject.submit();
 		return new InputPageClass(driver);
 	}
 
