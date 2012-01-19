@@ -13,6 +13,25 @@ public class GbbsPage extends AbstractPage<GbbsPage> {
 	@FindBy(id =  "goHome")
 	public WebElement goHome;
 
+	@FindBy(name =  "scolor")
+	public WebElement scolor;
+
+	@FindBy(name =  "scolor")
+	public WebElement scolor;
+
+	@FindBy(name =  "scolor")
+	public WebElement scolor;
+	
+
+	@FindBy(name =  "scolor")
+	public WebElement scolor;
+
+	@FindBy(name =  "scolor")
+	public WebElement scolor;
+
+	@FindBy(name =  "tag")
+	public WebElement tag;
+
 	@FindBy(name =  "name")
 	public WebElement name;
 
@@ -22,8 +41,14 @@ public class GbbsPage extends AbstractPage<GbbsPage> {
 	@FindBy(name =  "hp")
 	public WebElement hp;
 
+	@FindBy(name =  "pass")
+	public WebElement pass;
+
 	@FindBy(name =  "subject")
 	public WebElement subject;
+
+	@FindBy(name =  "comment")
+	public WebElement comment;
 
 	public GbbsPage(WebDriver driver)
 			throws ClassNotFoundException {
@@ -41,28 +66,20 @@ public class GbbsPage extends AbstractPage<GbbsPage> {
 		return new DePoThome(driver);
 	}
 
-	public InputPageClass goWithPutname() throws ClassNotFoundException {
+	public GbbsPage goForm0() throws Exception {
+		scolor.click();
+		scolor.click();
+		scolor.click();
+		scolor.click();
+		scolor.click();
+		tag.click();
 		name.sendKeys("HogeHoge");
-		name.submit();
-		return new InputPageClass(driver);
-	}
-
-	public InputPageClass goWithPutemail() throws ClassNotFoundException {
 		email.sendKeys("HogeHoge");
-		email.submit();
-		return new InputPageClass(driver);
-	}
-
-	public InputPageClass goWithPuthp() throws ClassNotFoundException {
 		hp.sendKeys("HogeHoge");
-		hp.submit();
-		return new InputPageClass(driver);
-	}
-
-	public InputPageClass goWithPutsubject() throws ClassNotFoundException {
+		pass.sendKeys("HogeHoge");
 		subject.sendKeys("HogeHoge");
-		subject.submit();
-		return new InputPageClass(driver);
+		comment.sendKeys("HogeHoge");
+		return new GbbsPage(driver);
 	}
 
 }

@@ -27,16 +27,10 @@ public class LoginPage extends AbstractPage<LoginPage> {
 		assertThat(driver.getTitle(),is(driver.getTitle())); //make some invariant test if you need
 	}
 
-	public InputPageClass goWithPutu_id() throws ClassNotFoundException {
+	public LoginPage goForm0() throws Exception {
 		u_id.sendKeys("HogeHoge");
-		u_id.submit();
-		return new InputPageClass(driver);
-	}
-
-	public InputPageClass goWithPutpasswd() throws ClassNotFoundException {
 		passwd.sendKeys("HogeHoge");
-		passwd.submit();
-		return new InputPageClass(driver);
+		return new LoginPage(driver);
 	}
 
 }

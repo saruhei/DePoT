@@ -13,6 +13,21 @@ public class ChatPage extends AbstractPage<ChatPage> {
 	@FindBy(id =  "goHome")
 	public WebElement goHome;
 
+	@FindBy(name =  "ncolor")
+	public WebElement ncolor;
+
+	@FindBy(name =  "ncolor")
+	public WebElement ncolor;
+
+	@FindBy(name =  "ncolor")
+	public WebElement ncolor;
+
+	@FindBy(name =  "ncolor")
+	public WebElement ncolor;
+
+	@FindBy(name =  "ncolor")
+	public WebElement ncolor;
+
 	@FindBy(name =  "name")
 	public WebElement name;
 
@@ -35,16 +50,15 @@ public class ChatPage extends AbstractPage<ChatPage> {
 		return new DePoThome(driver);
 	}
 
-	public InputPageClass goWithPutname() throws ClassNotFoundException {
+	public ChatPage goForm0() throws Exception {
+		ncolor.click();
+		ncolor.click();
+		ncolor.click();
+		ncolor.click();
+		ncolor.click();
 		name.sendKeys("HogeHoge");
-		name.submit();
-		return new InputPageClass(driver);
-	}
-
-	public InputPageClass goWithPutmessage() throws ClassNotFoundException {
 		message.sendKeys("HogeHoge");
-		message.submit();
-		return new InputPageClass(driver);
+		return new ChatPage(driver);
 	}
 
 }
