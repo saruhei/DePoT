@@ -35,8 +35,7 @@ public class DePoTTest1 {
 	IllegalAccessException, InvocationTargetException,
 	ClassNotFoundException, InstantiationException  {
 		Starter st = new Starter(driver);
-		st.goFirstPage()
-		.goDiary()/*.goHogeHoge()
+		st/*.goHogeHoge()
 			.goChomeChome()
 			.doAssert(new AssertFunction<InputNowPage>() {
 				@Override

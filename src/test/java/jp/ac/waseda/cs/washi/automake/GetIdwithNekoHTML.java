@@ -19,6 +19,10 @@ public class GetIdwithNekoHTML {
 	private int formclickName;
 	private int formsendkeysId;
 	private int formsendkeysName;
+	private int formselectId;
+	private int formselectName;
+	private int formselectvalueId;
+	private int formselectvalueName;
 	private List<String> idmethodName = new ArrayList<String>();
 	private List<String> idmethodhref = new ArrayList<String>();
 	private List<String> namemethodName = new ArrayList<String>();
@@ -32,7 +36,14 @@ public class GetIdwithNekoHTML {
 	private List<String> formclickNameNumber = new ArrayList<String>();
 	private List<String> formsendkeysIdNumber = new ArrayList<String>();
 	private List<String> formsendkeysNameNumber = new ArrayList<String>();
-	private List<String> formSelectLists = new ArrayList<String>();
+	private List<String> formSelectIdLists = new ArrayList<String>();
+	private List<String> formSelectNameLists = new ArrayList<String>();
+	private List<String> formSelectIdNumber = new ArrayList<String>();
+	private List<String> formSelectNameNumber = new ArrayList<String>();
+	private List<String> formSelectValueIdLists = new ArrayList<String>();
+	private List<String> formSelectValueNameLists = new ArrayList<String>();
+	private List<String> formSelectValueIdNumber = new ArrayList<String>();
+	private List<String> formSelectValueNameNumber = new ArrayList<String>();
 	private List<List<String>> methodNames = new ArrayList<List<String>>();
 
 	public List<List<String>> getId(String getscan) throws Exception {
@@ -46,6 +57,10 @@ public class GetIdwithNekoHTML {
 			formclickName = 0;
 			formsendkeysId = 0;
 			formsendkeysName = 0;
+			formselectId = 0;
+			formselectName = 0;
+			formselectvalueId = 0;
+			formselectvalueName = 0;
 			parser.parse(new InputSource(is));
 			final Document doc = parser.getDocument();
 			final Element root = doc.getDocumentElement();
@@ -66,7 +81,14 @@ public class GetIdwithNekoHTML {
 		methodNames.add(formclickNameNumber);
 		methodNames.add(formsendkeysIdNumber);
 		methodNames.add(formsendkeysNameNumber);
-		methodNames.add(formSelectLists);
+		methodNames.add(formSelectIdLists);
+		methodNames.add(formSelectNameLists);
+		methodNames.add(formSelectIdNumber);
+		methodNames.add(formSelectNameNumber);
+		methodNames.add(formSelectValueIdLists);
+		methodNames.add(formSelectValueNameLists);
+		methodNames.add(formSelectValueIdNumber);
+		methodNames.add(formSelectValueNameNumber);
 		return methodNames;
 	}
 
@@ -84,6 +106,8 @@ public class GetIdwithNekoHTML {
 						formclickNameNumber.add(String.valueOf(formclickName));
 						formsendkeysIdNumber.add(String.valueOf(formsendkeysId));
 						formsendkeysNameNumber.add(String.valueOf(formsendkeysName));
+						formSelectIdNumber.add(String.valueOf(formselectId));
+						formSelectNameNumber.add(String.valueOf(formselectName));
 						walkTreeForm(level + "", (Element) child);
 					}else if (((null != element.getAttributes().getNamedItem("id") || null != element
 							.getAttributes().getNamedItem("name")))){
@@ -144,7 +168,17 @@ public class GetIdwithNekoHTML {
                     		walkTreeForm(level + " ", (Element) child);
                     	}
                     }else if(element.getTagName().equals("SELECT")){
-                    	walkTreeSelect(level + " ", (Element) child);
+                    	if(null != element.getAttributes().getNamedItem("id")){
+                    		formSelectIdLists.add(element.getAttribute("id"));
+                    		formselectId = formselectId +1;
+                        	walkTreeSelect(level + " ", (Element) child , "id");
+                    	}else if(null != element.getAttributes().getNamedItem("name")){
+                    		formSelectNameLists.add(element.getAttribute("name"));
+                    		formselectName = formselectName + 1;
+                        	walkTreeSelect(level + " ", (Element) child, "name");
+                    	}else{
+                    		walkTreeForm(level + " ", (Element) child);
+                    	}
                     }else{
                     	walkTreeForm(level + " ", (Element) child);
                     }
@@ -153,8 +187,13 @@ public class GetIdwithNekoHTML {
         }
 	}
 
-	private void walkTreeSelect(final String level,final Element elm) {
+	private void walkTreeSelect(final String level,final Element elm, String version) {
         final NodeList children = elm.getChildNodes();
+        if(version.equals("name")){
+        	formSelectValueNameNumber.add(String.valueOf(formselectvalueName));
+        }else if(version.equals("id")){
+    		formSelectValueIdNumber.add(String.valueOf(formselectvalueId));
+        }
         if (children != null) {
             final int len = children.getLength();
             for (int idx = 0; idx < len; idx++) {
@@ -162,9 +201,17 @@ public class GetIdwithNekoHTML {
                 if (child.getNodeType() == Node.ELEMENT_NODE){
                     Element element = (Element) child;
                     if(element.getTagName().equals("OPTION")){
-                    	//formSelectLists.add(formclickIdNumber.size(),element.getAttribute("value"));
+                    	if(null != element.getAttributes().getNamedItem("value")){
+                           	if(version.equals("id")){
+                            	formSelectValueIdLists.add(element.getAttribute("value"));
+                            	formselectvalueId = formselectvalueId + 1;
+                        	}else if(version.equals("name")){
+                            	formSelectValueNameLists.add(element.getAttribute("value"));
+                            	formselectvalueName = formselectvalueName + 1;
+                        	}
+                    	}
                     }else{
-                    	walkTreeSelect(level + " ", (Element) child);
+                    	walkTreeSelect(level + " ", (Element) child, version);
                     }
                 }
             }

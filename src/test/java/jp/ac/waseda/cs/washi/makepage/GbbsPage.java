@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import static jp.ac.waseda.cs.washi.assertion.Assertion.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.FindBy;
 import jp.ac.waseda.cs.washi.automake.AbstractPage;
 
@@ -13,21 +14,20 @@ public class GbbsPage extends AbstractPage<GbbsPage> {
 	@FindBy(id =  "goHome")
 	public WebElement goHome;
 
-	@FindBy(name =  "scolor")
-	public WebElement scolor;
+	@FindBy(name =  "scolorblue")
+	public WebElement scolorblue;
 
-	@FindBy(name =  "scolor")
-	public WebElement scolor;
+	@FindBy(name =  "scolorred")
+	public WebElement scolorred;
 
-	@FindBy(name =  "scolor")
-	public WebElement scolor;
-	
+	@FindBy(name =  "scolorgreen")
+	public WebElement scolorgreen;
 
-	@FindBy(name =  "scolor")
-	public WebElement scolor;
+	@FindBy(name =  "scolorbrown")
+	public WebElement scolorbrown;
 
-	@FindBy(name =  "scolor")
-	public WebElement scolor;
+	@FindBy(name =  "scolorpurple")
+	public WebElement scolorpurple;
 
 	@FindBy(name =  "tag")
 	public WebElement tag;
@@ -67,11 +67,11 @@ public class GbbsPage extends AbstractPage<GbbsPage> {
 	}
 
 	public GbbsPage goForm0() throws Exception {
-		scolor.click();
-		scolor.click();
-		scolor.click();
-		scolor.click();
-		scolor.click();
+		scolorblue.click();
+		scolorred.click();
+		scolorgreen.click();
+		scolorbrown.click();
+		scolorpurple.click();
 		tag.click();
 		name.sendKeys("HogeHoge");
 		email.sendKeys("HogeHoge");

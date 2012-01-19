@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import static jp.ac.waseda.cs.washi.assertion.Assertion.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.FindBy;
 import jp.ac.waseda.cs.washi.automake.AbstractPage;
 
@@ -13,26 +14,29 @@ public class ChatPage extends AbstractPage<ChatPage> {
 	@FindBy(id =  "goHome")
 	public WebElement goHome;
 
-	@FindBy(name =  "ncolor")
-	public WebElement ncolor;
+	@FindBy(name =  "ncolorblue")
+	public WebElement ncolorblue;
 
-	@FindBy(name =  "ncolor")
-	public WebElement ncolor;
+	@FindBy(name =  "ncolorred")
+	public WebElement ncolorred;
 
-	@FindBy(name =  "ncolor")
-	public WebElement ncolor;
+	@FindBy(name =  "ncolorgreen")
+	public WebElement ncolorgreen;
 
-	@FindBy(name =  "ncolor")
-	public WebElement ncolor;
+	@FindBy(name =  "ncolorbrown")
+	public WebElement ncolorbrown;
 
-	@FindBy(name =  "ncolor")
-	public WebElement ncolor;
+	@FindBy(name =  "ncolorpurple")
+	public WebElement ncolorpurple;
 
 	@FindBy(name =  "name")
 	public WebElement name;
 
 	@FindBy(name =  "message")
 	public WebElement message;
+
+	@FindBy(name =  "refresh")
+	public Select refresh;
 
 	public ChatPage(WebDriver driver)
 			throws ClassNotFoundException {
@@ -51,13 +55,16 @@ public class ChatPage extends AbstractPage<ChatPage> {
 	}
 
 	public ChatPage goForm0() throws Exception {
-		ncolor.click();
-		ncolor.click();
-		ncolor.click();
-		ncolor.click();
-		ncolor.click();
+		ncolorblue.click();
+		ncolorred.click();
+		ncolorgreen.click();
+		ncolorbrown.click();
+		ncolorpurple.click();
 		name.sendKeys("HogeHoge");
 		message.sendKeys("HogeHoge");
+		refresh.selectByValue("60");
+		refresh.selectByValue("45");
+		refresh.selectByValue("30");
 		return new ChatPage(driver);
 	}
 
