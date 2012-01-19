@@ -65,7 +65,8 @@ public class WritePage {
 
 		writeFindBy(pw, methodLists.get(0), methodLists.get(1),
 				methodLists.get(5), methodLists.get(6), methodLists.get(7),
-				methodLists.get(8),methodLists.get(13),methodLists.get(14));
+				methodLists.get(8), methodLists.get(13), methodLists.get(14),
+				methodLists.get(21));
 
 		writeConstructor(pw, string);
 
@@ -77,9 +78,9 @@ public class WritePage {
 		writeFormMethod(pw, string, methodLists.get(4), methodLists.get(5),
 				methodLists.get(6), methodLists.get(7), methodLists.get(8),
 				methodLists.get(9), methodLists.get(10), methodLists.get(11),
-				methodLists.get(12),methodLists.get(13),methodLists.get(14),
-				methodLists.get(15),methodLists.get(16),methodLists.get(17),
-				methodLists.get(18),methodLists.get(19),methodLists.get(20));
+				methodLists.get(12), methodLists.get(13), methodLists.get(14),
+				methodLists.get(15), methodLists.get(16), methodLists.get(17),
+				methodLists.get(18), methodLists.get(19), methodLists.get(20),methodLists.get(21));
 
 		pw.println("}");
 	}
@@ -91,10 +92,12 @@ public class WritePage {
 			List<String> formclicknamenumber,
 			List<String> formsendkeysidnumber,
 			List<String> formsendkeysnamenumber, List<String> formselectidlist,
-			List<String> formselectnamelist, List<String> formselectidnumber, 
-			List<String> formselectnamenumber, List<String> formselectvalueidlist, 
-			List<String> formselectvaluenamelist, List<String> formselectvalueidnumber, 
-			List<String> formselectvaluenamenumber) {
+			List<String> formselectnamelist, List<String> formselectidnumber,
+			List<String> formselectnamenumber,
+			List<String> formselectvalueidlist,
+			List<String> formselectvaluenamelist,
+			List<String> formselectvalueidnumber,
+			List<String> formselectvaluenamenumber, List<String> formsubmitlist) {
 
 		for (int i = 0; i < formactionlist.size(); i++) {
 			Flag = false;
@@ -156,30 +159,63 @@ public class WritePage {
 						pw.println("		" + formsendkeysidlist.get(j)
 								+ ".sendKeys(\"HogeHoge\");");
 					}
-					for (int j = Integer.parseInt(formsendkeysnamenumber.get(i)); j < formsendkeysnamelist.size(); j++) {
-						pw.println("		" + formsendkeysnamelist.get(j)+ ".sendKeys(\"HogeHoge\");");
+					for (int j = Integer
+							.parseInt(formsendkeysnamenumber.get(i)); j < formsendkeysnamelist
+							.size(); j++) {
+						pw.println("		" + formsendkeysnamelist.get(j)
+								+ ".sendKeys(\"HogeHoge\");");
 					}
-					for (int j = Integer.parseInt(formselectidnumber.get(i)); j < formselectidlist.size(); j++) {
-						if((j + 1) == formselectvalueidnumber.size()){
-							for(int k = Integer.parseInt(formselectvalueidnumber.get(j)); k < formselectvalueidlist.size(); k++){
-								pw.println("		" + formselectidlist.get(j)+ ".selectByValue("+ '"' + formselectvalueidlist.get(k) + '"' + ");");
+					for (int j = Integer.parseInt(formselectidnumber.get(i)); j < formselectidlist
+							.size(); j++) {
+						if ((j + 1) == formselectvalueidnumber.size()) {
+							for (int k = Integer
+									.parseInt(formselectvalueidnumber.get(j)); k < formselectvalueidlist
+									.size(); k++) {
+								pw.println("		" + formselectidlist.get(j)
+										+ ".selectByValue(" + '"'
+										+ formselectvalueidlist.get(k) + '"'
+										+ ");");
 							}
-						}else{
-							for(int k = Integer.parseInt(formselectvalueidnumber.get(j)); k < Integer.parseInt(formselectvalueidnumber.get(j + 1)); k++){
-								pw.println("		" + formselectidlist.get(j)+ ".selectByValue("+ '"' + formselectvalueidlist.get(k) + '"' + ");");
+						} else {
+							for (int k = Integer
+									.parseInt(formselectvalueidnumber.get(j)); k < Integer
+									.parseInt(formselectvalueidnumber
+											.get(j + 1)); k++) {
+								pw.println("		" + formselectidlist.get(j)
+										+ ".selectByValue(" + '"'
+										+ formselectvalueidlist.get(k) + '"'
+										+ ");");
 							}
 						}
 					}
-					for (int j = Integer.parseInt(formselectnamenumber.get(i)); j < formselectnamelist.size(); j++) {
-						if((j + 1) == formselectvaluenamenumber.size()){
-							for(int k = Integer.parseInt(formselectvaluenamenumber.get(j)); k < formselectvaluenamelist.size(); k++){
-								pw.println("		" + formselectnamelist.get(j)+ ".selectByValue("+ '"' + formselectvaluenamelist.get(k) + '"' + ");");
+					for (int j = Integer.parseInt(formselectnamenumber.get(i)); j < formselectnamelist
+							.size(); j++) {
+						if ((j + 1) == formselectvaluenamenumber.size()) {
+							for (int k = Integer
+									.parseInt(formselectvaluenamenumber.get(j)); k < formselectvaluenamelist
+									.size(); k++) {
+								pw.println("		" + formselectnamelist.get(j)
+										+ ".selectByValue(" + '"'
+										+ formselectvaluenamelist.get(k) + '"'
+										+ ");");
 							}
-						}else{
-							for(int k = Integer.parseInt(formselectvaluenamenumber.get(j)); k < Integer.parseInt(formselectvaluenamenumber.get(j + 1)); k++){
-								pw.println("		" + formselectnamelist.get(j)+ ".selectByValue("+ '"' + formselectvaluenamelist.get(k) + '"' + ");");
+						} else {
+							for (int k = Integer
+									.parseInt(formselectvaluenamenumber.get(j)); k < Integer
+									.parseInt(formselectvaluenamenumber
+											.get(j + 1)); k++) {
+								pw.println("		" + formselectnamelist.get(j)
+										+ ".selectByValue(" + '"'
+										+ formselectvaluenamelist.get(k) + '"'
+										+ ");");
 							}
 						}
+					}
+					if(formsubmitlist.get(i) == null){
+						pw.println("/// someElement.submit(); ");
+					}else{
+						String[] strspl = formsubmitlist.get(i).split("\\.");
+						pw.println("		" + strspl[1] + ".submit();");
 					}
 				} else {
 					for (int j = Integer.parseInt(formclickidnumber.get(i)); j < Integer
@@ -196,31 +232,63 @@ public class WritePage {
 						pw.println("		" + formsendkeysidlist.get(j)
 								+ ".sendKeys(\"HogeHoge\");");
 					}
-					for (int j = Integer.parseInt(formsendkeysnamenumber.get(i)); j < Integer.parseInt(formsendkeysnamenumber.get(i + 1)); j++) {
+					for (int j = Integer
+							.parseInt(formsendkeysnamenumber.get(i)); j < Integer
+							.parseInt(formsendkeysnamenumber.get(i + 1)); j++) {
 						pw.println("		" + formsendkeysnamelist.get(j)
 								+ ".sendKeys(\"HogeHoge\");");
 					}
-					for (int j = Integer.parseInt(formselectidnumber.get(i)); j < Integer.parseInt(formselectidnumber.get(i + 1)); j++) {
-						if((j + 1) == formselectvalueidnumber.size()){
-							for(int k = Integer.parseInt(formselectvalueidnumber.get(j)); k < formselectvalueidlist.size(); k++){
-								pw.println("		" + formselectidlist.get(j)+ ".selectByValue("+ '"' + formselectvalueidlist.get(k) + '"' + ");");
+					for (int j = Integer.parseInt(formselectidnumber.get(i)); j < Integer
+							.parseInt(formselectidnumber.get(i + 1)); j++) {
+						if ((j + 1) == formselectvalueidnumber.size()) {
+							for (int k = Integer
+									.parseInt(formselectvalueidnumber.get(j)); k < formselectvalueidlist
+									.size(); k++) {
+								pw.println("		" + formselectidlist.get(j)
+										+ ".selectByValue(" + '"'
+										+ formselectvalueidlist.get(k) + '"'
+										+ ");");
 							}
-						}else{
-							for(int k = Integer.parseInt(formselectvalueidnumber.get(j)); k < Integer.parseInt(formselectvalueidnumber.get(j + 1)); k++){
-								pw.println("		" + formselectidlist.get(j)+ ".selectByValue("+ '"' + formselectvalueidlist.get(k) + '"' + ");");
+						} else {
+							for (int k = Integer
+									.parseInt(formselectvalueidnumber.get(j)); k < Integer
+									.parseInt(formselectvalueidnumber
+											.get(j + 1)); k++) {
+								pw.println("		" + formselectidlist.get(j)
+										+ ".selectByValue(" + '"'
+										+ formselectvalueidlist.get(k) + '"'
+										+ ");");
 							}
 						}
 					}
-					for (int j = Integer.parseInt(formselectnamenumber.get(i)); j < Integer.parseInt(formselectnamenumber.get(i + 1)); j++) {
-						if((j + 1) == formselectvaluenamenumber.size()){
-							for(int k = Integer.parseInt(formselectvaluenamenumber.get(j)); k < formselectvaluenamelist.size(); k++){
-								pw.println("		" + formselectnamelist.get(j)+ ".selectByValue("+ '"' + formselectvaluenamelist.get(k) + '"' + ");");
+					for (int j = Integer.parseInt(formselectnamenumber.get(i)); j < Integer
+							.parseInt(formselectnamenumber.get(i + 1)); j++) {
+						if ((j + 1) == formselectvaluenamenumber.size()) {
+							for (int k = Integer
+									.parseInt(formselectvaluenamenumber.get(j)); k < formselectvaluenamelist
+									.size(); k++) {
+								pw.println("		" + formselectnamelist.get(j)
+										+ ".selectByValue(" + '"'
+										+ formselectvaluenamelist.get(k) + '"'
+										+ ");");
 							}
-						}else{
-							for(int k = Integer.parseInt(formselectvaluenamenumber.get(j)); k < Integer.parseInt(formselectvaluenamenumber.get(j + 1)); k++){
-								pw.println("		" + formselectnamelist.get(j)+ ".selectByValue("+ '"' + formselectvaluenamelist.get(k) + '"' + ");");
+						} else {
+							for (int k = Integer
+									.parseInt(formselectvaluenamenumber.get(j)); k < Integer
+									.parseInt(formselectvaluenamenumber
+											.get(j + 1)); k++) {
+								pw.println("		" + formselectnamelist.get(j)
+										+ ".selectByValue(" + '"'
+										+ formselectvaluenamelist.get(k) + '"'
+										+ ");");
 							}
 						}
+					}
+					if(formsubmitlist.get(i) == null){
+						pw.println("/// someElement.submit(); ");
+					}else{
+						String[] strspl = formsubmitlist.get(i).split("\\.");
+						pw.println("		" + strspl[1] + ".submit();");
 					}
 				}
 				if (formactionlist.get(i).equals("$PHP_SELF")) {
@@ -315,7 +383,8 @@ public class WritePage {
 	public void writeFindBy(PrintWriter pw, List<String> idList,
 			List<String> nameList, List<String> formclickidList,
 			List<String> formclicknameList, List<String> formsendkeysidList,
-			List<String> formsendkeysnameList, List<String> formselectidList, List<String> formselectnameList) {
+			List<String> formsendkeysnameList, List<String> formselectidList,
+			List<String> formselectnameList, List<String> formsubmitList) {
 		for (String id : idList) {
 			pw.println("	@FindBy(id =  " + '"' + id + '"' + ")\n"
 					+ "	public WebElement " + id + ";\n");
@@ -347,6 +416,21 @@ public class WritePage {
 		for (String formselectname : formselectnameList) {
 			pw.println("	@FindBy(name =  " + '"' + formselectname + '"' + ")\n"
 					+ "	public Select " + formselectname + ";\n");
+		}
+		for (int i = 0; i < formsubmitList.size(); i++) {
+			if (formsubmitList.get(i) != null) {
+				String[] strspl = formsubmitList.get(i).split("\\.");
+				if (strspl[0].equals("id")) {
+					pw.println("	@FindBy(id =  " + '"' + strspl[1] + '"'
+							+ ")\n" + "	public WebElement " + strspl[1] + ";\n");
+				} else if (strspl[0].equals("name")) {
+					pw.println("	@FindBy(name =  " + '"' + strspl[1] + '"'
+							+ ")\n" + "	public WebElement " + strspl[1] + ";\n");
+				}else if (strspl[0].equals("value")) {
+					pw.println("	@FindBy(css =  " + '"' + "input[value = " + '\\' + '"' + strspl[1] + '\\' + '"' + "]" + '"'
+							+ ")\n" + "	public WebElement " + strspl[1] + ";\n");
+				}
+			}
 		}
 	}
 

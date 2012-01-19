@@ -14,6 +14,7 @@ import jp.ac.waseda.cs.washi.proxy.ProxyWebElement;
 import junit.framework.AssertionFailedError;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -21,6 +22,7 @@ import com.thoughtworks.selenium.Selenium;
 
 public abstract class AbstractPage<Tpage extends AbstractPage<Tpage>> {
 	protected final WebDriver driver;
+	protected Selenium selenium;
 	private static Stack<String> stackTrace = new Stack<String>();
 
 	public AbstractPage(WebDriver driver) {
@@ -42,6 +44,7 @@ public abstract class AbstractPage<Tpage extends AbstractPage<Tpage>> {
 		} catch (ClassNotFoundException e) {
 			throw new AssertionFailedError();
 		}
+		selenium = new WebDriverBackedSelenium(driver, driver.getCurrentUrl());
 	}
 
 	protected abstract void assertInvariant();

@@ -11,8 +11,8 @@ public class Starter {
 		this.driver = driver;
 	}
 
-	public DePoThome goFirstPage() throws ClassNotFoundException {
-		driver.get("http://localhost:8888/study.localhost/DePoT/sorce/DePoThome.php"); //input url which is start of test
-		return new DePoThome(driver);
+	public LoginPage goFirstPage() throws ClassNotFoundException {
+		driver.get("http://localhost:8888/study.localhost/DePoT/sorce/Login.php"); //input url which is start of test
+		return new LoginPage(driver);
 	}
 }

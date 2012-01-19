@@ -38,6 +38,9 @@ public class ChatPage extends AbstractPage<ChatPage> {
 	@FindBy(name =  "refresh")
 	public Select refresh;
 
+	@FindBy(name =  "Submit")
+	public WebElement Submit;
+
 	public ChatPage(WebDriver driver)
 			throws ClassNotFoundException {
 		super(driver);
@@ -65,6 +68,7 @@ public class ChatPage extends AbstractPage<ChatPage> {
 		refresh.selectByValue("60");
 		refresh.selectByValue("45");
 		refresh.selectByValue("30");
+		Submit.submit();
 		return new ChatPage(driver);
 	}
 

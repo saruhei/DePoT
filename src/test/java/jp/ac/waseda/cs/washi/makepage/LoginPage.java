@@ -17,6 +17,9 @@ public class LoginPage extends AbstractPage<LoginPage> {
 	@FindBy(name =  "passwd")
 	public WebElement passwd;
 
+	@FindBy(name =  "Submit")
+	public WebElement Submit;
+
 	public LoginPage(WebDriver driver)
 			throws ClassNotFoundException {
 		super(driver);
@@ -28,10 +31,11 @@ public class LoginPage extends AbstractPage<LoginPage> {
 		assertThat(driver.getTitle(),is(driver.getTitle())); //make some invariant test if you need
 	}
 
-	public LoginPage goForm0() throws Exception {
+	public DePoThome goForm0() throws Exception {
 		u_id.sendKeys("HogeHoge");
 		passwd.sendKeys("HogeHoge");
-		return new LoginPage(driver);
+		Submit.submit();
+		return new DePoThome(driver);
 	}
 
 }

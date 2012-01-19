@@ -44,6 +44,7 @@ public class GetIdwithNekoHTML {
 	private List<String> formSelectValueNameLists = new ArrayList<String>();
 	private List<String> formSelectValueIdNumber = new ArrayList<String>();
 	private List<String> formSelectValueNameNumber = new ArrayList<String>();
+	private List<String> formSubmitLists = new ArrayList<String>();
 	private List<List<String>> methodNames = new ArrayList<List<String>>();
 
 	public List<List<String>> getId(String getscan) throws Exception {
@@ -89,6 +90,7 @@ public class GetIdwithNekoHTML {
 		methodNames.add(formSelectValueNameLists);
 		methodNames.add(formSelectValueIdNumber);
 		methodNames.add(formSelectValueNameNumber);
+		methodNames.add(formSubmitLists);
 		return methodNames;
 	}
 
@@ -152,6 +154,17 @@ public class GetIdwithNekoHTML {
                     	}else if(null != element.getAttributes().getNamedItem("name")){
                     		formsendkeysNameLists.add(element.getAttribute("name"));
                     		formsendkeysName = formsendkeysName + 1;
+                    	}else{
+                    		walkTreeForm(level + " ", (Element) child);
+                    	}
+                    }else if(element.getAttribute("type").equals("SUBMIT")){
+                    	formSubmitLists.add(null);
+                    	if(null != element.getAttributes().getNamedItem("id")){
+                    		formSubmitLists.set((formActionLists.size()) - 1, "id."+element.getAttribute("id"));
+                    	}else if(null != element.getAttributes().getNamedItem("name")){
+                    		formSubmitLists.set((formActionLists.size()) - 1, "name."+element.getAttribute("name"));
+                    	}else if(null != element.getAttributes().getNamedItem("value")){
+                    		formSubmitLists.set((formActionLists.size()) - 1, "value."+element.getAttribute("value"));
                     	}else{
                     		walkTreeForm(level + " ", (Element) child);
                     	}

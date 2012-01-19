@@ -50,6 +50,9 @@ public class GbbsPage extends AbstractPage<GbbsPage> {
 	@FindBy(name =  "comment")
 	public WebElement comment;
 
+	@FindBy(css =  "input[value = \"書き込み／更新\"]")
+	public WebElement 書き込み／更新;
+
 	public GbbsPage(WebDriver driver)
 			throws ClassNotFoundException {
 		super(driver);
@@ -79,6 +82,7 @@ public class GbbsPage extends AbstractPage<GbbsPage> {
 		pass.sendKeys("HogeHoge");
 		subject.sendKeys("HogeHoge");
 		comment.sendKeys("HogeHoge");
+		書き込み／更新.submit();
 		return new GbbsPage(driver);
 	}
 
