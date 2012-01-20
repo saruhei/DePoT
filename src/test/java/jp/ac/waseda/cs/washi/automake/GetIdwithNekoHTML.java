@@ -102,8 +102,10 @@ public class GetIdwithNekoHTML {
 				final Node child = (Node) children.item(idx);
 				if (child.getNodeType() == Node.ELEMENT_NODE) {
 					Element element = (Element) child;
-					if(element.getTagName().equals("FORM")){
+					if(element.getTagName().equalsIgnoreCase("FORM")){
+						System.out.println(element.getAttribute("action"));
 						formActionLists.add(element.getAttribute("action"));
+                    	formSubmitLists.add(null);
 						formclickIdNumber.add(String.valueOf(formclickId));
 						formclickNameNumber.add(String.valueOf(formclickName));
 						formsendkeysIdNumber.add(String.valueOf(formsendkeysId));
@@ -146,8 +148,8 @@ public class GetIdwithNekoHTML {
                 final Node child = (Node) children.item(idx);
                 if (child.getNodeType() == Node.ELEMENT_NODE){
                     Element element = (Element) child;
-                    if(element.getAttribute("type").equals("TEXT") || element.getAttribute("type").equals("PASSWORD")
-                    		|| element.getAttribute("type").equals("FILE") || element.getTagName().equals("TEXTAREA")){
+                    if(element.getAttribute("type").equalsIgnoreCase("TEXT") || element.getAttribute("type").equalsIgnoreCase("PASSWORD")
+                    		|| element.getAttribute("type").equalsIgnoreCase("FILE") || element.getTagName().equalsIgnoreCase("TEXTAREA")){
                     	if(null != element.getAttributes().getNamedItem("id")){
                     		formsendkeysIdLists.add(element.getAttribute("id"));
                     		formsendkeysId = formsendkeysId + 1;
@@ -157,8 +159,8 @@ public class GetIdwithNekoHTML {
                     	}else{
                     		walkTreeForm(level + " ", (Element) child);
                     	}
-                    }else if(element.getAttribute("type").equals("SUBMIT")){
-                    	formSubmitLists.add(null);
+                    }else if(element.getAttribute("type").equalsIgnoreCase("SUBMIT")){
+                    	System.out.println(element.getAttribute("value"));
                     	if(null != element.getAttributes().getNamedItem("id")){
                     		formSubmitLists.set((formActionLists.size()) - 1, "id."+element.getAttribute("id"));
                     	}else if(null != element.getAttributes().getNamedItem("name")){
@@ -168,9 +170,9 @@ public class GetIdwithNekoHTML {
                     	}else{
                     		walkTreeForm(level + " ", (Element) child);
                     	}
-                    }else if(element.getAttribute("type").equals("RADIO") || element.getAttribute("type").equals("CHECKBOX")
-                    		|| element.getAttribute("type").equals("IMAGE") || element.getAttribute("type").equals("BUTTON")
-                    		|| element.getTagName().equals("BUTTON")){
+                    }else if(element.getAttribute("type").equalsIgnoreCase("RADIO") || element.getAttribute("type").equalsIgnoreCase("CHECKBOX")
+                    		|| element.getAttribute("type").equalsIgnoreCase("IMAGE") || element.getAttribute("type").equalsIgnoreCase("BUTTON")
+                    		|| element.getTagName().equalsIgnoreCase("BUTTON")){
                     	if(null != element.getAttributes().getNamedItem("id")){
                     		formclickIdLists.add(element.getAttribute("id"));
                     		formclickId = formclickId +1;
@@ -180,7 +182,7 @@ public class GetIdwithNekoHTML {
                     	}else{
                     		walkTreeForm(level + " ", (Element) child);
                     	}
-                    }else if(element.getTagName().equals("SELECT")){
+                    }else if(element.getTagName().equalsIgnoreCase("SELECT")){
                     	if(null != element.getAttributes().getNamedItem("id")){
                     		formSelectIdLists.add(element.getAttribute("id"));
                     		formselectId = formselectId +1;
@@ -202,9 +204,9 @@ public class GetIdwithNekoHTML {
 
 	private void walkTreeSelect(final String level,final Element elm, String version) {
         final NodeList children = elm.getChildNodes();
-        if(version.equals("name")){
+        if(version.equalsIgnoreCase("name")){
         	formSelectValueNameNumber.add(String.valueOf(formselectvalueName));
-        }else if(version.equals("id")){
+        }else if(version.equalsIgnoreCase("id")){
     		formSelectValueIdNumber.add(String.valueOf(formselectvalueId));
         }
         if (children != null) {
@@ -213,12 +215,12 @@ public class GetIdwithNekoHTML {
                 final Node child = (Node) children.item(idx);
                 if (child.getNodeType() == Node.ELEMENT_NODE){
                     Element element = (Element) child;
-                    if(element.getTagName().equals("OPTION")){
+                    if(element.getTagName().equalsIgnoreCase("OPTION")){
                     	if(null != element.getAttributes().getNamedItem("value")){
-                           	if(version.equals("id")){
+                           	if(version.equalsIgnoreCase("id")){
                             	formSelectValueIdLists.add(element.getAttribute("value"));
                             	formselectvalueId = formselectvalueId + 1;
-                        	}else if(version.equals("name")){
+                        	}else if(version.equalsIgnoreCase("name")){
                             	formSelectValueNameLists.add(element.getAttribute("value"));
                             	formselectvalueName = formselectvalueName + 1;
                         	}

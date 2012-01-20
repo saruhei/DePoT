@@ -32,6 +32,12 @@ public class GbbsPage extends AbstractPage<GbbsPage> {
 	@FindBy(name =  "tag")
 	public WebElement tag;
 
+	@FindBy(name =  "delcode")
+	public WebElement delcode;
+
+	@FindBy(name =  "delcode")
+	public WebElement delcode;
+
 	@FindBy(name =  "name")
 	public WebElement name;
 
@@ -50,8 +56,32 @@ public class GbbsPage extends AbstractPage<GbbsPage> {
 	@FindBy(name =  "comment")
 	public WebElement comment;
 
+	@FindBy(name =  "upfile")
+	public WebElement upfile;
+
+	@FindBy(name =  "upfile2")
+	public WebElement upfile2;
+
+	@FindBy(name =  "upfile3")
+	public WebElement upfile3;
+
+	@FindBy(name =  "password")
+	public WebElement password;
+
+	@FindBy(name =  "password")
+	public WebElement password;
+
 	@FindBy(css =  "input[value = \"書き込み／更新\"]")
 	public WebElement 書き込み／更新;
+
+	@FindBy(css =  "input[value = \"削除\"]")
+	public WebElement 削除;
+
+	@FindBy(css =  "input[value = \"返信\"]")
+	public WebElement 返信;
+
+	@FindBy(css =  "input[value = \"削除\"]")
+	public WebElement 削除;
 
 	public GbbsPage(WebDriver driver)
 			throws ClassNotFoundException {
@@ -82,7 +112,24 @@ public class GbbsPage extends AbstractPage<GbbsPage> {
 		pass.sendKeys("HogeHoge");
 		subject.sendKeys("HogeHoge");
 		comment.sendKeys("HogeHoge");
+		upfile.sendKeys("HogeHoge");
+		upfile2.sendKeys("HogeHoge");
+		upfile3.sendKeys("HogeHoge");
 		書き込み／更新.submit();
+		return new GbbsPage(driver);
+	}
+
+	public GbbsPage goForm1() throws Exception {
+		delcode.click();
+		password.sendKeys("HogeHoge");
+		削除.submit();
+		return new GbbsPage(driver);
+	}
+
+	public GbbsPage goForm3() throws Exception {
+		delcode.click();
+		password.sendKeys("HogeHoge");
+		削除.submit();
 		return new GbbsPage(driver);
 	}
 

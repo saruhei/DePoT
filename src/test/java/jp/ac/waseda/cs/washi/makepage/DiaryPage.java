@@ -14,6 +14,12 @@ public class DiaryPage extends AbstractPage<DiaryPage> {
 	@FindBy(id =  "goHome")
 	public WebElement goHome;
 
+	@FindBy(name =  "password")
+	public WebElement password;
+
+	@FindBy(css =  "input[value = \"管理\"]")
+	public WebElement 管理;
+
 	public DiaryPage(WebDriver driver)
 			throws ClassNotFoundException {
 		super(driver);
@@ -28,6 +34,12 @@ public class DiaryPage extends AbstractPage<DiaryPage> {
 	public DePoThome gogoHome() throws ClassNotFoundException {
 		goHome.click();
 		return new DePoThome(driver);
+	}
+
+	public DiaryPage goForm1() throws Exception {
+		password.sendKeys("HogeHoge");
+		管理.submit();
+		return new DiaryPage(driver);
 	}
 
 }
