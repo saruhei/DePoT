@@ -2,7 +2,6 @@ package jp.ac.waseda.cs.washi.makepage;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
-import static jp.ac.waseda.cs.washi.assertion.Assertion.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -11,24 +10,26 @@ import jp.ac.waseda.cs.washi.automake.AbstractPage;
 
 public class LoginPage extends AbstractPage<LoginPage> {
 
-	@FindBy(name =  "u_id")
+	@FindBy(name = "u_id")
 	public WebElement u_id;
 
-	@FindBy(name =  "passwd")
+	@FindBy(name = "passwd")
 	public WebElement passwd;
 
-	@FindBy(name =  "Submit")
+	@FindBy(name = "Submit")
 	public WebElement Submit;
 
-	public LoginPage(WebDriver driver)
-			throws ClassNotFoundException {
+	public LoginPage(WebDriver driver) throws ClassNotFoundException {
 		super(driver);
 		assertInvariant();
 	}
 
 	@Override
 	protected void assertInvariant() {
-		assertThat(driver.getTitle(),is(driver.getTitle())); //make some invariant test if you need
+		assertThat(driver.getTitle(), is(driver.getTitle())); // make some
+																// invariant
+																// test if you
+																// need
 	}
 
 	public DePoThome goForm0() throws Exception {

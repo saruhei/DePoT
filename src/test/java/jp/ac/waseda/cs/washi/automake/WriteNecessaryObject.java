@@ -15,7 +15,8 @@ public class WriteNecessaryObject {
 		this.file = file;
 	}
 
-	public void writeNecessary(String packageName, FileReader read) throws Exception {
+	public void writeNecessary(String packageName, FileReader read)
+			throws Exception {
 		file.createNewFile();
 		BufferedReader br = new BufferedReader(read);
 		PrintWriter pw = new PrintWriter(new BufferedWriter(

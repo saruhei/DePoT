@@ -1,5 +1,10 @@
 package jp.ac.waseda.cs.washi.automake;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -13,6 +18,8 @@ import jp.ac.waseda.cs.washi.proxy.ProxyWebDriver;
 import jp.ac.waseda.cs.washi.proxy.ProxyWebElement;
 import junit.framework.AssertionFailedError;
 
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.WebElement;
@@ -48,20 +55,20 @@ public abstract class AbstractPage<Tpage extends AbstractPage<Tpage>> {
 	}
 
 	protected abstract void assertInvariant();
-	
+
 	@SuppressWarnings("unchecked")
-	public <T> Tpage doAssert(AssertFunction<Tpage> assertFunction){
-		assertFunction.assertPage((Tpage)this);
-		return (Tpage) this;	
+	public <T> Tpage doAssert(AssertFunction<Tpage> assertFunction) {
+		assertFunction.assertPage((Tpage) this);
+		return (Tpage) this;
 	}
-	
+
 	@SuppressWarnings({ "unchecked", "hiding" })
-	public <T, Tpage> T doUnEx(UnExpectAction<T,Tpage> UnEx) throws ClassNotFoundException{
-		return (T)UnEx.unExpectAct((Tpage)this);	
-	}
-	
-	public List<String> getGoMethodNames()
+	public <T, Tpage> T doUnEx(UnExpectAction<T, Tpage> UnEx)
 			throws ClassNotFoundException {
+		return (T) UnEx.unExpectAct((Tpage) this);
+	}
+
+	public List<String> getGoMethodNames() throws ClassNotFoundException {
 		Method method[] = this.getClass().getDeclaredMethods();
 		List<String> list = new ArrayList<String>();
 		for (int i = 0; i < method.length; i++) {
@@ -103,32 +110,85 @@ public abstract class AbstractPage<Tpage extends AbstractPage<Tpage>> {
 	public void printStackTrace() throws ClassNotFoundException {
 		stackTrace.add(this.getClass().getName());
 		String delimiter = "";
-		for(String pageName : stackTrace){
+		for (String pageName : stackTrace) {
 			System.out.println(pageName + delimiter);
 			delimiter = ",";
 		}
 		System.out.println("");
 	}
-	
-	public void setProxy() throws SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException{
+
+	public void setProxy() throws SecurityException, NoSuchFieldException,
+			IllegalArgumentException, IllegalAccessException {
 		Class<?> c = this.getClass();
-		Field f[]= c.getDeclaredFields();
+		Field f[] = c.getDeclaredFields();
 		for (Field field : f) {
-			if(field.getGenericType().toString().endsWith("WebElement")){
+			if (field.getGenericType().toString().endsWith("WebElement")) {
 				field.setAccessible(true);
 				WebElement wb = (WebElement) field.get(this);
 				field.set(this, new ProxyWebElement(this, wb));
-			}else if(field.getGenericType().toString().endsWith("Selenium")){
+			} else if (field.getGenericType().toString().endsWith("Selenium")) {
 				field.setAccessible(true);
 				Selenium sele = (Selenium) field.get(this);
 				field.set(this, new ProxySelenium(this, sele));
-			}else if(field.getGenericType().toString().endsWith("WebDriver")){
+			} else if (field.getGenericType().toString().endsWith("WebDriver")) {
 				field.setAccessible(true);
 				WebDriver wd = (WebDriver) field.get(this);
 				field.set(this, new ProxyWebDriver(this, wd));
 			}
 		}
 	}
-	
+
+	public void assertTitle(String title) {
+		assertThat(driver.getTitle(), is(title));
+	}
+
+	public void assertUrl(String url) {
+		assertThat(driver.getCurrentUrl(), is(url));
+	}
+
+	public void assertWindowHandle(String handle) {
+		assertThat(driver.getWindowHandle(), is(handle));
+	}
+
+	public void assertTag(String tag, WebElement element) {
+		assertThat(element.getTagName(), is(tag));
+	}
+
+	public void assertText(String text, WebElement element) {
+		assertThat(element.getText(), is(text));
+	}
+
+	public void assertTextPresent(String text) {
+		assertTrue(selenium.isTextPresent(text));
+	}
+
+	public void assertSize(Dimension size, WebElement element) {
+		assertEquals(size, element.getSize());
+	}
+
+	public void assertPoint(Point location, WebElement element) {
+		assertEquals(location, element.getLocation());
+	}
+
+	public void assertDisplayed(WebElement element) {
+		assertTrue(element.isDisplayed());
+	}
+
+	public void assertEnabled(WebElement element) {
+		assertTrue(element.isEnabled());
+	}
+
+	public void assertSelected(WebElement element) {
+		assertTrue(element.isSelected());
+	}
+
+	public void assertAttribute(String Attribute, String expected,
+			WebElement element) {
+		assertThat(element.getAttribute(Attribute), is(expected));
+	}
+
+	public void assertCssValue(String Value, String expected, WebElement element) {
+		assertThat(element.getCssValue(Value), is(expected));
+	}
 
 }

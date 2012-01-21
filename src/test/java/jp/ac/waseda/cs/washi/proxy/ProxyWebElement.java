@@ -11,12 +11,12 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 
-public class ProxyWebElement implements WebElement{
-	
+public class ProxyWebElement implements WebElement {
+
 	private AbstractPage<?> page;
 	private WebElement element;
-	
-	public ProxyWebElement(AbstractPage<?> page, WebElement element){
+
+	public ProxyWebElement(AbstractPage<?> page, WebElement element) {
 		this.page = page;
 		this.element = element;
 	}
@@ -90,7 +90,7 @@ public class ProxyWebElement implements WebElement{
 	@Override
 	public boolean isEnabled() {
 		doInvariantAssert();
-		return element.isEnabled();		
+		return element.isEnabled();
 	}
 
 	@Override
@@ -110,19 +110,22 @@ public class ProxyWebElement implements WebElement{
 		doInvariantAssert();
 		element.submit();
 	}
-	
-	public void doInvariantAssert(){
-		if(!(new Throwable().getStackTrace()[3].getMethodName().equals("assertInvariant"))){
+
+	public void doInvariantAssert() {
+		if (!(new Throwable().getStackTrace()[3].getMethodName()
+				.equals("assertInvariant"))) {
 			Class<?> thisclass = page.getClass();
 			try {
-				Method assertmethod = thisclass.getDeclaredMethod("assertInvariant");
+				Method assertmethod = thisclass
+						.getDeclaredMethod("assertInvariant");
 				assertmethod.setAccessible(true);
 				assertmethod.invoke(page);
 			} catch (SecurityException e) {
 				e.printStackTrace();
 			} catch (NoSuchMethodException e) {
 				e.printStackTrace();
-				System.out.println("invariant assertion have args or you have no invariant asssert method");
+				System.out
+						.println("invariant assertion have args or you have no invariant asssert method");
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {

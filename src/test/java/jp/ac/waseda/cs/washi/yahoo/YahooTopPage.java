@@ -2,7 +2,6 @@ package jp.ac.waseda.cs.washi.yahoo;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import static jp.ac.waseda.cs.washi.assertion.Assertion.*;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,7 +17,9 @@ public class YahooTopPage extends AbstractPage<YahooTopPage> {
 	@FindBy(id = "isearch")
 	public WebElement isearchbtn;
 
-	public YahooTopPage(WebDriver driver) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+	public YahooTopPage(WebDriver driver) throws ClassNotFoundException,
+			SecurityException, NoSuchFieldException, IllegalArgumentException,
+			IllegalAccessException {
 		super(driver);
 		// 不変条件のテスト
 		assertInvariant();
@@ -38,7 +39,9 @@ public class YahooTopPage extends AbstractPage<YahooTopPage> {
 	}
 
 	public YahooImageSearchResultPage goImageSearchPage(String keyword)
-			throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+			throws ClassNotFoundException, SecurityException,
+			NoSuchFieldException, IllegalArgumentException,
+			IllegalAccessException {
 		searchbox.sendKeys(keyword);
 		isearchbtn.click();
 		return new YahooImageSearchResultPage(driver, keyword);

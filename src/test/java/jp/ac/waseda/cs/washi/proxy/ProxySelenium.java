@@ -7,12 +7,12 @@ import jp.ac.waseda.cs.washi.automake.AbstractPage;
 
 import com.thoughtworks.selenium.Selenium;
 
-public class ProxySelenium implements Selenium{
-	
+public class ProxySelenium implements Selenium {
+
 	private AbstractPage<?> page;
 	private Selenium selenium;
 
-	public ProxySelenium(AbstractPage<?> page,Selenium selenium){
+	public ProxySelenium(AbstractPage<?> page, Selenium selenium) {
 		this.page = page;
 		this.selenium = selenium;
 	}
@@ -195,28 +195,28 @@ public class ProxySelenium implements Selenium{
 	public void mouseDownRight(String locator) {
 		doInvariantAssert();
 		selenium.mouseDownRight(locator);
-		
+
 	}
 
 	@Override
 	public void mouseDownAt(String locator, String coordString) {
 		doInvariantAssert();
 		selenium.mouseDownAt(locator, coordString);
-		
+
 	}
 
 	@Override
 	public void mouseDownRightAt(String locator, String coordString) {
 		doInvariantAssert();
 		selenium.mouseDownRightAt(locator, coordString);
-		
+
 	}
 
 	@Override
 	public void mouseUp(String locator) {
 		doInvariantAssert();
 		selenium.mouseUp(locator);
-		
+
 	}
 
 	@Override
@@ -300,7 +300,7 @@ public class ProxySelenium implements Selenium{
 	@Override
 	public void addSelection(String locator, String optionLocator) {
 		doInvariantAssert();
-		selenium.addSelection(locator, optionLocator);	
+		selenium.addSelection(locator, optionLocator);
 	}
 
 	@Override
@@ -367,14 +367,16 @@ public class ProxySelenium implements Selenium{
 	public boolean getWhetherThisFrameMatchFrameExpression(
 			String currentFrameString, String target) {
 		doInvariantAssert();
-		return selenium.getWhetherThisFrameMatchFrameExpression(currentFrameString, target);
+		return selenium.getWhetherThisFrameMatchFrameExpression(
+				currentFrameString, target);
 	}
 
 	@Override
 	public boolean getWhetherThisWindowMatchWindowExpression(
 			String currentWindowString, String target) {
 		doInvariantAssert();
-		return selenium.getWhetherThisWindowMatchWindowExpression(currentWindowString, target);
+		return selenium.getWhetherThisWindowMatchWindowExpression(
+				currentWindowString, target);
 	}
 
 	@Override
@@ -651,7 +653,8 @@ public class ProxySelenium implements Selenium{
 	public void dragAndDropToObject(String locatorOfObjectToBeDragged,
 			String locatorOfDragDestinationObject) {
 		doInvariantAssert();
-		selenium.dragAndDropToObject(locatorOfObjectToBeDragged, locatorOfDragDestinationObject);
+		selenium.dragAndDropToObject(locatorOfObjectToBeDragged,
+				locatorOfDragDestinationObject);
 	}
 
 	@Override
@@ -954,19 +957,22 @@ public class ProxySelenium implements Selenium{
 		doInvariantAssert();
 		selenium.keyPressNative(keycode);
 	}
-	
-	public void doInvariantAssert(){
-		if(!(new Throwable().getStackTrace()[3].getMethodName().equals("assertInvariant"))){
+
+	public void doInvariantAssert() {
+		if (!(new Throwable().getStackTrace()[3].getMethodName()
+				.equals("assertInvariant"))) {
 			Class<?> thisclass = page.getClass();
 			try {
-				Method assertmethod = thisclass.getDeclaredMethod("assertInvariant");
+				Method assertmethod = thisclass
+						.getDeclaredMethod("assertInvariant");
 				assertmethod.setAccessible(true);
 				assertmethod.invoke(page);
 			} catch (SecurityException e) {
 				e.printStackTrace();
 			} catch (NoSuchMethodException e) {
 				e.printStackTrace();
-				System.out.println("invariant assertion have args or you have no invariant asssert method");
+				System.out
+						.println("invariant assertion have args or you have no invariant asssert method");
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {

@@ -4,7 +4,8 @@ import org.openqa.selenium.WebDriver;
 
 import jp.ac.waseda.cs.washi.automake.AbstractPage;
 
-public class Parents<Tpage extends AbstractPage<Tpage>> extends AbstractPage<Tpage> {
+public class Parents<Tpage extends AbstractPage<Tpage>> extends
+		AbstractPage<Tpage> {
 
 	public Parents(WebDriver driver) {
 		super(driver);
@@ -14,7 +15,7 @@ public class Parents<Tpage extends AbstractPage<Tpage>> extends AbstractPage<Tpa
 	@Override
 	protected void assertInvariant() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

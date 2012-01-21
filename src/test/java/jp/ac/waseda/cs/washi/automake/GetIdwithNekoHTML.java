@@ -14,7 +14,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 public class GetIdwithNekoHTML {
-	
+
 	private int formclickId;
 	private int formclickName;
 	private int formsendkeysId;
@@ -102,32 +102,42 @@ public class GetIdwithNekoHTML {
 				final Node child = (Node) children.item(idx);
 				if (child.getNodeType() == Node.ELEMENT_NODE) {
 					Element element = (Element) child;
-					if(element.getTagName().equalsIgnoreCase("FORM")){
-						System.out.println(element.getAttribute("action"));
+					if (element.getTagName().equalsIgnoreCase("FORM")) {
 						formActionLists.add(element.getAttribute("action"));
-                    	formSubmitLists.add(null);
+						formSubmitLists.add(null);
 						formclickIdNumber.add(String.valueOf(formclickId));
 						formclickNameNumber.add(String.valueOf(formclickName));
-						formsendkeysIdNumber.add(String.valueOf(formsendkeysId));
-						formsendkeysNameNumber.add(String.valueOf(formsendkeysName));
+						formsendkeysIdNumber
+								.add(String.valueOf(formsendkeysId));
+						formsendkeysNameNumber.add(String
+								.valueOf(formsendkeysName));
 						formSelectIdNumber.add(String.valueOf(formselectId));
-						formSelectNameNumber.add(String.valueOf(formselectName));
+						formSelectNameNumber
+								.add(String.valueOf(formselectName));
 						walkTreeForm(level + "", (Element) child);
-					}else if (((null != element.getAttributes().getNamedItem("id") || null != element
-							.getAttributes().getNamedItem("name")))){
-						if(null != element.getAttributes().getNamedItem("href")){
-							if(null != element.getAttributes().getNamedItem("id")){
+					} else if (((null != element.getAttributes().getNamedItem(
+							"id") || null != element.getAttributes()
+							.getNamedItem("name")))) {
+						if (null != element.getAttributes()
+								.getNamedItem("href")) {
+							if (null != element.getAttributes().getNamedItem(
+									"id")) {
 								idmethodName.add(element.getAttribute("id"));
 								idmethodhref.add(element.getAttribute("href"));
-							}else if((null == element.getAttributes().getNamedItem("id")) && (null != element.getAttributes().getNamedItem("name"))){
-								namemethodName.add(element.getAttribute("name"));
-								namemethodhref.add(element.getAttribute("href"));
+							} else if ((null == element.getAttributes()
+									.getNamedItem("id"))
+									&& (null != element.getAttributes()
+											.getNamedItem("name"))) {
+								namemethodName
+										.add(element.getAttribute("name"));
+								namemethodhref
+										.add(element.getAttribute("href"));
 							}
 							walkTree(level + "", (Element) child);
-						}else{
+						} else {
 							walkTree(level + "", (Element) child);
 						}
-					}else{
+					} else {
 						walkTree(level + "", (Element) child);
 					}
 
@@ -140,97 +150,123 @@ public class GetIdwithNekoHTML {
 		}
 	}
 
-	private void walkTreeForm(final String level,final Element elm) {
-        final NodeList children = elm.getChildNodes();
-        if (children != null) {
-            final int len = children.getLength();
-            for (int idx = 0; idx < len; idx++) {
-                final Node child = (Node) children.item(idx);
-                if (child.getNodeType() == Node.ELEMENT_NODE){
-                    Element element = (Element) child;
-                    if(element.getAttribute("type").equalsIgnoreCase("TEXT") || element.getAttribute("type").equalsIgnoreCase("PASSWORD")
-                    		|| element.getAttribute("type").equalsIgnoreCase("FILE") || element.getTagName().equalsIgnoreCase("TEXTAREA")){
-                    	if(null != element.getAttributes().getNamedItem("id")){
-                    		formsendkeysIdLists.add(element.getAttribute("id"));
-                    		formsendkeysId = formsendkeysId + 1;
-                    	}else if(null != element.getAttributes().getNamedItem("name")){
-                    		formsendkeysNameLists.add(element.getAttribute("name"));
-                    		formsendkeysName = formsendkeysName + 1;
-                    	}else{
-                    		walkTreeForm(level + " ", (Element) child);
-                    	}
-                    }else if(element.getAttribute("type").equalsIgnoreCase("SUBMIT")){
-                    	System.out.println(element.getAttribute("value"));
-                    	if(null != element.getAttributes().getNamedItem("id")){
-                    		formSubmitLists.set((formActionLists.size()) - 1, "id."+element.getAttribute("id"));
-                    	}else if(null != element.getAttributes().getNamedItem("name")){
-                    		formSubmitLists.set((formActionLists.size()) - 1, "name."+element.getAttribute("name"));
-                    	}else if(null != element.getAttributes().getNamedItem("value")){
-                    		formSubmitLists.set((formActionLists.size()) - 1, "value."+element.getAttribute("value"));
-                    	}else{
-                    		walkTreeForm(level + " ", (Element) child);
-                    	}
-                    }else if(element.getAttribute("type").equalsIgnoreCase("RADIO") || element.getAttribute("type").equalsIgnoreCase("CHECKBOX")
-                    		|| element.getAttribute("type").equalsIgnoreCase("IMAGE") || element.getAttribute("type").equalsIgnoreCase("BUTTON")
-                    		|| element.getTagName().equalsIgnoreCase("BUTTON")){
-                    	if(null != element.getAttributes().getNamedItem("id")){
-                    		formclickIdLists.add(element.getAttribute("id"));
-                    		formclickId = formclickId +1;
-                    	}else if(null != element.getAttributes().getNamedItem("name")){
-                    		formclickNameLists.add(element.getAttribute("name"));
-                    		formclickName = formclickName + 1;
-                    	}else{
-                    		walkTreeForm(level + " ", (Element) child);
-                    	}
-                    }else if(element.getTagName().equalsIgnoreCase("SELECT")){
-                    	if(null != element.getAttributes().getNamedItem("id")){
-                    		formSelectIdLists.add(element.getAttribute("id"));
-                    		formselectId = formselectId +1;
-                        	walkTreeSelect(level + " ", (Element) child , "id");
-                    	}else if(null != element.getAttributes().getNamedItem("name")){
-                    		formSelectNameLists.add(element.getAttribute("name"));
-                    		formselectName = formselectName + 1;
-                        	walkTreeSelect(level + " ", (Element) child, "name");
-                    	}else{
-                    		walkTreeForm(level + " ", (Element) child);
-                    	}
-                    }else{
-                    	walkTreeForm(level + " ", (Element) child);
-                    }
-                }
-            }
-        }
+	private void walkTreeForm(final String level, final Element elm) {
+		final NodeList children = elm.getChildNodes();
+		if (children != null) {
+			final int len = children.getLength();
+			for (int idx = 0; idx < len; idx++) {
+				final Node child = (Node) children.item(idx);
+				if (child.getNodeType() == Node.ELEMENT_NODE) {
+					Element element = (Element) child;
+					if (element.getAttribute("type").equalsIgnoreCase("TEXT")
+							|| element.getAttribute("type").equalsIgnoreCase(
+									"PASSWORD")
+							|| element.getAttribute("type").equalsIgnoreCase(
+									"FILE")
+							|| element.getTagName()
+									.equalsIgnoreCase("TEXTAREA")) {
+						if (null != element.getAttributes().getNamedItem("id")) {
+							formsendkeysIdLists.add(element.getAttribute("id"));
+							formsendkeysId = formsendkeysId + 1;
+						} else if (null != element.getAttributes()
+								.getNamedItem("name")) {
+							formsendkeysNameLists.add(element
+									.getAttribute("name"));
+							formsendkeysName = formsendkeysName + 1;
+						} else {
+							walkTreeForm(level + " ", (Element) child);
+						}
+					} else if (element.getAttribute("type").equalsIgnoreCase(
+							"SUBMIT")) {
+						if (null != element.getAttributes().getNamedItem("id")) {
+							formSubmitLists.set((formActionLists.size()) - 1,
+									"id." + element.getAttribute("id"));
+						} else if (null != element.getAttributes()
+								.getNamedItem("name")) {
+							formSubmitLists.set((formActionLists.size()) - 1,
+									"name." + element.getAttribute("name"));
+						} else if (null != element.getAttributes()
+								.getNamedItem("value")) {
+							formSubmitLists.set((formActionLists.size()) - 1,
+									"value." + element.getAttribute("value"));
+						} else {
+							walkTreeForm(level + " ", (Element) child);
+						}
+					} else if (element.getAttribute("type").equalsIgnoreCase(
+							"RADIO")
+							|| element.getAttribute("type").equalsIgnoreCase(
+									"CHECKBOX")
+							|| element.getAttribute("type").equalsIgnoreCase(
+									"IMAGE")
+							|| element.getAttribute("type").equalsIgnoreCase(
+									"BUTTON")
+							|| element.getTagName().equalsIgnoreCase("BUTTON")) {
+						if (null != element.getAttributes().getNamedItem("id")) {
+							formclickIdLists.add(element.getAttribute("id"));
+							formclickId = formclickId + 1;
+						} else if (null != element.getAttributes()
+								.getNamedItem("name")) {
+							formclickNameLists
+									.add(element.getAttribute("name"));
+							formclickName = formclickName + 1;
+						} else {
+							walkTreeForm(level + " ", (Element) child);
+						}
+					} else if (element.getTagName().equalsIgnoreCase("SELECT")) {
+						if (null != element.getAttributes().getNamedItem("id")) {
+							formSelectIdLists.add(element.getAttribute("id"));
+							formselectId = formselectId + 1;
+							walkTreeSelect(level + " ", (Element) child, "id");
+						} else if (null != element.getAttributes()
+								.getNamedItem("name")) {
+							formSelectNameLists.add(element
+									.getAttribute("name"));
+							formselectName = formselectName + 1;
+							walkTreeSelect(level + " ", (Element) child, "name");
+						} else {
+							walkTreeForm(level + " ", (Element) child);
+						}
+					} else {
+						walkTreeForm(level + " ", (Element) child);
+					}
+				}
+			}
+		}
 	}
 
-	private void walkTreeSelect(final String level,final Element elm, String version) {
-        final NodeList children = elm.getChildNodes();
-        if(version.equalsIgnoreCase("name")){
-        	formSelectValueNameNumber.add(String.valueOf(formselectvalueName));
-        }else if(version.equalsIgnoreCase("id")){
-    		formSelectValueIdNumber.add(String.valueOf(formselectvalueId));
-        }
-        if (children != null) {
-            final int len = children.getLength();
-            for (int idx = 0; idx < len; idx++) {
-                final Node child = (Node) children.item(idx);
-                if (child.getNodeType() == Node.ELEMENT_NODE){
-                    Element element = (Element) child;
-                    if(element.getTagName().equalsIgnoreCase("OPTION")){
-                    	if(null != element.getAttributes().getNamedItem("value")){
-                           	if(version.equalsIgnoreCase("id")){
-                            	formSelectValueIdLists.add(element.getAttribute("value"));
-                            	formselectvalueId = formselectvalueId + 1;
-                        	}else if(version.equalsIgnoreCase("name")){
-                            	formSelectValueNameLists.add(element.getAttribute("value"));
-                            	formselectvalueName = formselectvalueName + 1;
-                        	}
-                    	}
-                    }else{
-                    	walkTreeSelect(level + " ", (Element) child, version);
-                    }
-                }
-            }
-        }
+	private void walkTreeSelect(final String level, final Element elm,
+			String version) {
+		final NodeList children = elm.getChildNodes();
+		if (version.equalsIgnoreCase("name")) {
+			formSelectValueNameNumber.add(String.valueOf(formselectvalueName));
+		} else if (version.equalsIgnoreCase("id")) {
+			formSelectValueIdNumber.add(String.valueOf(formselectvalueId));
+		}
+		if (children != null) {
+			final int len = children.getLength();
+			for (int idx = 0; idx < len; idx++) {
+				final Node child = (Node) children.item(idx);
+				if (child.getNodeType() == Node.ELEMENT_NODE) {
+					Element element = (Element) child;
+					if (element.getTagName().equalsIgnoreCase("OPTION")) {
+						if (null != element.getAttributes().getNamedItem(
+								"value")) {
+							if (version.equalsIgnoreCase("id")) {
+								formSelectValueIdLists.add(element
+										.getAttribute("value"));
+								formselectvalueId = formselectvalueId + 1;
+							} else if (version.equalsIgnoreCase("name")) {
+								formSelectValueNameLists.add(element
+										.getAttribute("value"));
+								formselectvalueName = formselectvalueName + 1;
+							}
+						}
+					} else {
+						walkTreeSelect(level + " ", (Element) child, version);
+					}
+				}
+			}
+		}
 	}
 
 }

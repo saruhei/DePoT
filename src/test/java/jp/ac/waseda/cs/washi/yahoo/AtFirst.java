@@ -10,7 +10,9 @@ public class AtFirst {
 		this.driver = driver;
 	}
 
-	public YahooTopPage goTopPage() throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+	public YahooTopPage goTopPage() throws ClassNotFoundException,
+			SecurityException, NoSuchFieldException, IllegalArgumentException,
+			IllegalAccessException {
 		driver.get("http://www.yahoo.jp");
 		return new YahooTopPage(driver);
 	}

@@ -2,7 +2,6 @@ package jp.ac.waseda.cs.washi.makepage;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
-import static jp.ac.waseda.cs.washi.assertion.Assertion.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -11,24 +10,26 @@ import jp.ac.waseda.cs.washi.automake.AbstractPage;
 
 public class DiaryPage extends AbstractPage<DiaryPage> {
 
-	@FindBy(id =  "goHome")
+	@FindBy(id = "goHome")
 	public WebElement goHome;
 
-	@FindBy(name =  "password")
+	@FindBy(name = "password")
 	public WebElement password;
 
-	@FindBy(css =  "input[value = \"管理\"]")
+	@FindBy(css = "input[value = \"管理\"]")
 	public WebElement 管理;
 
-	public DiaryPage(WebDriver driver)
-			throws ClassNotFoundException {
+	public DiaryPage(WebDriver driver) throws ClassNotFoundException {
 		super(driver);
 		assertInvariant();
 	}
 
 	@Override
 	protected void assertInvariant() {
-		assertThat(driver.getTitle(),is(driver.getTitle())); //make some invariant test if you need
+		assertThat(driver.getTitle(), is(driver.getTitle())); // make some
+																// invariant
+																// test if you
+																// need
 	}
 
 	public DePoThome gogoHome() throws ClassNotFoundException {
@@ -36,7 +37,7 @@ public class DiaryPage extends AbstractPage<DiaryPage> {
 		return new DePoThome(driver);
 	}
 
-	public DiaryPage goForm1() throws Exception {
+	public DiaryPage goForm2() throws Exception {
 		password.sendKeys("HogeHoge");
 		管理.submit();
 		return new DiaryPage(driver);

@@ -80,7 +80,8 @@ public class WritePage {
 				methodLists.get(9), methodLists.get(10), methodLists.get(11),
 				methodLists.get(12), methodLists.get(13), methodLists.get(14),
 				methodLists.get(15), methodLists.get(16), methodLists.get(17),
-				methodLists.get(18), methodLists.get(19), methodLists.get(20),methodLists.get(21));
+				methodLists.get(18), methodLists.get(19), methodLists.get(20),
+				methodLists.get(21));
 
 		pw.println("}");
 	}
@@ -109,7 +110,7 @@ public class WritePage {
 						&& Integer.parseInt(formsendkeysidnumber.get(i)) == formsendkeysidlist
 								.size()
 						&& Integer.parseInt(formsendkeysnamenumber.get(i)) == formsendkeysnamelist
-								.size()) {
+								.size() && formsubmitlist.get(i) == null) {
 					Flag = true;
 				}
 			} else {
@@ -120,7 +121,8 @@ public class WritePage {
 						&& Integer.parseInt(formsendkeysidnumber.get(i)) == Integer
 								.parseInt(formsendkeysidnumber.get(i + 1))
 						&& Integer.parseInt(formsendkeysnamenumber.get(i)) == Integer
-								.parseInt(formsendkeysnamenumber.get(i + 1))) {
+								.parseInt(formsendkeysnamenumber.get(i + 1))
+						&& formsubmitlist.get(i) == null) {
 					Flag = true;
 				}
 			}
@@ -211,9 +213,9 @@ public class WritePage {
 							}
 						}
 					}
-					if(formsubmitlist.get(i) == null){
+					if (formsubmitlist.get(i) == null) {
 						pw.println("/// someElement.submit(); ");
-					}else{
+					} else {
 						String[] strspl = formsubmitlist.get(i).split("\\.");
 						pw.println("		" + strspl[1] + ".submit();");
 					}
@@ -284,9 +286,9 @@ public class WritePage {
 							}
 						}
 					}
-					if(formsubmitlist.get(i) == null){
+					if (formsubmitlist.get(i) == null) {
 						pw.println("/// someElement.submit(); ");
-					}else{
+					} else {
 						String[] strspl = formsubmitlist.get(i).split("\\.");
 						pw.println("		" + strspl[1] + ".submit();");
 					}
@@ -309,7 +311,6 @@ public class WritePage {
 	public void writeimport(PrintWriter pw) {
 		pw.println("import static org.hamcrest.Matchers.is;\n"
 				+ "import static org.junit.Assert.*;\n"
-				+ "import static jp.ac.waseda.cs.washi.assertion.Assertion.*;\n"
 				+ "import org.openqa.selenium.WebDriver;\n"
 				+ "import org.openqa.selenium.WebElement;\n"
 				+ "import org.openqa.selenium.support.ui.Select;\n"
@@ -411,11 +412,16 @@ public class WritePage {
 		}
 		for (String formselectid : formselectidList) {
 			pw.println("	@FindBy(id =  " + '"' + formselectid + '"' + ")\n"
-					+ "	public Select " + formselectid + ";\n");
+					+ "	public WebElement forSelectElement" + formselectid
+					+ ";\n" + "	Select " + formselectid
+					+ " = new Select(forSelectElement" + formselectid + ");\n");
 		}
 		for (String formselectname : formselectnameList) {
 			pw.println("	@FindBy(name =  " + '"' + formselectname + '"' + ")\n"
-					+ "	public Select " + formselectname + ";\n");
+					+ "	public WebElement forSelectElement" + formselectname
+					+ ";\n" + "	Select " + formselectname
+					+ " = new Select(forSelectElement" + formselectname
+					+ ");\n");
 		}
 		for (int i = 0; i < formsubmitList.size(); i++) {
 			if (formsubmitList.get(i) != null) {
@@ -426,8 +432,9 @@ public class WritePage {
 				} else if (strspl[0].equals("name")) {
 					pw.println("	@FindBy(name =  " + '"' + strspl[1] + '"'
 							+ ")\n" + "	public WebElement " + strspl[1] + ";\n");
-				}else if (strspl[0].equals("value")) {
-					pw.println("	@FindBy(css =  " + '"' + "input[value = " + '\\' + '"' + strspl[1] + '\\' + '"' + "]" + '"'
+				} else if (strspl[0].equals("value")) {
+					pw.println("	@FindBy(css =  " + '"' + "input[value = "
+							+ '\\' + '"' + strspl[1] + '\\' + '"' + "]" + '"'
 							+ ")\n" + "	public WebElement " + strspl[1] + ";\n");
 				}
 			}

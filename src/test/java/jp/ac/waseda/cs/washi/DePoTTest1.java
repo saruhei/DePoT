@@ -1,6 +1,5 @@
 package jp.ac.waseda.cs.washi;
 
-import static jp.ac.waseda.cs.washi.assertion.Assertion.*;
 import java.util.concurrent.TimeUnit;
 import java.lang.reflect.InvocationTargetException;
 
@@ -9,7 +8,8 @@ import static org.hamcrest.Matchers.is;
 
 import jp.ac.waseda.cs.washi.makepage.*;
 import jp.ac.waseda.cs.washi.automake.UnExpectAction;
-import jp.ac.waseda.cs.washi.automake.AssertFunction;import org.junit.AfterClass;
+import jp.ac.waseda.cs.washi.automake.AssertFunction;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -30,10 +30,7 @@ public class DePoTTest1 {
 	}
 
 	@Test
-	public void doDePoTTest1() throws SecurityException,
-	IllegalArgumentException, NoSuchMethodException,
-	IllegalAccessException, InvocationTargetException,
-	ClassNotFoundException, InstantiationException  {
+	public void doDePoTTest1() throws Exception{
 		Starter st = new Starter(driver);
 		st/*.goHogeHoge()
 			.goChomeChome()
@@ -53,5 +50,4 @@ public class DePoTTest1 {
 			})
 			.goSomewhare(String)*/;
 	}
-
 }

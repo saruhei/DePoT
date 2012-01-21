@@ -8,7 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class YahooImageSearchResultPage extends AbstractPage<YahooImageSearchResultPage> {
+public class YahooImageSearchResultPage extends
+		AbstractPage<YahooImageSearchResultPage> {
 
 	@FindBy(id = "SaB")
 	public WebElement returntop;
@@ -18,7 +19,9 @@ public class YahooImageSearchResultPage extends AbstractPage<YahooImageSearchRes
 	private final String keyword;
 
 	public YahooImageSearchResultPage(WebDriver driver, String keyword)
-			throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+			throws ClassNotFoundException, SecurityException,
+			NoSuchFieldException, IllegalArgumentException,
+			IllegalAccessException {
 		super(driver);
 		this.keyword = keyword;
 		// 不変条件のテスト
@@ -27,16 +30,20 @@ public class YahooImageSearchResultPage extends AbstractPage<YahooImageSearchRes
 
 	@Override
 	protected void assertInvariant() {
-		//assertThat(driver.getTitle(), is("「" + keyword
-			//	+ "」の検索結果 - Yahoo!検索（画像）"));
+		// assertThat(driver.getTitle(), is("「" + keyword
+		// + "」の検索結果 - Yahoo!検索（画像）"));
 	}
 
-	public YahooTopPage goTopPage() throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+	public YahooTopPage goTopPage() throws ClassNotFoundException,
+			SecurityException, NoSuchFieldException, IllegalArgumentException,
+			IllegalAccessException {
 		returntop.click();
 		return new YahooTopPage(driver);
 	}
 
-	public YahooSearchResultPage goSearchPage() throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+	public YahooSearchResultPage goSearchPage() throws ClassNotFoundException,
+			SecurityException, NoSuchFieldException, IllegalArgumentException,
+			IllegalAccessException {
 		searchbtn.click();
 		return new YahooSearchResultPage(driver, keyword);
 	}
