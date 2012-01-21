@@ -10,89 +10,87 @@ import jp.ac.waseda.cs.washi.automake.AbstractPage;
 
 public class GbbsPage extends AbstractPage<GbbsPage> {
 
-	@FindBy(id = "goHome")
+	@FindBy(id =  "goHome")
 	public WebElement goHome;
 
-	@FindBy(id = "radioblue")
+	@FindBy(id =  "radioblue")
 	public WebElement radioblue;
 
-	@FindBy(id = "radiored")
+	@FindBy(id =  "radiored")
 	public WebElement radiored;
 
-	@FindBy(id = "radiogreen")
+	@FindBy(id =  "radiogreen")
 	public WebElement radiogreen;
 
-	@FindBy(id = "radiobrown")
+	@FindBy(id =  "radiobrown")
 	public WebElement radiobrown;
 
-	@FindBy(id = "radiopurple")
+	@FindBy(id =  "radiopurple")
 	public WebElement radiopurple;
 
-	@FindBy(id = "delpass")
+	@FindBy(id =  "delpass")
 	public WebElement delpass;
 
-	@FindBy(id = "redelpass")
+	@FindBy(id =  "redelpass")
 	public WebElement redelpass;
 
-	@FindBy(name = "tag")
+	@FindBy(name =  "tag")
 	public WebElement tag;
 
-	@FindBy(name = "delcode")
+	@FindBy(name =  "delcode")
 	public WebElement delcode;
 
-	@FindBy(name = "recheckdelcode")
+	@FindBy(name =  "recheckdelcode")
 	public WebElement recheckdelcode;
 
-	@FindBy(name = "name")
+	@FindBy(name =  "name")
 	public WebElement name;
 
-	@FindBy(name = "email")
+	@FindBy(name =  "email")
 	public WebElement email;
 
-	@FindBy(name = "hp")
+	@FindBy(name =  "hp")
 	public WebElement hp;
 
-	@FindBy(name = "pass")
+	@FindBy(name =  "pass")
 	public WebElement pass;
 
-	@FindBy(name = "subject")
+	@FindBy(name =  "subject")
 	public WebElement subject;
 
-	@FindBy(name = "comment")
+	@FindBy(name =  "comment")
 	public WebElement comment;
 
-	@FindBy(name = "upfile")
+	@FindBy(name =  "upfile")
 	public WebElement upfile;
 
-	@FindBy(name = "upfile2")
+	@FindBy(name =  "upfile2")
 	public WebElement upfile2;
 
-	@FindBy(name = "upfile3")
+	@FindBy(name =  "upfile3")
 	public WebElement upfile3;
 
-	@FindBy(css = "input[value = \"書き込みor更新\"]")
+	@FindBy(css =  "input[value = \"書き込みor更新\"]")
 	public WebElement 書き込みor更新;
 
-	@FindBy(id = "delete")
+	@FindBy(id =  "delete")
 	public WebElement delete;
 
-	@FindBy(css = "input[value = \"返信\"]")
+	@FindBy(css =  "input[value = \"返信\"]")
 	public WebElement 返信;
 
-	@FindBy(id = "redelete")
+	@FindBy(id =  "redelete")
 	public WebElement redelete;
 
-	public GbbsPage(WebDriver driver) throws ClassNotFoundException {
+	public GbbsPage(WebDriver driver)
+			throws ClassNotFoundException {
 		super(driver);
 		assertInvariant();
 	}
 
 	@Override
 	protected void assertInvariant() {
-		assertThat(driver.getTitle(), is(driver.getTitle())); // make some
-																// invariant
-																// test if you
-																// need
+		assertThat(driver.getTitle(),is(driver.getTitle())); //make some invariant test if you need
 	}
 
 	public DePoThome gogoHome() throws ClassNotFoundException {
@@ -100,7 +98,7 @@ public class GbbsPage extends AbstractPage<GbbsPage> {
 		return new DePoThome(driver);
 	}
 
-	public GbbsPage goForm0() throws Exception {
+	public GbbsPage goGbbsPageForm0() throws Exception {
 		radioblue.click();
 		radiored.click();
 		radiogreen.click();
@@ -120,19 +118,19 @@ public class GbbsPage extends AbstractPage<GbbsPage> {
 		return new GbbsPage(driver);
 	}
 
-	public GbbsPage goForm1() throws Exception {
+	public GbbsPage goGbbsPageForm1() throws Exception {
 		delcode.click();
 		delpass.sendKeys("HogeHoge");
 		delete.submit();
 		return new GbbsPage(driver);
 	}
 
-	public GbbsPage goForm2() throws Exception {
+	public GbbsPage goGbbsPageForm2() throws Exception {
 		返信.submit();
 		return new GbbsPage(driver);
 	}
 
-	public GbbsPage goForm3() throws Exception {
+	public GbbsPage goGbbsPageForm3() throws Exception {
 		recheckdelcode.click();
 		redelpass.sendKeys("HogeHoge");
 		redelete.submit();

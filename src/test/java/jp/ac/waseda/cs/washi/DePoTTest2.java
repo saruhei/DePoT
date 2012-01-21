@@ -50,4 +50,5 @@ public class DePoTTest2 {
 			})
 			.goSomewhare(String)*/;
 	}
+
 }

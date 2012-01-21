@@ -10,48 +10,46 @@ import jp.ac.waseda.cs.washi.automake.AbstractPage;
 
 public class ChatPage extends AbstractPage<ChatPage> {
 
-	@FindBy(id = "goHome")
+	@FindBy(id =  "goHome")
 	public WebElement goHome;
 
-	@FindBy(id = "radioblue")
+	@FindBy(id =  "radioblue")
 	public WebElement radioblue;
 
-	@FindBy(id = "radiored")
+	@FindBy(id =  "radiored")
 	public WebElement radiored;
 
-	@FindBy(id = "radiogreen")
+	@FindBy(id =  "radiogreen")
 	public WebElement radiogreen;
 
-	@FindBy(id = "radiobrown")
+	@FindBy(id =  "radiobrown")
 	public WebElement radiobrown;
 
-	@FindBy(id = "radiopurple")
+	@FindBy(id =  "radiopurple")
 	public WebElement radiopurple;
 
-	@FindBy(name = "name")
+	@FindBy(name =  "name")
 	public WebElement name;
 
-	@FindBy(name = "message")
+	@FindBy(name =  "message")
 	public WebElement message;
 
-	@FindBy(name = "refresh")
+	@FindBy(name =  "refresh")
 	public WebElement forSelectElementrefresh;
 	Select refresh = new Select(forSelectElementrefresh);
 
-	@FindBy(name = "Submit")
+	@FindBy(name =  "Submit")
 	public WebElement Submit;
 
-	public ChatPage(WebDriver driver) throws ClassNotFoundException {
+	public ChatPage(WebDriver driver)
+			throws ClassNotFoundException {
 		super(driver);
 		assertInvariant();
 	}
 
 	@Override
 	protected void assertInvariant() {
-		assertThat(driver.getTitle(), is(driver.getTitle())); // make some
-																// invariant
-																// test if you
-																// need
+		assertThat(driver.getTitle(),is(driver.getTitle())); //make some invariant test if you need
 	}
 
 	public DePoThome gogoHome() throws ClassNotFoundException {
@@ -59,7 +57,7 @@ public class ChatPage extends AbstractPage<ChatPage> {
 		return new DePoThome(driver);
 	}
 
-	public ChatPage goForm0() throws Exception {
+	public ChatPage goChatPageForm0() throws Exception {
 		radioblue.click();
 		radiored.click();
 		radiogreen.click();

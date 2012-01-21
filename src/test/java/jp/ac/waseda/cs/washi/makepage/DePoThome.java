@@ -10,29 +10,27 @@ import jp.ac.waseda.cs.washi.automake.AbstractPage;
 
 public class DePoThome extends AbstractPage<DePoThome> {
 
-	@FindBy(id = "GoLogin")
+	@FindBy(id =  "GoLogin")
 	public WebElement GoLogin;
 
-	@FindBy(id = "Chat")
+	@FindBy(id =  "Chat")
 	public WebElement Chat;
 
-	@FindBy(id = "Diary")
+	@FindBy(id =  "Diary")
 	public WebElement Diary;
 
-	@FindBy(id = "gbbs")
+	@FindBy(id =  "gbbs")
 	public WebElement gbbs;
 
-	public DePoThome(WebDriver driver) throws ClassNotFoundException {
+	public DePoThome(WebDriver driver)
+			throws ClassNotFoundException {
 		super(driver);
 		assertInvariant();
 	}
 
 	@Override
 	protected void assertInvariant() {
-		assertThat(driver.getTitle(), is(driver.getTitle())); // make some
-																// invariant
-																// test if you
-																// need
+		assertThat(driver.getTitle(),is(driver.getTitle())); //make some invariant test if you need
 	}
 
 	public LoginPage goGoLogin() throws ClassNotFoundException {

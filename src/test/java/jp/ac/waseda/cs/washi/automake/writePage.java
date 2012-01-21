@@ -136,13 +136,14 @@ public class WritePage {
 					}
 				}
 				if (formactionlist.get(i).equals("$PHP_SELF")) {
-					pw.println("	public " + filename + " goForm" + i
-							+ "() throws Exception {");
+					pw.println("	public " + filename + " go" + filename
+							+ "Form" + i + "() throws Exception {");
 				} else if (returnIdClass == null) {
 					pw.println("	public InputPageClass goForm" + i
 							+ "() throws Exception {");
 				} else {
-					pw.println("	public " + returnIdClass + " goForm" + i
+					pw.println("	public " + returnIdClass + " go"
+							+ returnIdClass + "Form" + i
 							+ "() throws Exception {");
 				}
 
