@@ -11,12 +11,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class ProxyWebDriver implements WebDriver{
-	
+public class ProxyWebDriver implements WebDriver {
+
 	private AbstractPage<?> page;
 	private WebDriver driver;
 
-	public ProxyWebDriver(AbstractPage<?> page, WebDriver driver){
+	public ProxyWebDriver(AbstractPage<?> page, WebDriver driver) {
 		this.page = page;
 		this.driver = driver;
 	}
@@ -98,19 +98,22 @@ public class ProxyWebDriver implements WebDriver{
 		doInvariantAssert();
 		return driver.manage();
 	}
-	
-	public void doInvariantAssert(){
-		if(!(new Throwable().getStackTrace()[3].getMethodName().equals("assertInvariant"))){
+
+	public void doInvariantAssert() {
+		if (!(new Throwable().getStackTrace()[3].getMethodName()
+				.equals("assertInvariant"))) {
 			Class<?> thisclass = page.getClass();
 			try {
-				Method assertmethod = thisclass.getDeclaredMethod("assertInvariant");
+				Method assertmethod = thisclass
+						.getDeclaredMethod("assertInvariant");
 				assertmethod.setAccessible(true);
 				assertmethod.invoke(page);
 			} catch (SecurityException e) {
 				e.printStackTrace();
 			} catch (NoSuchMethodException e) {
 				e.printStackTrace();
-				System.out.println("invariant assertion have args or you have no invariant asssert method");
+				System.out
+						.println("invariant assertion have args or you have no invariant asssert method");
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {

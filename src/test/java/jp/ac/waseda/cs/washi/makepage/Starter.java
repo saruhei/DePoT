@@ -1,6 +1,5 @@
 package jp.ac.waseda.cs.washi.makepage;
 
-
 import org.openqa.selenium.WebDriver;
 
 public class Starter {
@@ -11,8 +10,14 @@ public class Starter {
 		this.driver = driver;
 	}
 
-	public InputClassName goFirstPage() throws ClassNotFoundException {
-		driver.get("http:// url"); //input url which is start of test
-		return new InputClassName(driver);
+	public LoginPage goFirstPage() throws ClassNotFoundException {
+		driver.get("http://localhost:8888/study.localhost/DePoT/sorce/Login.php"); // input
+																					// url
+																					// which
+																					// is
+																					// start
+																					// of
+																					// test
+		return new LoginPage(driver);
 	}
 }

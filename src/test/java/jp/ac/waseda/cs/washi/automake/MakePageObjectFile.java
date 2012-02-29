@@ -5,12 +5,13 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class MakePageObjectFile {
-	public String[] makeFile(String filename, String address, String packageName) throws Exception {
+	public String[] makeFile(String filename, String address, String packageName)
+			throws Exception {
 		String names[] = new String[3];
 		try {
 			File fl = new File(address + filename + ".java");
 			fl.createNewFile();
-			checkAbstractPage(address,packageName);
+			checkAbstractPage(address, packageName);
 		} catch (IOException e) {
 			System.out.println("既存のため、ファイル作成失敗、続行するとファイルは上書きされます");
 		}
@@ -20,12 +21,14 @@ public class MakePageObjectFile {
 		return names;
 	}
 
-	public void checkAbstractPage(String address, String packageName) throws Exception {
+	public void checkAbstractPage(String address, String packageName)
+			throws Exception {
 		File starter = new File(address + "Starter.java");
 		if (starter.exists() == false) {
-			FileReader readstart = new FileReader("./src/test/java/jp/ac/waseda/cs/washi/automake/Starter.txt");
+			FileReader readstart = new FileReader(
+					"./src/test/java/jp/ac/waseda/cs/washi/automake/Starter.txt");
 			WriteNecessaryObject st = new WriteNecessaryObject(starter);
-			st.writeNecessary(packageName,readstart);
+			st.writeNecessary(packageName, readstart);
 		}
 	}
 

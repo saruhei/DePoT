@@ -2,9 +2,9 @@ package jp.ac.waseda.cs.washi.makepage;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
-import static jp.ac.waseda.cs.washi.assertion.Assertion.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.FindBy;
 import jp.ac.waseda.cs.washi.automake.AbstractPage;
 
@@ -12,6 +12,36 @@ public class GbbsPage extends AbstractPage<GbbsPage> {
 
 	@FindBy(id =  "goHome")
 	public WebElement goHome;
+
+	@FindBy(id =  "radioblue")
+	public WebElement radioblue;
+
+	@FindBy(id =  "radiored")
+	public WebElement radiored;
+
+	@FindBy(id =  "radiogreen")
+	public WebElement radiogreen;
+
+	@FindBy(id =  "radiobrown")
+	public WebElement radiobrown;
+
+	@FindBy(id =  "radiopurple")
+	public WebElement radiopurple;
+
+	@FindBy(id =  "delpass")
+	public WebElement delpass;
+
+	@FindBy(id =  "redelpass")
+	public WebElement redelpass;
+
+	@FindBy(name =  "tag")
+	public WebElement tag;
+
+	@FindBy(name =  "delcode")
+	public WebElement delcode;
+
+	@FindBy(name =  "recheckdelcode")
+	public WebElement recheckdelcode;
 
 	@FindBy(name =  "name")
 	public WebElement name;
@@ -22,8 +52,35 @@ public class GbbsPage extends AbstractPage<GbbsPage> {
 	@FindBy(name =  "hp")
 	public WebElement hp;
 
+	@FindBy(name =  "pass")
+	public WebElement pass;
+
 	@FindBy(name =  "subject")
 	public WebElement subject;
+
+	@FindBy(name =  "comment")
+	public WebElement comment;
+
+	@FindBy(name =  "upfile")
+	public WebElement upfile;
+
+	@FindBy(name =  "upfile2")
+	public WebElement upfile2;
+
+	@FindBy(name =  "upfile3")
+	public WebElement upfile3;
+
+	@FindBy(css =  "input[value = \"書き込みor更新\"]")
+	public WebElement 書き込みor更新;
+
+	@FindBy(id =  "delete")
+	public WebElement delete;
+
+	@FindBy(css =  "input[value = \"返信\"]")
+	public WebElement 返信;
+
+	@FindBy(id =  "redelete")
+	public WebElement redelete;
 
 	public GbbsPage(WebDriver driver)
 			throws ClassNotFoundException {
@@ -41,28 +98,43 @@ public class GbbsPage extends AbstractPage<GbbsPage> {
 		return new DePoThome(driver);
 	}
 
-	public InputPageClass goWithPutname() throws ClassNotFoundException {
+	public GbbsPage goGbbsPageForm0() throws Exception {
+		radioblue.click();
+		radiored.click();
+		radiogreen.click();
+		radiobrown.click();
+		radiopurple.click();
+		tag.click();
 		name.sendKeys("HogeHoge");
-		name.submit();
-		return new InputPageClass(driver);
-	}
-
-	public InputPageClass goWithPutemail() throws ClassNotFoundException {
 		email.sendKeys("HogeHoge");
-		email.submit();
-		return new InputPageClass(driver);
-	}
-
-	public InputPageClass goWithPuthp() throws ClassNotFoundException {
 		hp.sendKeys("HogeHoge");
-		hp.submit();
-		return new InputPageClass(driver);
+		pass.sendKeys("HogeHoge");
+		subject.sendKeys("HogeHoge");
+		comment.sendKeys("HogeHoge");
+		upfile.sendKeys("HogeHoge");
+		upfile2.sendKeys("HogeHoge");
+		upfile3.sendKeys("HogeHoge");
+		書き込みor更新.submit();
+		return new GbbsPage(driver);
 	}
 
-	public InputPageClass goWithPutsubject() throws ClassNotFoundException {
-		subject.sendKeys("HogeHoge");
-		subject.submit();
-		return new InputPageClass(driver);
+	public GbbsPage goGbbsPageForm1() throws Exception {
+		delcode.click();
+		delpass.sendKeys("HogeHoge");
+		delete.submit();
+		return new GbbsPage(driver);
+	}
+
+	public GbbsPage goGbbsPageForm2() throws Exception {
+		返信.submit();
+		return new GbbsPage(driver);
+	}
+
+	public GbbsPage goGbbsPageForm3() throws Exception {
+		recheckdelcode.click();
+		redelpass.sendKeys("HogeHoge");
+		redelete.submit();
+		return new GbbsPage(driver);
 	}
 
 }

@@ -2,9 +2,9 @@ package jp.ac.waseda.cs.washi.makepage;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
-import static jp.ac.waseda.cs.washi.assertion.Assertion.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.FindBy;
 import jp.ac.waseda.cs.washi.automake.AbstractPage;
 
@@ -15,6 +15,9 @@ public class LoginPage extends AbstractPage<LoginPage> {
 
 	@FindBy(name =  "passwd")
 	public WebElement passwd;
+
+	@FindBy(name =  "Submit")
+	public WebElement Submit;
 
 	public LoginPage(WebDriver driver)
 			throws ClassNotFoundException {
@@ -27,16 +30,11 @@ public class LoginPage extends AbstractPage<LoginPage> {
 		assertThat(driver.getTitle(),is(driver.getTitle())); //make some invariant test if you need
 	}
 
-	public InputPageClass goWithPutu_id() throws ClassNotFoundException {
+	public DePoThome goDePoThomeForm0() throws Exception {
 		u_id.sendKeys("HogeHoge");
-		u_id.submit();
-		return new InputPageClass(driver);
-	}
-
-	public InputPageClass goWithPutpasswd() throws ClassNotFoundException {
 		passwd.sendKeys("HogeHoge");
-		passwd.submit();
-		return new InputPageClass(driver);
+		Submit.submit();
+		return new DePoThome(driver);
 	}
 
 }
