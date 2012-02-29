@@ -1,7 +1,8 @@
-package jp.ac.waseda.cs.washi.forseminar;
+package jp.ac.waseda.cs.washi.makepage;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
+import static jp.ac.waseda.cs.washi.assertion.Assertion.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,9 +21,6 @@ public class DePoThomePage extends AbstractPage<DePoThomePage> {
 	@FindBy(id =  "gbbs")
 	public WebElement gbbs;
 
-	@FindBy(name =  "passwd")
-	public WebElement passwd;
-
 	public DePoThomePage(WebDriver driver)
 			throws ClassNotFoundException {
 		super(driver);
@@ -31,19 +29,15 @@ public class DePoThomePage extends AbstractPage<DePoThomePage> {
 
 	@Override
 	protected void assertInvariant() {
-		assertThat(driver.getTitle(),is("DePoT_TestPage_Home")); //make some invariant test if you need
+		assertThat(driver.getTitle(),is(driver.getTitle())); //make some invariant test if you need
 	}
 
-	public LoginPage goGoLogin() throws ClassNotFoundException {
+	public InputPageClass goGoLogin() throws ClassNotFoundException {
 		GoLogin.click();
-		return new LoginPage(driver);
+		return new InputPageClass(driver);
 	}
 
 	public ChatPage goChat() throws ClassNotFoundException {
-		//System.out.println(selenium.getAllFields());
-		for(String str : selenium.getAllLinks()){
-			System.out.println(str);
-		}
 		Chat.click();
 		return new ChatPage(driver);
 	}
@@ -53,15 +47,9 @@ public class DePoThomePage extends AbstractPage<DePoThomePage> {
 		return new DiaryPage(driver);
 	}
 
-	public GbbsPage gogbbs() throws ClassNotFoundException {
+	public InputPageClass gogbbs() throws ClassNotFoundException {
 		gbbs.click();
-		return new GbbsPage(driver);
-	}
-
-	/*public InputPageClass goWithPutpasswd() throws ClassNotFoundException {
-		passwd.sendKeys("HogeHoge");
-		passwd.submit();
 		return new InputPageClass(driver);
-	}*/
+	}
 
 }

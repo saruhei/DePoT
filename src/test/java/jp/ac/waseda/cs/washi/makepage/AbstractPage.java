@@ -1,4 +1,5 @@
-package jp.ac.waseda.cs.washi.forseminar;
+package jp.ac.waseda.cs.washi.makepage;
+
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
@@ -95,59 +96,4 @@ public abstract class AbstractPage<Tpage extends AbstractPage<Tpage>> {
 		System.out.println("");
 	}
 	
-	
-	public void assertTitle(String title){
-		assertThat(driver.getTitle(), is(title));
-	}
-	
-	public void assertUrl(String url){
-		assertThat(driver.getCurrentUrl(), is(url));
-	}
-	
-	public void assertWindowHandle(String handle){
-		assertThat(driver.getWindowHandle(), is(handle));
-	}
-	
-	public void assertTag(String tag,WebElement element){
-		assertThat(element.getTagName(),is(tag));
-	}
-	
-	public void assertText(String text, WebElement element){
-		assertThat(element.getText(), is(text));
-	}
-	
-	public void assertTextPresent(String text){
-		assertTrue(selenium.isTextPresent(text));
-	}
-	
-	public void assertSize(Dimension size, WebElement element){
-		assertEquals(size, element.getSize());
-	}
-	
-	public void assertPoint(Point location,WebElement element){
-		assertEquals(location, element.getLocation());
-	}
-	
-	public void assertDisplayed(WebElement element){
-		assertTrue(element.isDisplayed());
-	}
-	
-	public void assertEnabled(WebElement element){
-		assertTrue(element.isEnabled());
-	}
-	
-	public void assertSelected(WebElement element){
-		assertTrue(element.isSelected());
-	}
-	
-	public void assertAttribute(String Attribute, String expected, WebElement element){
-		assertThat(element.getAttribute(Attribute), is(expected));
-	}
-	
-	public void assertCssValue(String Value, String expected, WebElement element){
-		assertThat(element.getCssValue(Value), is(expected));
-	}
-
-
-
 }

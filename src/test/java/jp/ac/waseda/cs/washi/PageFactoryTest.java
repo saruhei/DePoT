@@ -8,6 +8,8 @@ import jp.ac.waseda.cs.washi.yahoo.AtFirst;
 import jp.ac.waseda.cs.washi.yahoo.UnExpectAction;
 import jp.ac.waseda.cs.washi.yahoo.YahooImageSearchResultPage;
 import jp.ac.waseda.cs.washi.yahoo.YahooSearchResultPage;
+import jp.ac.waseda.cs.washi.yahoo.YahooTopPage;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -39,22 +41,10 @@ public class PageFactoryTest {
 
 					@Override
 					public void assertPage(YahooSearchResultPage page) {
-						assertNotNull(page.returntop);
+						// TODO Auto-generated method stub
+						
 					}
 				})
-				.doUnEx(new UnExpectAction<YahooImageSearchResultPage,YahooSearchResultPage>() {
-
-					@Override
-					public <T> YahooImageSearchResultPage unExpectAct(
-							YahooSearchResultPage t)
-							throws ClassNotFoundException {
-						assertNotNull(t.returntop);
-						t.isearchbtn.click();
-						return new YahooImageSearchResultPage(driver, "keyword");
-					}
-				})
-				.goTopPage()
-				.goSearchPage("selenium")
 				.goTopPage()
 				.goImageSearchPage("aaa")
 				.goRandomPage();
