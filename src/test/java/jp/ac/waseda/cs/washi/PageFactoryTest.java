@@ -1,13 +1,10 @@
 package jp.ac.waseda.cs.washi;
 
 import java.lang.reflect.InvocationTargetException;
-import static org.junit.Assert.*;
 import jp.ac.waseda.cs.washi.yahoo.AtFirst;
 import jp.ac.waseda.cs.washi.automake.UnExpectAction;
 import jp.ac.waseda.cs.washi.yahoo.YahooImageSearchResultPage;
 import jp.ac.waseda.cs.washi.yahoo.YahooSearchResultPage;
-import jp.ac.waseda.cs.washi.yahoo.YahooTopPage;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;

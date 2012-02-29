@@ -1,8 +1,5 @@
 package jp.ac.waseda.cs.washi.yahoo;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-
 import jp.ac.waseda.cs.washi.automake.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
