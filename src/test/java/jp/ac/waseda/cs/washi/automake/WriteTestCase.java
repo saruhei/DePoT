@@ -103,6 +103,8 @@ public class WriteTestCase {
 		pw.println("import static org.junit.Assert.*;\n" +
 				"import static org.hamcrest.Matchers.is;\n");
 		pw.println("import " + pagePackageName + ".*;\n" +
+				"import jp.ac.waseda.cs.washi.automake.UnExpectAction;\n" +
+				"import jp.ac.waseda.cs.washi.automake.AssertFunction;" +
 				"import org.junit.AfterClass;\n" +
 				"import org.junit.BeforeClass;\n" +
 				"import org.junit.Test;\n" +

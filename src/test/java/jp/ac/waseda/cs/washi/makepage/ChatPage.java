@@ -6,6 +6,7 @@ import static jp.ac.waseda.cs.washi.assertion.Assertion.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import jp.ac.waseda.cs.washi.automake.AbstractPage;
 
 public class ChatPage extends AbstractPage<ChatPage> {
 

@@ -77,7 +77,8 @@ public class WritePage {
 				+ "import static jp.ac.waseda.cs.washi.assertion.Assertion.*;\n"
 				+ "import org.openqa.selenium.WebDriver;\n"
 				+ "import org.openqa.selenium.WebElement;\n"
-				+ "import org.openqa.selenium.support.FindBy;\n");
+				+ "import org.openqa.selenium.support.FindBy;\n" +
+				"import jp.ac.waseda.cs.washi.automake.AbstractPage;\n");
 	}
 
 	private static void writePackage(PrintWriter pw, String packageName)
