@@ -2,28 +2,16 @@
 
 <PageObjects>
 	<PageObject>
-		<Directory>./src/test/java/jp/ac/waseda/cs/washi/makepage/</Directory>
-		<PackageName>jp.ac.waseda.cs.washi.makepage</PackageName>
+		<Directory>./src/main/java/jp/ac/waseda/cs/washi/test_PO/</Directory>
+		<PackageName>jp.ac.waseda.cs.washi.test_PO</PackageName>
 		<PageLists>
 			<Page>
-				<Name>DePoThome</Name>
-				<Url>http://localhost:8888/study.localhost/DePoT/sorce/DePoThome.php</Url>
-			</Page>
-			<Page>
-				<Name>LoginPage</Name>
-				<Url>http://localhost:8888/study.localhost/DePoT/sorce/Login.php</Url>
+				<Name>MainPage</Name>
+				<Url>http://develop.saruhei.com/</Url>
 			</Page>
 			<Page>
 				<Name>ChatPage</Name>
-				<Url>http://localhost:8888/study.localhost/DePoT/sorce/Chat.php</Url>
-			</Page>
-			<Page>
-				<Name>DiaryPage</Name>
-				<Url>http://localhost:8888/study.localhost/DePoT/sorce/Diary.php</Url>
-			</Page>
-			<Page>
-				<Name>GbbsPage</Name>
-				<Url>http://localhost:8888/study.localhost/DePoT/sorce/gbbs.php</Url>
+				<Url>http://develop.saruhei.com/chat</Url>
 			</Page>
 		</PageLists>
 	</PageObject>
@@ -31,12 +19,11 @@
 
 <TestCases>
 	<TestCase>
-		<Directory>./src/test/java/jp/ac/waseda/cs/washi/</Directory>
-		<TestPackageName>jp.ac.waseda.cs.washi</TestPackageName>
-		<POPackageName>jp.ac.waseda.cs.washi.makepage</POPackageName>
+		<Directory>./src/main/java/jp/ac/waseda/cs/washi/test_TC/</Directory>
+		<TestPackageName>jp.ac.waseda.cs.washi.test_TC</TestPackageName>
+		<POPackageName>jp.ac.waseda.cs.washi.test_PO</POPackageName>
 		<TestLists>
 			<Test>DePoTTest1</Test>
-			<Test>DePoTTest2</Test>
 		</TestLists>
 	</TestCase>
 </TestCases>

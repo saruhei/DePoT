@@ -26,7 +26,7 @@ public class MakePageObjectFile {
 		File starter = new File(address + "Starter.java");
 		if (starter.exists() == false) {
 			FileReader readstart = new FileReader(
-					"./src/test/java/jp/ac/waseda/cs/washi/automake/Starter.txt");
+					"./src/main/java/jp/ac/waseda/cs/washi/automake/Starter.txt");
 			WriteNecessaryObject st = new WriteNecessaryObject(starter);
 			st.writeNecessary(packageName, readstart);
 		}
