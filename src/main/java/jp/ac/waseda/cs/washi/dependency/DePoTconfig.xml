@@ -2,8 +2,8 @@
 
 <PageObjects>
 	<PageObject>
-		<Directory>./src/main/java/jp/ac/waseda/cs/washi/test_PO_test1/</Directory>
-		<PackageName>jp.ac.waseda.cs.washi.test_PO_test1</PackageName>
+		<Directory>./src/main/java/jp/ac/waseda/cs/washi/test_PO_test3/</Directory>
+		<PackageName>jp.ac.waseda.cs.washi.test_PO_test3</PackageName>
 		<PageLists>
 			<Page>
 				<Name>MainPage</Name>
@@ -23,9 +23,9 @@
 
 <TestCases>
 	<TestCase>
-		<Directory>./src/main/java/jp/ac/waseda/cs/washi/test_TC_test1/</Directory>
-		<TestPackageName>jp.ac.waseda.cs.washi.test_TC_test1</TestPackageName>
-		<POPackageName>jp.ac.waseda.cs.washi.test_PO_test1</POPackageName>
+		<Directory>./src/main/java/jp/ac/waseda/cs/washi/test_TC_test3/</Directory>
+		<TestPackageName>jp.ac.waseda.cs.washi.test_TC_test3</TestPackageName>
+		<POPackageName>jp.ac.waseda.cs.washi.test_PO_test3</POPackageName>
 		<TestLists>
 			<Test>DePoTTest1</Test>
 		</TestLists>

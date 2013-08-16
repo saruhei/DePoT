@@ -14,7 +14,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class DePoTTest1 {
+public class Experience1_depot {
 
 	private static FirefoxDriver driver;
 
@@ -39,9 +39,8 @@ public class DePoTTest1 {
 
 			@Override
 			public void assertPage(ChatPage page) {
-				// TODO Auto-generated method stub
 				page.assertTextPresent("saru");
-				
+				page.assertTextPresent("saruhei");
 			}
 		}).gomain();
 	}
@@ -56,9 +55,8 @@ public class DePoTTest1 {
 
 			@Override
 			public void assertPage(ChatPage page) {
-				// TODO Auto-generated method stub
-				page.assertTextPresent("alert");
-				
+				page.assertTextPresent("<script>alert(aaaa)<script>");
+				page.assertTextPresent("null");
 			}
 		}).gomain();
 	}
@@ -73,9 +71,8 @@ public class DePoTTest1 {
 
 			@Override
 			public void assertPage(ChatPage page) {
-				// TODO Auto-generated method stub
-				page.assertTextPresent("rain");
-				
+				page.assertTextPresent("goma");
+				page.assertTextPresent("Today is rain");
 			}
 		}).gomain();
 	}
@@ -90,7 +87,7 @@ public class DePoTTest1 {
 
 			@Override
 			public void assertPage(ChatPage page) {
-				// TODO Auto-generated method stub
+				page.assertTextPresent("saru");
 				page.assertTextPresent("My name is saruhei");
 				
 			}
@@ -107,11 +104,80 @@ public class DePoTTest1 {
 
 			@Override
 			public void assertPage(ChatPage page) {
-				// TODO Auto-generated method stub
+				page.assertTextPresent("saruhei");
 				page.assertTextPresent("↑ is strange man");
 				
 			}
 		}).gomain();
 	}
 
+	@Test
+	public void doDePoTTest6() throws Exception{
+		Starter st = new Starter(driver);
+		st.goFirstPage()
+		.gochat()
+		.gomain()
+		.godiary();
+	}
+	
+	@Test
+	public void doDePoTTest7() throws Exception{
+		Starter st = new Starter(driver);
+		st.goFirstPage()
+		.godiary()
+		.gochat()
+		.goinputForm("depot", "not depot")
+		.doAssert(new AssertFunction<ChatPage>(){
+
+			@Override
+			public void assertPage(ChatPage page) {
+				page.assertTextPresent("depot");
+				page.assertTextPresent("not depot");
+			}
+		}).gomain();
+	}
+	
+	@Test
+	public void doDePoTTest8() throws Exception{
+		Starter st = new Starter(driver);
+		st.goFirstPage()
+		.gochat();
+	}
+	
+	@Test
+	public void doDePoTTest9() throws Exception{
+		Starter st = new Starter(driver);
+		st.goFirstPage()
+		.godiary();
+	}
+	
+	@Test
+	public void doDePoTTest10() throws Exception{
+		Starter st = new Starter(driver);
+		st.goFirstPage()
+		.godiary()
+		.gochat()
+		.goinputForm("experience1", "pending...")
+		.doAssert(new AssertFunction<ChatPage>(){
+
+			@Override
+			public void assertPage(ChatPage page) {
+				page.assertTextPresent("experience1");
+				page.assertTextPresent("pending...");				
+			}
+			
+		})
+		.goinputForm("experience1_2", "pendingpending")
+		.doAssert(new AssertFunction<ChatPage>(){
+
+			@Override
+			public void assertPage(ChatPage page) {
+				page.assertTextPresent("experience1");
+				page.assertTextPresent("pending...");
+				page.assertTextPresent("experience1_2");
+				page.assertTextPresent("pendingpending");	
+			}
+			
+		});
+	}
 }
