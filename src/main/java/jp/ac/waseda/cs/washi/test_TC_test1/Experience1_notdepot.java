@@ -40,8 +40,8 @@ public class Experience1_notdepot {
 		driver.get("http://develop.saruhei.com");
 		driver.findElement(By.id("chat")).click();
 		assertThat("ChatPage",is(driver.getTitle()));
-		driver.findElement(By.id("name")).sendKeys("saru");
-		driver.findElement(By.id("content")).sendKeys("My name is saruhei");
+		driver.findElement(By.name("name")).sendKeys("saru");
+		driver.findElement(By.name("content")).sendKeys("My name is saruhei");
 		assertThat("ChatPage",is(driver.getTitle()));
 		Selenium selenium = new WebDriverBackedSelenium(driver, driver.getCurrentUrl());
 		selenium.isTextPresent("saru");
@@ -55,7 +55,7 @@ public class Experience1_notdepot {
 	public void doDePoTTest2() throws Exception{
 		driver.get("http://develop.saruhei.com");
 		driver.findElement(By.id("diary")).click();
-		assertThat("DiaryPage",is(driver.getTitle()));
+		assertThat("DairyPage",is(driver.getTitle()));
 
 	}
 	
@@ -65,8 +65,8 @@ public class Experience1_notdepot {
 		driver.get("http://develop.saruhei.com");
 		driver.findElement(By.id("chat")).click();
 		assertThat("ChatPage",is(driver.getTitle()));
-		driver.findElement(By.id("name")).sendKeys("saru");
-		driver.findElement(By.id("content")).sendKeys("saruhei");
+		driver.findElement(By.name("name")).sendKeys("saru");
+		driver.findElement(By.name("content")).sendKeys("saruhei");
 		assertThat("ChatPage",is(driver.getTitle()));
 		Selenium selenium = new WebDriverBackedSelenium(driver, driver.getCurrentUrl());
 		selenium.isTextPresent("saru");
@@ -84,7 +84,7 @@ public class Experience1_notdepot {
 		driver.findElement(By.id("main")).click();
 		assertThat("MainPage",is(driver.getTitle()));
 		driver.findElement(By.id("diary")).click();
-		assertThat("DiaryPage",is(driver.getTitle()));
+		assertThat("DairyPage",is(driver.getTitle()));
 
 	}
 	
@@ -95,8 +95,8 @@ public class Experience1_notdepot {
 		driver.get("http://develop.saruhei.com");
 		driver.findElement(By.id("chat")).click();
 		assertThat("ChatPage",is(driver.getTitle()));
-		driver.findElement(By.id("name")).sendKeys("<script>alert(aaaa)<script>");
-		driver.findElement(By.id("content")).sendKeys("null");
+		driver.findElement(By.name("name")).sendKeys("<script>alert(aaaa)<script>");
+		driver.findElement(By.name("content")).sendKeys("null");
 		assertThat("ChatPage",is(driver.getTitle()));
 		Selenium selenium = new WebDriverBackedSelenium(driver, driver.getCurrentUrl());
 		selenium.isTextPresent("<script>alert(aaaa)<script>");
@@ -111,14 +111,14 @@ public class Experience1_notdepot {
 		driver.get("http://develop.saruhei.com");
 		driver.findElement(By.id("chat")).click();
 		assertThat("ChatPage",is(driver.getTitle()));
-		driver.findElement(By.id("name")).sendKeys("experience1");
-		driver.findElement(By.id("content")).sendKeys("pending...");
+		driver.findElement(By.name("name")).sendKeys("experience1");
+		driver.findElement(By.name("content")).sendKeys("pending...");
 		assertThat("ChatPage",is(driver.getTitle()));
 		Selenium selenium = new WebDriverBackedSelenium(driver, driver.getCurrentUrl());
 		selenium.isTextPresent("experience1");
 		selenium.isTextPresent("pending...");	
-		driver.findElement(By.id("name")).sendKeys("experience1_2");
-		driver.findElement(By.id("content")).sendKeys("pendingpending");
+		driver.findElement(By.name("name")).sendKeys("experience1_2");
+		driver.findElement(By.name("content")).sendKeys("pendingpending");
 		assertThat("ChatPage",is(driver.getTitle()));
 		selenium.isTextPresent("experience1");
 		selenium.isTextPresent("pending...");	
@@ -135,8 +135,8 @@ public class Experience1_notdepot {
 		driver.get("http://develop.saruhei.com");
 		driver.findElement(By.id("chat")).click();
 		assertThat("ChatPage",is(driver.getTitle()));
-		driver.findElement(By.id("name")).sendKeys("goma");
-		driver.findElement(By.id("content")).sendKeys("Today is rain");
+		driver.findElement(By.name("name")).sendKeys("goma");
+		driver.findElement(By.name("content")).sendKeys("Today is rain");
 		assertThat("ChatPage",is(driver.getTitle()));
 		Selenium selenium = new WebDriverBackedSelenium(driver, driver.getCurrentUrl());
 		selenium.isTextPresent("goma");
@@ -151,8 +151,8 @@ public class Experience1_notdepot {
 		driver.get("http://develop.saruhei.com");
 		driver.findElement(By.id("chat")).click();
 		assertThat("ChatPage",is(driver.getTitle()));
-		driver.findElement(By.id("name")).sendKeys("saruhei");
-		driver.findElement(By.id("content")).sendKeys("↑ is strange man");
+		driver.findElement(By.name("name")).sendKeys("saruhei");
+		driver.findElement(By.name("content")).sendKeys("↑ is strange man");
 		assertThat("ChatPage",is(driver.getTitle()));
 		Selenium selenium = new WebDriverBackedSelenium(driver, driver.getCurrentUrl());
 		selenium.isTextPresent("saruhei");
@@ -174,13 +174,13 @@ public class Experience1_notdepot {
 	public void doDePoTTest10() throws Exception{
 		driver.get("http://develop.saruhei.com");
 		driver.findElement(By.id("diary")).click();
-		assertThat("DiaryPage",is(driver.getTitle()));
+		assertThat("DairyPage",is(driver.getTitle()));
 		driver.findElement(By.id("main")).click();
 		assertThat("MainPage",is(driver.getTitle()));
 		driver.findElement(By.id("chat")).click();
 		assertThat("ChatPage",is(driver.getTitle()));
-		driver.findElement(By.id("name")).sendKeys("depot");
-		driver.findElement(By.id("content")).sendKeys("not depot");
+		driver.findElement(By.name("name")).sendKeys("depot");
+		driver.findElement(By.name("content")).sendKeys("not depot");
 		assertThat("ChatPage",is(driver.getTitle()));
 		Selenium selenium = new WebDriverBackedSelenium(driver, driver.getCurrentUrl());
 		selenium.isTextPresent("depot");
