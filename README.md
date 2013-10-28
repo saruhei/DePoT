@@ -7,8 +7,8 @@ Declaretive Page Object Testing Framework
 WebTestテンプレート自動でつくります君
 
 
-** PageObjectデザインパターン
+## PageObjectデザインパターン
 
-** How To SetUp
+## How To SetUp
 
-** How To Use
+## How To Use
